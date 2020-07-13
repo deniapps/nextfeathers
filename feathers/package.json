@@ -1,8 +1,8 @@
 {
-  "name": "talenter",
-  "description": "talent backend",
-  "version": "0.0.0",
-  "homepage": "",
+  "name": "feathers-dna",
+  "description": "feathersjs backend for next-feathers",
+  "version": "1.0.0",
+  "homepage": "https://deniapps.com",
   "main": "src",
   "keywords": [
     "feathers"
