@@ -1,0 +1,33 @@
+{
+  "host": "api.deniapps.com",
+  "port": "PORT",
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mongodb": "mongodb://localhost:27017/deniUser",
+  "mongoUser": "user",
+  "mongoPass": "pass",
+  "authentication": {
+    "secret": "1232b7c97bd6289e19f77242ad24914c10164e26ca4614eeaf1eeb65f5c4f99ab178d806ff3132f66f19146f693e454e136ccab2f436935cc18427f3b9203da983474942239d3289489801e54457beee96a1649f3b62d6dce72f4745ce98d72837a7e234c4f60a0885c8630337663296d1c94c55b3241b2298f968b11ccfa033377019f729c3f98dce6a8ef72a4c3e9457b80abd941c8ad4d27ce484b6c08b14b3abf9bf4a7ab983664054cb1c165decc543b23e99f6686356817221d7024a550b1127565e6a7e9ef7d7067a2219a69cac35d653cf212e1f9ecbc2c7e0e3a59ff49130bab8835d280d2170c6ba39c3aa7b181f49546f33ecea66950c49d01674",
+    "strategies": ["jwt", "local"],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "typ": "access"
+      },
+      "audience": "https://api.deniapps.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "inputs": [
+    {
+      "label": "Title",
+      "type": "text",
+      "name": "title"
+    },
+    {
+      "label": "Slug",
+      "type": "text",
+      "name": "slug"
+    },
+    {
+      "label": "Summary",
+      "type": "textarea",
+      "name": "summary"
+    },
+    {
+      "label": "Content",
+      "type": "editor",
+      "name": "content"
+    },
+    {
+      "label": "Featured Image",
+      "type": "text",
+      "name": "image"
+    },
+    {
+      "label": "Tags",
+      "type": "dropdownMulti",
+      "name": "tags",
+      "options": []
+    }
+  ]
+}

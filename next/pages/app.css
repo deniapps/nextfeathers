@@ -1,0 +1,128 @@
+@media only screen and (min-width: 1200px) {
+  .ui.container {
+    width: 980px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .home {
+    background: url("/static/img/rafael-de-nadai-b0eg-PYGICQ-unsplash-large.jpg");
+  }
+  .login {
+    background: url("/static/img/adrian-Xft-JdC-Jbc-unsplash-large.jpeg");
+  }
+  .hp-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 3.2rem;
+    margin: 2rem 0;
+  }
+
+  .hp-slogan {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    font-weight: 200;
+    color: #666666;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .home {
+    background: url("/static/img/rafael-de-nadai-b0eg-PYGICQ-unsplash-small.jpg");
+  }
+  .login {
+    background: url("/static/img/adrian-Xft-JdC-Jbc-unsplash-small.jpeg");
+  }
+  .hp-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin: 1rem 0;
+  }
+  .hp-slogan {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    font-weight: 200;
+    color: #666666;
+  }
+}
+
+.sidebar::-webkit-scrollbar,
+.ck-dropdown__panel::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar,
+.ck-dropdown__panel {
+  -ms-overflow-style: none;
+}
+
+#deniApps {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0; /** this is super important **/
+  padding-top: 5em;
+}
+#deniFooter {
+  margin: auto auto 0 auto;
+  width: 100%;
+}
+
+.coverPage {
+  margin: auto 0;
+}
+
+.deniPage {
+  margin: 2em 0;
+}
+
+.ck-editor__editable_inline {
+  min-height: 500px !important;
+}
+
+/* h2 {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+} */
+
+h1.huge {
+  font-size: 3em !important;
+}
+
+.pusher.dimmed {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.home,
+.login {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.topPadding {
+  padding-top: 7em;
+}
+
+.topPadding1 {
+  padding-top: 1em;
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+  text-decoration: none;
+}

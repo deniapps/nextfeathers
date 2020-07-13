@@ -1,0 +1,47 @@
+{
+  "inputs": {
+    "Job Info": [
+      {
+        "label": "Job Title",
+        "type": "text",
+        "name": "jobTitle"
+      },
+      {
+        "label": "Job Level",
+        "type": "dropdown",
+        "options": [
+          { "key": "entry", "text": "Entry", "value": "entry" },
+          {
+            "key": "intermediate",
+            "text": "Intermediate",
+            "value": "intermediate"
+          },
+          { "key": "senior", "text": "Senior", "value": "senior" }
+        ],
+        "name": "jobLevel"
+      },
+      {
+        "label": "Job ID",
+        "type": "text",
+        "name": "jobId"
+      },
+      {
+        "label": "Location",
+        "type": "text",
+        "name": "jobLocation"
+      }
+    ],
+    "Job Requirements": [
+      {
+        "label": "Skills",
+        "type": "text",
+        "name": "jobSkills"
+      },
+      {
+        "label": "Years of Experience",
+        "type": "text",
+        "name": "YearsOfExperience"
+      }
+    ]
+  }
+}
