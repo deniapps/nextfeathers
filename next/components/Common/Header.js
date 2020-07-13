@@ -25,7 +25,7 @@ const Header = () => {
 
         <Menu.Item key="menu-1b">
           <Link href="/playground">
-            <a>playground</a>
+            <a>Playground</a>
           </Link>
         </Menu.Item>
 
