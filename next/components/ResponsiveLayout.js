@@ -165,9 +165,7 @@ ResponsiveContainer.propTypes = {
 };
 
 const ResponsiveLayout = ({ children }) => {
-  const { user, accessToken, signOut, isReady, isMobileFromSSR } = useContext(
-    UserContext
-  );
+  const { isMobileFromSSR } = useContext(UserContext);
   // console.log("ISMOBILE", isMobileFromSSR);
   const getWidth = getWidthFactory(isMobileFromSSR);
   return (

@@ -7,7 +7,7 @@ const Header = () => {
   const { user, signOut, isReady } = useContext(UserContext);
 
   return (
-    <Menu fixed="top" inverted borderless size="huge">
+    <Menu fixed="top" inverted borderless size="huge" className="scroll">
       <Container>
         <Menu.Item header key="menu-0">
           <Link href="/">
@@ -17,13 +17,19 @@ const Header = () => {
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="menu-1">
+        <Menu.Item key="menu-1a">
           <Link href="/blog">
             <a>Blog</a>
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="menu-1">
+        <Menu.Item key="menu-1b">
+          <Link href="/playground">
+            <a>playground</a>
+          </Link>
+        </Menu.Item>
+
+        <Menu.Item key="menu-1c">
           <Link href="/about">
             <a>About Us</a>
           </Link>

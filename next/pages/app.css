@@ -76,11 +76,11 @@
 }
 
 .deniPage {
-  margin: 2em 0;
+  margin: 2em 0 4em;
 }
 
 .ck-editor__editable_inline {
-  min-height: 500px !important;
+  min-height: 400px !important;
 }
 
 /* h2 {
@@ -125,4 +125,16 @@ h1.huge {
 .link-button:hover,
 .link-button:focus {
   text-decoration: none;
+}
+
+.scroll {
+  white-space: nowrap; /* [1] */
+  overflow-x: auto; /* [2] */
+  -webkit-overflow-scrolling: touch; /* [3] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
+}
+
+/* [5] */
+.scroll::-webkit-scrollbar {
+  display: none;
 }
