@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React, { Component } from "react";
+import Link from "next/link";
 
 import {
   Button,
@@ -51,9 +52,11 @@ class DesktopContainer extends Component {
               size="large"
             >
               <Container>
-                <Menu.Item as="a" active>
-                  Home
-                </Menu.Item>
+                <Link href="/">
+                  <Menu.Item as="a" active>
+                    Home
+                  </Menu.Item>
+                </Link>
                 <Menu.Item as="a">Work</Menu.Item>
                 <Menu.Item as="a">Company</Menu.Item>
                 <Menu.Item as="a">Careers</Menu.Item>

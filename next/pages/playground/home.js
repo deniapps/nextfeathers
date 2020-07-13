@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Link from "next/link";
 import ResponsiveLayout from "components/ResponsiveLayout";
 import {
   Button,
@@ -51,7 +52,9 @@ const Home = () => {
           </Grid.Row>
           <Grid.Row>
             <Grid.Column textAlign="center">
-              <Button size="huge">Check Them Out</Button>
+              <Link href="/">
+                <Button size="huge">Check Them Out</Button>
+              </Link>
             </Grid.Column>
           </Grid.Row>
         </Grid>
@@ -92,9 +95,11 @@ const Home = () => {
             amounts of whitespace and generic content that can seem massive,
             monolithic and worth your attention.
           </p>
-          <Button as="a" size="large">
-            Read More
-          </Button>
+          <Link href="/">
+            <Button as="a" size="large">
+              Read More
+            </Button>
+          </Link>
 
           <Divider
             as="h4"
