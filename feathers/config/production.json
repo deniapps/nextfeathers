@@ -14,11 +14,11 @@
     "strategies": ["jwt", "local"],
     "path": "/authentication",
     "service": "users",
-    "jwt": {
+    "jwtOptions": {
       "header": {
         "typ": "access"
       },
-      "audience": "https://api.deniapps.com",
+      "audience": "https://deniapps.com",
       "subject": "anonymous",
       "issuer": "feathers",
       "algorithm": "HS256",
