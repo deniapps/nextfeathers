@@ -6,10 +6,10 @@
 
 @media only screen and (min-width: 768px) {
   .home {
-    background: url("/static/img/rafael-de-nadai-b0eg-PYGICQ-unsplash-large.jpg");
+    background: url("/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-large.jpg");
   }
   .login {
-    background: url("/static/img/adrian-Xft-JdC-Jbc-unsplash-large.jpeg");
+    background: url("/images/background/adrian-Xft-JdC-Jbc-unsplash-large.jpeg");
   }
   .hp-header {
     text-align: center;
@@ -29,10 +29,10 @@
 
 @media only screen and (max-width: 767px) {
   .home {
-    background: url("/static/img/rafael-de-nadai-b0eg-PYGICQ-unsplash-small.jpg");
+    background: url("/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-small.jpg");
   }
   .login {
-    background: url("/static/img/adrian-Xft-JdC-Jbc-unsplash-small.jpeg");
+    background: url("/images/background/adrian-Xft-JdC-Jbc-unsplash-small.jpeg");
   }
   .hp-header {
     text-align: center;
