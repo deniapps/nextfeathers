@@ -1,1 +1,1 @@
-pm2 start npm --name "dna" -- run prod
+pm2 start npm --name "feathers-dna" -- run prod
