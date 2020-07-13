@@ -1,4 +1,4 @@
-import { Grid } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 import Layout from "components/Layout";
 import ItemView from "components/Common/ItemView";
 import demos from "data/demo.json";
@@ -10,7 +10,7 @@ export default function Index() {
     <Layout>
       <Grid>
         <Grid.Column>
-          <h1 className="hp-header">Playground</h1>
+          <Header as="h1">Playground</Header>
         </Grid.Column>
         <ItemView items={demos} />
       </Grid>

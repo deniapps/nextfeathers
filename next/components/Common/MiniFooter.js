@@ -7,13 +7,13 @@ const Footer = () => (
     vertical
     style={{
       padding: "1em 0em",
-      backgroundColor: "rgba(0, 0, 0, 0.3)",
+      backgroundColor: "rgba(248,248,248, 0.3)",
     }}
   >
     <Container>
       <Grid divided inverted stackable>
         <Grid.Row>
-          <Grid.Column style={{ textAlign: "center", color: "#ddd" }}>
+          <Grid.Column style={{ textAlign: "center", color: "#111" }}>
             DeNiApps 2020
           </Grid.Column>
         </Grid.Row>

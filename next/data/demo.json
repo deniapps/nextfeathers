@@ -22,5 +22,11 @@
     "summary": "A simple example to demostrate how to use UseReducer within NextJS ",
     "url": "/playground/contact-view",
     "tags": ["next-js", "semantic-ui", "reducer"]
+  },
+  {
+    "title": "ckeditor5-build-classic-dna Demo",
+    "summary": "My First NPM package :-), actually I did not do much. But I think it's helpful if you want to have inserting image url and adding code block features which do not come with default classic build. Also I will show you how to load CKEditor in NEXTJS with SSR.",
+    "url": "/playground/ckeditor",
+    "tags": ["next-js", "ckeditor", "ssr"]
   }
 ]

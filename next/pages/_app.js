@@ -4,6 +4,7 @@ import Router from "next/router";
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
+import "highlight.js/styles/nord.css";
 import MobileDetect from "mobile-detect";
 
 const USER_LC_KEY = process.env.USER_LC_KEY;
