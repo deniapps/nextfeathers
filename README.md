@@ -93,4 +93,4 @@ module.exports = {
 I hope this is clear. I will try to write a tutorial soon. 
 
 ## Warning
-This is not production ready yet. I am still working on *DNA*. What's that? I meant Blog system. :-)
+This is not production ready yet. I am still working on *DNA*. What's that? Did I mention it's the name of NextFeathers Blog System.
