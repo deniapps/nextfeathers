@@ -40,14 +40,16 @@ code . // assume you are using vscode - highly recommanded!!!
 cd ../feathers
 code .
 
-//NOTE, you can start vscode on the top level (i.e., PATH-TO/nextfeathers,) but I see some issue for eslint work properly. 
+//NOTE, you can start vscode on the top level (i.e., PATH-TO/nextfeathers,) 
+//but I see some issue for eslint working properly. 
 //Since they are two separated frameworks, I would recommand to open two vscode windows.
 
 //Then in each command window, run
 npm install
 npm run dev
 
-//You need mongodb for blog system (DNA) to work, so after setup a mongo database, add your configuration at nextfeathers/feathers/config
+//You need mongodb for blog system (DNA) to work, so after setup a mongo database, 
+//add your configuration at nextfeathers/feathers/config
 //default.json is for dev, and production.json is for produciton
 
   "mongodb": "mongodb://localhost:27017/deniapps", 
@@ -63,7 +65,8 @@ npm run dev
   "password": "admin123$"
 }
 
-//NOTE: after you have admin account created, add authentication to the services/users/users.hooks.js, it will be like this: 
+//NOTE: after you have admin account created, add authentication to the services/users/users.hooks.js, 
+//it will be like this: 
 module.exports = {
   before: {
     all: [],
@@ -75,7 +78,8 @@ module.exports = {
     remove: [authenticate("jwt")],
   },
 
-//And then, whereever hooked with authenticate["jwt"], the authentication is required, to get jwt token, call this:
+//And then, whereever hooked with authenticate["jwt"], the authentication is required, 
+//to get jwt token, call this:
 
 //Endpoint: http://localhost:3030/authentication
 //Methond: POST
