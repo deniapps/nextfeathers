@@ -1,5 +1,5 @@
 # NextFeathers
-nextJS + feathersJS = Perfect! 
+nextJS + feathersJS = Perfect Javascript Full-Stack! 
 
 
 [**DEMO**](https://deniapps.com)
