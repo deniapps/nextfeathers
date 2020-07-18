@@ -5,7 +5,8 @@ import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
 import "highlight.js/styles/nord.css";
-import MobileDetect from "mobile-detect";
+import "prismjs/themes/prism.css";
+// import MobileDetect from "mobile-detect";
 
 const USER_LC_KEY = process.env.USER_LC_KEY;
 
@@ -56,11 +57,6 @@ export default class deniApp extends App {
 
   render() {
     const { Component, pageProps, isMobileFromSSR } = this.props;
-    // console.log("PAGEPROPs", isMobileFromSSR);
-    // console.log(Component);
-    // if (!this.state.isReady) {
-    //   return <Loader active></Loader>;
-    // }
     return (
       <UserContext.Provider
         value={{
@@ -78,16 +74,18 @@ export default class deniApp extends App {
   }
 }
 
-deniApp.getInitialProps = async (appContext) => {
-  // calls page's `getInitialProps` and fills `appProps.pageProps`
-  // const appProps = await App.getInitialProps(appContext);
-  const agent = appContext.ctx.req
-    ? appContext.ctx.req.headers["user-agent"]
-    : "";
-  const md = new MobileDetect(agent);
-  const isMobileFromSSR = !!md.mobile();
-  // const agent = appContext.req.headers["user-agent"];
-  // console.log(agent);
-  // console.log("req1", appContext.ctx.req ? appContext.ctx.req.headers : "");
-  return { isMobileFromSSR };
-};
+// NOTE: If you need responsive navigation, then you can do mobile detection here to get isMobileFromSSR to avoid checking this on every single page.
+
+// deniApp.getInitialProps = async (appContext) => {
+//   // calls page's `getInitialProps` and fills `appProps.pageProps`
+//   // const appProps = await App.getInitialProps(appContext);
+//   const agent = appContext.ctx.req
+//     ? appContext.ctx.req.headers["user-agent"]
+//     : "";
+//   const md = new MobileDetect(agent);
+//   const isMobileFromSSR = !!md.mobile();
+//   // const agent = appContext.req.headers["user-agent"];
+//   // console.log(agent);
+//   // console.log("req1", appContext.ctx.req ? appContext.ctx.req.headers : "");
+//   return { isMobileFromSSR };
+// };

@@ -5,10 +5,10 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .home {
+  .homeWrapper {
     background: url("/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-large.jpg");
   }
-  .login {
+  .loginWrapper {
     background: url("/images/background/adrian-Xft-JdC-Jbc-unsplash-large.jpeg");
   }
   .hp-header {
@@ -28,10 +28,10 @@
 }
 
 @media only screen and (max-width: 767px) {
-  .home {
+  .homeWrapper {
     background: url("/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-small.jpg");
   }
-  .login {
+  .loginWrapper {
     background: url("/images/background/adrian-Xft-JdC-Jbc-unsplash-small.jpeg");
   }
   .hp-header {
@@ -49,6 +49,15 @@
   }
 }
 
+.dnaWrapper #deniFooter {
+  border-top: 2px solid #cccccc;
+}
+
+#copyRight {
+  text-align: center;
+  color: #000000;
+}
+
 .sidebar::-webkit-scrollbar,
 .ck-dropdown__panel::-webkit-scrollbar {
   display: none;
@@ -64,7 +73,6 @@
   flex-direction: column;
   min-height: 100vh;
   margin: 0; /** this is super important **/
-  padding-top: 5em;
 }
 #deniFooter {
   margin: auto auto 0 auto;
@@ -73,10 +81,12 @@
 
 .coverPage {
   margin: auto 0;
+  padding-top: 5em;
 }
 
 .deniPage {
   margin: 2em 0 4em;
+  padding-top: 5em;
 }
 
 .ck-editor__editable_inline {
@@ -97,8 +107,8 @@ h1.huge {
   overflow: hidden;
 }
 
-.home,
-.login {
+.homeWrapper,
+.loginWrapper {
   background-repeat: no-repeat;
   background-size: cover;
   height: 100vh;
@@ -137,4 +147,13 @@ h1.huge {
 /* [5] */
 .scroll::-webkit-scrollbar {
   display: none;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
 }

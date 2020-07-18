@@ -24,13 +24,17 @@ const Layout = (props) => {
     }
   }
 
+  const pageWrapperClass = props.pageType
+    ? props.pageType + "Wrapper"
+    : "dnaWrapper";
+
   const pageClass =
     props.pageType === "home" || props.pageType === "login"
       ? "coverPage"
       : "deniPage";
 
   return (
-    <div id="deniApps" className={props.pageType}>
+    <div id="deniApps" className={pageWrapperClass}>
       <Container>
         <Head>
           <title>{props.pageTitle ? props.pageTitle : "DeNi Apps"}</title>

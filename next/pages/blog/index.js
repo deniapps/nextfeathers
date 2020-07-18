@@ -32,9 +32,15 @@ Posts.propTypes = {
 };
 
 export async function getStaticProps() {
-  const posts = await getPublicPosts();
-  console.log(posts);
+  let posts = [];
+  try {
+    const result = await getPublicPosts();
+    posts = result.data.data;
+  } catch (error) {
+    console.log(error);
+  }
+
   return {
-    props: { posts: posts.data.data }, // will be passed to the page component as props
+    props: { posts: posts }, // will be passed to the page component as props
   };
 }

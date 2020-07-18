@@ -13,9 +13,7 @@ const Footer = () => (
     <Container>
       <Grid divided inverted stackable>
         <Grid.Row>
-          <Grid.Column style={{ textAlign: "center", color: "#111" }}>
-            DeNiApps 2020
-          </Grid.Column>
+          <Grid.Column id="copyRight">DeNiApps 2020</Grid.Column>
         </Grid.Row>
       </Grid>
     </Container>

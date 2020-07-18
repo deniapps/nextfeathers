@@ -12,13 +12,11 @@ import {
   Segment,
 } from "semantic-ui-react";
 import HomepageHeading from "../../components/Home/HomepageHeading";
+import MobileDetect from "mobile-detect";
 
-// const Home = ({ isMobileFromSSR }) => {
-//   return (
-//     <ResponsiveLayout isMobileFromSSR={isMobileFromSSR}>
-const Home = () => {
+const Home = ({ isMobileFromSSR }) => {
   return (
-    <ResponsiveLayout>
+    <ResponsiveLayout isMobileFromSSR={isMobileFromSSR}>
       <HomepageHeading />
 
       <Segment style={{ padding: "8em 0em" }} vertical>
@@ -164,21 +162,25 @@ const Home = () => {
   );
 };
 
-// Home.getInitialProps = async ({ req }) => {
-//   console.log("RE", req.headers["user-agent"]);
-//   const md = new MobileDetect(req.headers["user-agent"]);
-//   const isMobileFromSSR = !!md.mobile();
+//I really don't like this approach to make a responsive navigation.
+//If you really wants this, you may add this to the _App.js, and set isMobileFromSSR as a context,
+// then you don't need to check this on all the pages.
 
-//   return {
-//     isMobileFromSSR,
-//     deviceInfo: {
-//       mobile: md.mobile(),
-//       tablet: md.tablet(),
-//       os: md.os(),
-//       userAgent: md.userAgent(),
-//     },
-//   };
-// };
+Home.getInitialProps = async (ctx) => {
+  console.log(ctx);
+  const agent = ctx.req ? ctx.req.headers["user-agent"] : "";
+  const md = new MobileDetect(agent);
+  const isMobileFromSSR = !!md.mobile();
+  return {
+    isMobileFromSSR,
+    deviceInfo: {
+      mobile: md.mobile(),
+      tablet: md.tablet(),
+      os: md.os(),
+      userAgent: md.userAgent(),
+    },
+  };
+};
 
 Home.propTypes = {
   getWidth: PropTypes.func,

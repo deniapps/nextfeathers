@@ -11,9 +11,8 @@ export const getPublicPosts = () => {
 
 export const getPublicPost = (slug) => {
   return axios
-    .get(process.env.API_HOST + "/posts/?slug=" + slug + "?_isPublic=1")
+    .get(process.env.API_HOST + "/posts/?slug=" + slug + "&_isPublic=1")
     .then((res) => {
-      // console.log(res);
       return res;
     });
 };

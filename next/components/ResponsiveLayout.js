@@ -13,8 +13,8 @@ import {
   Visibility,
 } from "semantic-ui-react";
 
-import { useContext } from "react";
-import UserContext from "./Context/UserContext";
+// import { useContext } from "react";
+// import UserContext from "./Context/UserContext";
 
 const getWidthFactory = (isMobileFromSSR) => () => {
   console.log("mobile?", isMobileFromSSR);
@@ -167,9 +167,8 @@ ResponsiveContainer.propTypes = {
   getWidth: PropTypes.func,
 };
 
-const ResponsiveLayout = ({ children }) => {
-  const { isMobileFromSSR } = useContext(UserContext);
-  // console.log("ISMOBILE", isMobileFromSSR);
+const ResponsiveLayout = ({ isMobileFromSSR, children }) => {
+  // const { isMobileFromSSR } = useContext(UserContext);
   const getWidth = getWidthFactory(isMobileFromSSR);
   return (
     <ResponsiveContainer getWidth={getWidth}>{children}</ResponsiveContainer>

@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
+import { useEffect } from "react";
 import Layout from "components/Layout";
 import Meta from "components/Common/Meta";
-import { getPublicPosts } from "lib/blog";
+import { getPublicPost } from "lib/blog";
 import { Container } from "semantic-ui-react";
+import Prism from "prismjs";
 
 const Post = (props) => {
   const title = props.blog.title;
@@ -12,6 +14,10 @@ const Post = (props) => {
   const canonical = "https://deniapps.com/blog/" + props.blog.slug;
   const image = props.blog.image;
   const content = props.blog.content;
+
+  useEffect(() => {
+    Prism.highlightAll();
+  }, [content]);
 
   return (
     <Layout>
@@ -37,7 +43,7 @@ Post.propTypes = {
 export async function getServerSideProps(context) {
   const { slug } = context.query;
 
-  const result = await getPublicPosts(slug);
+  const result = await getPublicPost(slug);
 
   return {
     props: { blog: result.data.data[0] }, // will be passed to the page component as props
