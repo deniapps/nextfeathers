@@ -76,4 +76,26 @@ const deletePost = (accessToken, id) => {
     });
 };
 
-export { createPost, getPosts, updatePost, getPost, deletePost };
+/**
+ *
+ * @param {*} slug
+ * @param {*} accessToken
+ * @returns Boolean
+ * check if slug is taken by published post, i.e. isDeleted=0&isDraft=0
+ * True means exists
+ */
+const checkSlug = (accessToken, slug) => {
+  return axios
+    .get(process.env.API_HOST + "/posts/?isDeleted=0&isDraft=0&slug=" + slug, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: accessToken,
+      },
+    })
+    .then((res) => {
+      if (res.status === 200) return res.data.total !== 0;
+      return false;
+    });
+};
+
+export { createPost, getPosts, updatePost, getPost, deletePost, checkSlug };

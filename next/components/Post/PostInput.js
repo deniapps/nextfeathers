@@ -2,14 +2,15 @@ import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
 import _ from "lodash";
 import Router from "next/router";
+import shortid from "shortid";
 
 import PostInputForm from "./PostInputForm";
 
-import { createPost, updatePost, deletePost } from "../../lib/posts";
+import { createPost, updatePost, deletePost, checkSlug } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
 import { titleCase, slugify } from "../../helpers/common";
 
-//Old style if you don't like class, change it to functional (ex: PostList.js) :-)
+//Headps, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
 
 export default class PostInput extends React.Component {
   state = {
@@ -47,13 +48,31 @@ export default class PostInput extends React.Component {
     this.setState({ allOptions: newAllOptions });
   }
 
-  updateInput = (event, key, value) => {
+  autoFixSlug = async (slug) => {
+    let newSlug = slugify(slug);
+    const isExist = await checkSlug(this.props.accessToken, newSlug);
+    if (isExist) {
+      newSlug += "-" + shortid.generate().toLowerCase();
+    }
+    return newSlug;
+  };
+
+  validateSlug = async () => {
+    const currentSlug = this.state.data.slug;
+    if (currentSlug) {
+      const slug = await this.autoFixSlug(currentSlug);
+      const newInputs = {
+        ...this.state.data,
+        slug: slug,
+      };
+      this.setState({ data: newInputs });
+    }
+  };
+
+  updateInput = async (key, value) => {
     let name = key;
     let val = value;
-    if (event) {
-      name = event.target.name;
-      val = event.target.value;
-    }
+
     if (name === "tags") {
       val = val.map((value) => slugify(value));
     }
@@ -66,12 +85,14 @@ export default class PostInput extends React.Component {
     this.setState({ data: newInputs });
   };
 
-  autoGenerateSlug = () => {
+  autoGenerateSlug = async () => {
     //after entering title, create slug if there is no slug
     if (this.state.data.title && !this.state.data.slug) {
+      const slug = await this.autoFixSlug(this.state.data.title);
+
       const newInputs = {
         ...this.state.data,
-        slug: slugify(this.state.data.title),
+        slug: slug,
       };
       this.setState({ data: newInputs });
     }
@@ -118,6 +139,7 @@ export default class PostInput extends React.Component {
   onPublish = async () => {
     this.setState({ isLoading: true, isError: false, message: "" });
     let newMessage = "Published";
+    let error = false;
     const postDataInput = {
       ...this.state.data,
       tagOptions: this.getTagOptions(),
@@ -128,31 +150,51 @@ export default class PostInput extends React.Component {
         : null,
     };
     console.log(postDataInput);
-    let doCreate = true;
+    // Final Validation
+    if (!postDataInput.title) {
+      error = true;
+      newMessage = "Title is required!";
+    } else if (!postDataInput.summary) {
+      error = true;
+      newMessage = "Summary is required!";
+    } else if (!postDataInput.slug) {
+      error = true;
+      newMessage = "Slug is required!";
+    } else if (!postDataInput.content) {
+      error = true;
+      newMessage = "Content is required!";
+    }
 
-    if (this.state.data._id) {
-      doCreate = false;
-      delete postDataInput._id;
-    }
-    if (this.state.data.originalId) {
-      await deletePost(this.props.accessToken, this.state.data.originalId);
-    }
-    try {
-      if (doCreate) {
-        await createPost(this.props.accessToken, postDataInput);
-      } else {
-        await updatePost(
-          this.props.accessToken,
-          this.state.data._id,
-          postDataInput
-        );
+    if (!error) {
+      let doCreate = true;
+
+      if (this.state.data._id) {
+        doCreate = false;
+        delete postDataInput._id;
       }
-      Router.push("/dashboard/posts?message=" + newMessage, "/dashboard/posts");
-    } catch (error) {
-      newMessage = "Something wrong!";
-      this.setState({ isError: true });
+      if (this.state.data.originalId) {
+        await deletePost(this.props.accessToken, this.state.data.originalId);
+      }
+      try {
+        if (doCreate) {
+          await createPost(this.props.accessToken, postDataInput);
+        } else {
+          await updatePost(
+            this.props.accessToken,
+            this.state.data._id,
+            postDataInput
+          );
+        }
+        Router.push(
+          "/dashboard/posts?message=" + newMessage,
+          "/dashboard/posts"
+        );
+      } catch (err) {
+        newMessage = "Something wrong!";
+        error = true;
+      }
     }
-    this.setState({ isLoading: false, message: newMessage });
+    this.setState({ isLoading: false, isError: error, message: newMessage });
   };
 
   /**
@@ -176,7 +218,6 @@ export default class PostInput extends React.Component {
     } else {
       doCreate = false; //do update on existing draft
     }
-    console.log(postDataInput);
     if (postDataInput._id) {
       delete postDataInput._id;
     }
@@ -223,6 +264,7 @@ export default class PostInput extends React.Component {
           isError={this.state.isError}
           isLoading={this.state.isLoading}
           handleAllFocus={{ slug: this.autoGenerateSlug }}
+          handleAllBlur={{ slug: this.validateSlug }}
         />
       </Container>
     );

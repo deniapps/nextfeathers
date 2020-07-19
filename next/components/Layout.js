@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import Head from "next/head";
+import Meta from "components/Common/Meta";
 import { Container, Loader } from "semantic-ui-react";
 import Header from "./Common/Header";
 import Footer from "./Common/MiniFooter";
@@ -16,6 +16,10 @@ import { isExpired } from "../helpers/common";
 
 const Layout = (props) => {
   const { user, accessToken, signOut, isReady } = useContext(UserContext);
+  const { seoData, pageType, authPage, children } = props;
+  const seoDataObj = seoData ? seoData : {};
+  const { title, desc, summary, canonical, image } = seoDataObj;
+
   if (accessToken) {
     const decodedToken = jwtDecode(accessToken);
     if (isExpired(decodedToken.exp)) {
@@ -24,35 +28,27 @@ const Layout = (props) => {
     }
   }
 
-  const pageWrapperClass = props.pageType
-    ? props.pageType + "Wrapper"
-    : "dnaWrapper";
+  const pageWrapperClass = pageType ? pageType + "Wrapper" : "dnaWrapper";
 
   const pageClass =
-    props.pageType === "home" || props.pageType === "login"
-      ? "coverPage"
-      : "deniPage";
+    pageType === "home" || pageType === "login" ? "coverPage" : "deniPage";
 
   return (
     <div id="deniApps" className={pageWrapperClass}>
       <Container>
-        <Head>
-          <title>{props.pageTitle ? props.pageTitle : "DeNi Apps"}</title>
-          <meta
-            name="decription"
-            content={
-              props.pageDescription
-                ? props.pageDescription
-                : `We build websites & apps`
-            }
-          />
-        </Head>
+        <Meta
+          title={title}
+          desc={desc}
+          summary={summary}
+          canonical={canonical}
+          image={image}
+        />
         <Header />
       </Container>
       <Container className={pageClass}>
-        {props.authPage && !isReady && <Loader active></Loader>}
-        {props.authPage && !user && isReady && <p>Please Login</p>}
-        {(!props.authPage || !!user) && props.children}
+        {authPage && !isReady && <Loader active></Loader>}
+        {authPage && !user && isReady && <p>Please Login</p>}
+        {(!authPage || !!user) && children}
       </Container>
       <Footer />
     </div>
@@ -62,10 +58,9 @@ const Layout = (props) => {
 // Specifies the default values for props:
 Layout.propTypes = {
   pageType: PropTypes.string,
-  pageTitle: PropTypes.string,
-  pageDescription: PropTypes.string,
   authPage: PropTypes.bool,
   children: PropTypes.node,
+  seoData: PropTypes.object,
 };
 
 export default Layout;

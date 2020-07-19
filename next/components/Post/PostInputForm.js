@@ -34,6 +34,11 @@ const PostInputForm = (props) => {
               ? props.handleAllFocus[item.name]
               : null
           }
+          handleBlur={
+            props.handleAllBlur[item.name]
+              ? props.handleAllBlur[item.name]
+              : null
+          }
         />
       ))}
       <Button onClick={props.onSaveDraft}>Save Draft</Button>
@@ -62,6 +67,7 @@ PostInputForm.propTypes = {
   isLoading: PropTypes.bool,
   isError: PropTypes.bool,
   handleAllFocus: PropTypes.object,
+  handleAllBlur: PropTypes.object,
 };
 
 export default PostInputForm;

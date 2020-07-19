@@ -1,10 +1,10 @@
 import PropTypes from "prop-types";
 import { useEffect } from "react";
 import Layout from "components/Layout";
-import Meta from "components/Common/Meta";
 import { getPublicPost } from "lib/blog";
-import { Container } from "semantic-ui-react";
+import { Container, Header } from "semantic-ui-react";
 import Prism from "prismjs";
+import TimeAgo from "react-timeago";
 
 const Post = (props) => {
   const title = props.blog.title;
@@ -14,22 +14,35 @@ const Post = (props) => {
   const canonical = "https://deniapps.com/blog/" + props.blog.slug;
   const image = props.blog.image;
   const content = props.blog.content;
+  const author = props.blog.author
+    ? props.blog.author.firstName + " " + props.blog.author.lastName
+    : "Admin";
+
+  const publishedOn = props.blog.createdAt;
+  // const lastUpdated = props.blog.updatedAt;
+
+  const seoData = {
+    title,
+    desc,
+    summary,
+    canonical,
+    image,
+  };
 
   useEffect(() => {
     Prism.highlightAll();
   }, [content]);
 
   return (
-    <Layout>
-      <Meta
-        title={title}
-        desc={desc}
-        summary={summary}
-        canonical={canonical}
-        image={image}
-      />
+    <Layout seoData={seoData}>
       <Container text>
-        <h1>{title}</h1>
+        <Header as="h1">
+          {title}
+          <Header.Subheader>
+            {author} | <TimeAgo date={publishedOn} />
+          </Header.Subheader>
+        </Header>
+
         <div dangerouslySetInnerHTML={{ __html: content }} />
       </Container>
     </Layout>

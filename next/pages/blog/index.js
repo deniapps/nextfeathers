@@ -2,10 +2,9 @@ import Layout from "components/Layout";
 import PostList from "components/Blog/PostList";
 import { getPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
-import Meta from "components/Common/Meta";
 
 export default function Posts(props) {
-  const title = "Blog - DeNiApps.com";
+  const title = "Blog - DeNiApps";
   const desc =
     "Software Engineer for React.js, Node.js, GraphQL and JavaScript. Based in USA, Chinese/English speaking. Consulting/Freelancing for Web Development project: Code Audits/Reviews, Workshops, Training, Implementation ...";
 
@@ -13,15 +12,16 @@ export default function Posts(props) {
   const canonical = "https://deniapps.com/blog";
   const image = "https://deniapps.com/images/dna.png";
 
+  const seoData = {
+    title,
+    desc,
+    summary,
+    canonical,
+    image,
+  };
+
   return (
-    <Layout>
-      <Meta
-        title={title}
-        desc={desc}
-        summary={summary}
-        canonical={canonical}
-        image={image}
-      />
+    <Layout seoData={seoData}>
       <PostList posts={props.posts} />
     </Layout>
   );

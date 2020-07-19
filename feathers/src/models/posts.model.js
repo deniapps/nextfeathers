@@ -20,6 +20,7 @@ module.exports = function (app) {
       isDraft: Boolean,
       isDeleted: Boolean,
       originalId: mongoose.ObjectId,
+      author: { type: mongoose.ObjectId, ref: "users" },
     },
     {
       timestamps: true,

@@ -6,10 +6,17 @@ const RichTextEditor = dynamic(() => import("./CKEditor"), { ssr: false });
 
 const FormField = (props) => {
   // console.log("PROPS", props);
+
+  const handleChange = (event, { name, value }) => {
+    if (props.updateInput) {
+      props.updateInput(name, value);
+    }
+  };
+
   const handleRadioClick = (event) => {
     const name = event.target.name;
     const value = props.value === "Y" ? "N" : "Y";
-    props.updateInput(null, name, value);
+    props.updateInput(name, value);
   };
 
   const handleAddition = (event, { value, name }) => {
@@ -24,16 +31,22 @@ const FormField = (props) => {
     }
   };
 
+  const handleBlur = () => {
+    if (props.handleBlur) {
+      props.handleBlur();
+    }
+  };
+
   const handleDropdownChange = (event, data) => {
     const name = data.name;
     const value = data.value;
-    props.updateInput(null, name, value);
+    props.updateInput(name, value);
   };
 
   const handleEditorChange = (value) => {
     const name = props.name;
     const valueget = value;
-    props.updateInput(null, name, valueget);
+    props.updateInput(name, valueget);
   };
 
   return (
@@ -44,8 +57,9 @@ const FormField = (props) => {
           name={props.name}
           value={props.value}
           style={{ maxWidth: "100%" }}
-          onChange={props.updateInput}
+          onChange={handleChange}
           onFocus={handleFocus}
+          onBlur={handleBlur}
         />
       )}
       {props.type === "textarea" && (
@@ -53,7 +67,7 @@ const FormField = (props) => {
           name={props.name}
           value={props.value}
           style={{ maxWidth: "100%", innerHeight: "300%" }}
-          onChange={props.updateInput}
+          onChange={handleChange}
         />
       )}
       {props.type === "radio" && (
@@ -70,7 +84,7 @@ const FormField = (props) => {
           name={props.name}
           selection
           options={props.options}
-          onChange={props.updateInput}
+          onChange={handleChange}
         />
       )}
       {props.type === "dropdownMulti" && (
@@ -106,6 +120,7 @@ FormField.propTypes = {
   updateInput: PropTypes.func,
   handleAddition: PropTypes.func,
   handleFocus: PropTypes.func,
+  handleBlur: PropTypes.func,
   isInline: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),

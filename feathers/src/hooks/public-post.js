@@ -5,7 +5,6 @@ const { authenticate } = require("@feathersjs/authentication").hooks;
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async (context) => {
-    console.log(context);
     if (context.params.query._isPublic) {
       delete context.params.query["_isPublic"];
       context.params.query.isDeleted = false;

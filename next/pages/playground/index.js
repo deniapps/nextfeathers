@@ -4,8 +4,6 @@ import ItemView from "components/Common/ItemView";
 import demos from "data/demo.json";
 
 export default function Index() {
-  console.log(process.env.NODE_ENV);
-
   return (
     <Layout>
       <Grid>

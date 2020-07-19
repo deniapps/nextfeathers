@@ -9,6 +9,8 @@ module.exports = function (app) {
       email: { type: String, unique: true },
       password: { type: String },
       group: { type: String },
+      firstName: { type: String },
+      lastName: { type: String },
     },
     {
       timestamps: true,

@@ -16,3 +16,19 @@ export const getPublicPost = (slug) => {
       return res;
     });
 };
+
+export const getPublicPostsByTag = (tag) => {
+  return axios
+    .get(process.env.API_HOST + "/posts/?tags[$in]=" + tag + "&_isPublic=1")
+    .then((res) => {
+      return res;
+    });
+};
+
+export const getPublicTags = () => {
+  return axios
+    .get(process.env.API_HOST + "/tags?$sort[createdAt]=-1")
+    .then((res) => {
+      return res;
+    });
+};

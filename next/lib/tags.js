@@ -14,4 +14,17 @@ const getTags = (accessToken) => {
     });
 };
 
-export { getTags };
+const getTagBySlug = (tagSlug) => {
+  return axios
+    .get(process.env.API_HOST + "/tags?slug=" + tagSlug, {
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      return res;
+    });
+};
+
+export { getTags, getTagBySlug };

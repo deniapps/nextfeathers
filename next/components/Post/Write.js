@@ -16,6 +16,7 @@ export default function Write() {
   const { accessToken } = useContext(UserContext);
 
   const fetchData = async () => {
+    if (!id) return false;
     if (id === "new") {
       setData({
         title: "Add New Post",
