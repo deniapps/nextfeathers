@@ -19,7 +19,6 @@
         "typ": "access"
       },
       "audience": "https://deniapps.com",
-      "subject": "anonymous",
       "issuer": "feathers",
       "algorithm": "HS256",
       "expiresIn": "1d"
