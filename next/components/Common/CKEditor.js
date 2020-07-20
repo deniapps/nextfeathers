@@ -16,6 +16,11 @@ class CKEditor5 extends Component {
       <CKEditor
         editor={ClassicEditor}
         data={this.props.value}
+        config={{
+          link: {
+            addTargetToExternalLinks: true,
+          },
+        }}
         onInit={(editor) => {
           // You can store the "editor" and use when it is needed.
           console.log("Editor is ready to use!", editor);
