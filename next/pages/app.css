@@ -157,3 +157,10 @@ figure img {
   width: 100%;
   height: auto;
 }
+
+figcaption {
+  color: rgba(117, 117, 117, 1);
+  text-align: center;
+  font-size: small;
+  margin: 0.5em 0 1em;
+}
