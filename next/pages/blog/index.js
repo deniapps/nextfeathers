@@ -31,7 +31,7 @@ Posts.propTypes = {
   posts: PropTypes.array,
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let posts = [];
   try {
     const result = await getPublicPosts();

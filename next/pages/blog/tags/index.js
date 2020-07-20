@@ -30,7 +30,7 @@ Tags.propTypes = {
   tags: PropTypes.array,
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let tags = [];
   try {
     const result = await getPublicTags();
