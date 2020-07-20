@@ -18,7 +18,16 @@ class CKEditor5 extends Component {
         data={this.props.value}
         config={{
           link: {
-            addTargetToExternalLinks: true,
+            decorators: {
+              addTargetToExternalLinks: {
+                mode: "automatic",
+                callback: (url) => /^(https?:)?\/\//.test(url),
+                attributes: {
+                  target: "_blank",
+                  rel: "noopener noreferrer",
+                },
+              },
+            },
           },
         }}
         onInit={(editor) => {
