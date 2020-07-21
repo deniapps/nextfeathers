@@ -11,7 +11,7 @@ const Post = (props) => {
   const desc = props.blog.summary;
 
   const summary = props.blog.summary;
-  const canonical = "https://deniapps.com/blog/" + props.blog.slug;
+  const canonical = "https://analyticalexpert.net/blog/" + props.blog.slug;
   const image = props.blog.image;
   const content = props.blog.content;
   const author = props.blog.author

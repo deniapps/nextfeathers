@@ -4,13 +4,14 @@ import { getPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
 
 export default function Posts(props) {
-  const title = "Blog - DeNiApps";
-  const desc =
-    "Software Engineer for React.js, Node.js, GraphQL and JavaScript. Based in USA, Chinese/English speaking. Consulting/Freelancing for Web Development project: Code Audits/Reviews, Workshops, Training, Implementation ...";
+  const title = "Blog - Analytical Expert";
+  const desc = `Analytical Expert's journal including HPLC (SEC, Reverse-phase, Normal-phase, Affinity) 
+    LC-MS (intact mass, subunit mass, peptide mapping, glycosylation, glycan profiling, phosphorylation, HDX)
+    PCR based methods Cell-based assays`;
 
-  const summary = "DNA - DiNiApps";
-  const canonical = "https://deniapps.com/blog";
-  const image = "https://deniapps.com/images/dna.png";
+  const summary = "Analytical Expert's Blog";
+  const canonical = "https://analyticalexpert.net/blog";
+  const image = "https://analyticalexpert.net/images/ae/ae.jpg";
 
   const seoData = {
     title,

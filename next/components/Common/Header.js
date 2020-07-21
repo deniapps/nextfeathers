@@ -38,7 +38,7 @@ const Header = () => {
         {isReady &&
           user && [
             <Menu.Item key="menu-2">
-              <Link href="/dashboard">
+              <Link href="/dashboard/post">
                 <a>Dashboard</a>
               </Link>
             </Menu.Item>,
