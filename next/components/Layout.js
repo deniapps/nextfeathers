@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import Meta from "components/Common/Meta";
 import { Container, Loader } from "semantic-ui-react";
-import Header from "./Common/Header";
-import Footer from "./Common/MiniFooter";
+import Header from "./Common/AEHeader";
+import Footer from "./Common/AEMiniFooter";
 import { useContext } from "react";
 import UserContext from "./Context/UserContext";
 import jwtDecode from "jwt-decode";

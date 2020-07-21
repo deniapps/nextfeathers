@@ -3,7 +3,7 @@ import App from "next/app";
 import Router from "next/router";
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
-import "./app.css";
+import "./ae.css";
 import "highlight.js/styles/nord.css";
 import "prismjs/themes/prism.css";
 // import MobileDetect from "mobile-detect";

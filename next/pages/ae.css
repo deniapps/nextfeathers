@@ -1,0 +1,246 @@
+body {
+  font-size: 16px;
+}
+
+.level2 {
+  padding: 5em 0em;
+}
+
+.level3 {
+  background: #dbf0fd;
+  padding: 5em 0em;
+  text-align: center;
+}
+
+.level3 p {
+  font-size: 1.5rem;
+}
+
+.level4 {
+  padding: 5em 0em;
+  text-align: center;
+}
+
+@media only screen and (min-width: 1200px) {
+  .ui.container {
+    width: 980px !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #banner {
+    text-align: center;
+    min-height: 350px;
+    padding: 15em 0em;
+  }
+  .homeWrapper {
+    background: url("/images/ae/background/bg4.jpg");
+  }
+  .loginWrapper {
+    background: url("/images/ae/background/bg4.jpg");
+  }
+  .hp-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 3.2rem;
+    margin: 2rem 0;
+    color: #2185d0;
+  }
+
+  .hp-slogan {
+    text-align: center;
+    font-size: 30px;
+    letter-spacing: 0.01em;
+    font-weight: 200;
+    color: #003862;
+    text-shadow: 0 1px 0 whitesmoke;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #banner {
+    text-align: center;
+    min-height: 250px;
+    padding: 10em 0em;
+  }
+
+  .login {
+    background: url("/images/ae/background/bg2.jpg");
+  }
+
+  .homeWrapper {
+    background: url("/images/ae/background/bg4.jpg");
+  }
+  .loginWrapper {
+    background: url("/images/ae/background/bg4.jpg");
+  }
+  .hp-header {
+    text-align: center;
+    font-weight: 700;
+    font-size: 2.2rem;
+    margin: 1rem 0;
+    color: #2185d0;
+    text-shadow: 0 1px 0 whitesmoke;
+  }
+  .hp-slogan {
+    text-align: center;
+    font-size: 24px;
+    letter-spacing: 0.01em;
+    font-weight: 200;
+    color: #003862;
+    text-shadow: 0 1px 0 whitesmoke;
+  }
+
+  .level2,
+  .level3,
+  .level4 {
+    padding: 2em 0em;
+  }
+  .ui.menu .item {
+    padding: 0.5em;
+  }
+}
+
+.home,
+.login {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("/images/ae/background/bg4.jpg");
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  width: 100%;
+  padding: 1em 0em;
+  text-align: center;
+}
+
+.dnaWrapper #deniFooter {
+  border-top: 2px solid #cccccc;
+}
+
+#copyRight {
+  text-align: center;
+  color: #000000;
+}
+
+.sidebar::-webkit-scrollbar,
+.ck-dropdown__panel::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar,
+.ck-dropdown__panel {
+  -ms-overflow-style: none;
+}
+
+#deniApps {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0; /** this is super important **/
+}
+#deniFooter {
+  margin: auto auto 0 auto;
+  width: 100%;
+}
+
+.coverPage {
+  margin: auto 0;
+  padding-top: 5em;
+}
+
+.deniPage {
+  margin: 2em 0 4em;
+  padding-top: 5em;
+}
+
+.ck-editor__editable_inline {
+  min-height: 400px !important;
+}
+
+/* h2 {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff,
+    1px 1px 0 #fff;
+} */
+
+h1.huge {
+  font-size: 3em !important;
+}
+
+.pusher.dimmed {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.homeWrapper,
+.loginWrapper {
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  width: 100%;
+}
+
+.home,
+.login {
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.5),
+      rgba(255, 255, 255, 0.5)
+    ),
+    url("/images/ae/background/bg4.jpg");
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  width: 100%;
+  padding: 1em 0em;
+  text-align: center;
+}
+
+.topPadding {
+  padding-top: 7em;
+}
+
+.topPadding1 {
+  padding-top: 1em;
+}
+
+.link-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.link-button:hover,
+.link-button:focus {
+  text-decoration: none;
+}
+
+.scroll {
+  white-space: nowrap; /* [1] */
+  overflow-x: auto; /* [2] */
+  -webkit-overflow-scrolling: touch; /* [3] */
+  -ms-overflow-style: -ms-autohiding-scrollbar; /* [4] */
+}
+
+/* [5] */
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+
+figure {
+  margin: 0;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+}
+
+figcaption {
+  color: rgba(117, 117, 117, 1);
+  text-align: center;
+  font-size: small;
+  margin: 0.5em 0 1em;
+}
