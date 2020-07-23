@@ -22,7 +22,7 @@ class MyUploadAdapter {
       } catch (error) {
         console.log(error);
       }
-
+      // default image
       let url =
         "https://b7a9m2p8.rocketcdn.me/wp-content/uploads/Fix-WordPress-401-Error.png";
 

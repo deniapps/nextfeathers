@@ -6,8 +6,8 @@
     "default": 10,
     "max": 50
   },
-  "fileServer": "https://images.deniapps.com",
-  "filePath": "/Users/dcai/Projects/next-feathers/images",
+  "fileServer": "http://localhost:3000/upload",
+  "filePath": "/Users/dcai/Projects/next-feathers/next/public/upload",
   "imageMaxWidth": 1500,
   "imageMinWidth": 500,
   "mongodb": "mongodb://localhost:27017/deniapps",

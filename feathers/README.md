@@ -15,7 +15,7 @@ Getting up and running is as easy as 1, 2, 3.
    cd path/to/feathers; npm install
    ```
 
-3. Start your app
+3. Start your app (_Note_ that you may check the settings in config/default.json before running)
 
    ```
    npm run dev
