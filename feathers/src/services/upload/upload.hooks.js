@@ -1,23 +1,23 @@
-const { authenticate } = require('@feathersjs/authentication').hooks;
+const { authenticate } = require("@feathersjs/authentication").hooks;
 
 module.exports = {
   before: {
-    //all: [ authenticate('jwt') ],
-    all: [],
+    all: [authenticate("jwt")],
+    // all: [],
     find: [],
     get: [],
     create: [
-      function(context) {
-        if (!context.data.uri && context.params.file){
+      function (context) {
+        if (!context.data.uri && context.params.file) {
           const file = context.params.file;
           // const uri = dauria.getBase64DataURI(file.buffer, file.mimetype);
-          context.data = {file: file};
+          context.data = { file: file };
         }
-      }
+      },
     ],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   after: {
@@ -27,7 +27,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -37,6 +37,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };

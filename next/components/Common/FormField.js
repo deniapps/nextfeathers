@@ -49,6 +49,12 @@ const FormField = (props) => {
     props.updateInput(name, valueget);
   };
 
+  const handleUpload = (url) => {
+    if (props.autoGenerateFeatureImage) {
+      props.autoGenerateFeatureImage(url);
+    }
+  };
+
   return (
     <Form.Field>
       <label>{props.label}</label>
@@ -102,7 +108,12 @@ const FormField = (props) => {
         />
       )}
       {props.type === "editor" && (
-        <RichTextEditor value={props.value} onChange={handleEditorChange} />
+        <RichTextEditor
+          value={props.value}
+          onChange={handleEditorChange}
+          onUpload={handleUpload}
+          accessToken={props.accessToken}
+        />
       )}
     </Form.Field>
   );
@@ -119,11 +130,13 @@ FormField.propTypes = {
   label: PropTypes.string,
   updateInput: PropTypes.func,
   handleAddition: PropTypes.func,
+  autoGenerateFeatureImage: PropTypes.func,
   handleFocus: PropTypes.func,
   handleBlur: PropTypes.func,
   isInline: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
+  accessToken: PropTypes.string,
 };
 
 export default FormField;

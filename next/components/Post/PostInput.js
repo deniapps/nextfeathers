@@ -85,6 +85,13 @@ export default class PostInput extends React.Component {
     this.setState({ data: newInputs });
   };
 
+  // custom action - when ckeditor upload a image, auto add feature image
+  autoGenerateFeatureImage = (url) => {
+    if (!this.state.data.image) {
+      this.updateInput("image", url);
+    }
+  };
+
   autoGenerateSlug = async () => {
     //after entering title, create slug if there is no slug
     if (this.state.data.title && !this.state.data.slug) {
@@ -263,8 +270,13 @@ export default class PostInput extends React.Component {
           message={this.state.message}
           isError={this.state.isError}
           isLoading={this.state.isLoading}
-          handleAllFocus={{ slug: this.autoGenerateSlug }}
-          handleAllBlur={{ slug: this.validateSlug }}
+          handleAllFocus={{}}
+          handleAllBlur={{
+            slug: this.validateSlug,
+            title: this.autoGenerateSlug,
+          }}
+          autoGenerateFeatureImage={this.autoGenerateFeatureImage}
+          accessToken={this.props.accessToken}
         />
       </Container>
     );

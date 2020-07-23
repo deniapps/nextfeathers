@@ -6,6 +6,10 @@
     "default": 10,
     "max": 50
   },
+  "fileServer": "https://images.deniapps.com",
+  "filePath": "/Users/dcai/Projects/next-feathers/images",
+  "imageMaxWidth": 1500,
+  "imageMinWidth": 500,
   "mongodb": "mongodb://localhost:27017/deniapps",
   "mongoUser": "admin",
   "mongoPass": "admin123$",
