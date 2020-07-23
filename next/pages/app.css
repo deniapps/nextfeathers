@@ -49,6 +49,10 @@
   }
 }
 
+.ui.items > .item > .image:not(.ui) {
+  width: 275px;
+}
+
 .dnaWrapper #deniFooter {
   border-top: 2px solid #cccccc;
 }

@@ -17,7 +17,7 @@ import {
 // import UserContext from "./Context/UserContext";
 
 const getWidthFactory = (isMobileFromSSR) => () => {
-  console.log("mobile?", isMobileFromSSR);
+  // console.log("mobile?", isMobileFromSSR);
   const isSSR = typeof window === "undefined";
   const ssrValue = isMobileFromSSR
     ? Responsive.onlyMobile.maxWidth

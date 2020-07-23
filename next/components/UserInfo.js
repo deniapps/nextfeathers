@@ -3,7 +3,7 @@ import jwtDecode from "jwt-decode";
 import UserContext from "../components/Context/UserContext";
 
 const UserInfo = () => {
-  console.log(useContext(UserContext));
+  // console.log(useContext(UserContext));
   const { user, accessToken, signOut } = useContext(UserContext);
   let decodedToken = null;
   if (accessToken) {
