@@ -23,7 +23,7 @@ export default function PostList(props) {
             return (
               <Item key={item._id}>
                 <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
-                  <Item.Image src={item.image} />
+                  <Item.Image as="a" src={item.image} />
                 </Link>
 
                 <Item.Content>
