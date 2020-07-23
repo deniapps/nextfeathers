@@ -28,7 +28,7 @@ Post.propTypes = {
 };
 
 export async function getServerSideProps(context) {
-  console.log(context.query);
+  // console.log(context.query);
   const { id } = context.query;
   if (!Number(id)) return { show: false }; //don't call the following for
   const res = await fetch(`https://api.tvmaze.com/shows/${id}`);

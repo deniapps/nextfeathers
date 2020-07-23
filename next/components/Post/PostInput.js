@@ -8,7 +8,7 @@ import PostInputForm from "./PostInputForm";
 
 import { createPost, updatePost, deletePost, checkSlug } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
-import { titleCase, slugify } from "../../helpers/common";
+import { titleCase, slugify, debounce } from "../../helpers/common";
 
 //Headps, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
 
@@ -48,6 +48,14 @@ export default class PostInput extends React.Component {
     this.setState({ allOptions: newAllOptions });
   }
 
+  cleaMessage = (ms) => {
+    setTimeout(() => {
+      this.setState({
+        message: "",
+      });
+    }, ms);
+  };
+
   autoFixSlug = async (slug) => {
     let newSlug = slugify(slug);
     const isExist = await checkSlug(this.props.accessToken, newSlug);
@@ -70,6 +78,11 @@ export default class PostInput extends React.Component {
   };
 
   updateInput = async (key, value) => {
+    if (!this.debouncedFn) {
+      this.debouncedFn = debounce(this.onSaveDraft, 10000);
+    }
+    this.debouncedFn();
+
     let name = key;
     let val = value;
 
@@ -202,6 +215,7 @@ export default class PostInput extends React.Component {
       }
     }
     this.setState({ isLoading: false, isError: error, message: newMessage });
+    this.cleaMessage(3000);
   };
 
   /**
@@ -211,6 +225,7 @@ export default class PostInput extends React.Component {
    */
 
   onSaveDraft = async () => {
+    console.log("save!");
     const postDataInput = {
       ...this.state.data,
       tagOptions: this.getTagOptions(),
@@ -246,6 +261,8 @@ export default class PostInput extends React.Component {
       isLoading: false,
       message: newMessage,
     });
+
+    this.cleaMessage(3000);
   };
 
   handleChange = () => {

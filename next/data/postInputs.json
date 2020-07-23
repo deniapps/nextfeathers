@@ -6,11 +6,6 @@
       "name": "title"
     },
     {
-      "label": "Slug",
-      "type": "text",
-      "name": "slug"
-    },
-    {
       "label": "Summary",
       "type": "textarea",
       "name": "summary"
@@ -21,15 +16,20 @@
       "name": "content"
     },
     {
+      "label": "Tags",
+      "type": "dropdownMulti",
+      "name": "tags",
+      "options": []
+    },
+    {
       "label": "Featured Image",
       "type": "text",
       "name": "image"
     },
     {
-      "label": "Tags",
-      "type": "dropdownMulti",
-      "name": "tags",
-      "options": []
+      "label": "Slug",
+      "type": "text",
+      "name": "slug"
     }
   ]
 }

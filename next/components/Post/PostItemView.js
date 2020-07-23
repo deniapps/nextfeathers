@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Item, Label, Dropdown } from "semantic-ui-react";
 import Link from "next/link";
+import TimeAgo from "react-timeago";
 
 const PostItemView = (props) => {
   return (
@@ -8,12 +9,17 @@ const PostItemView = (props) => {
       {props.items.map((item) => (
         <Item key={item._id}>
           <Item.Content>
-            <Item.Header as="h3">{item.title}</Item.Header>
+            <Link href={"/dashboard/post/" + item._id}>
+              <Item.Header as="a">{item.title}</Item.Header>
+            </Link>
             <Item.Description>{item.summary}</Item.Description>
             <Item.Extra>
               {item.tags.map((tag) => (
                 <Label key={tag}>{tag}</Label>
               ))}
+              <span>
+                Last edited: <TimeAgo date={item.updatedAt} />
+              </span>
               <Dropdown text="Action">
                 <Dropdown.Menu>
                   <Link href={"/dashboard/post/" + item._id}>
