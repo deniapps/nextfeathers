@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import TimeAgo from "react-timeago";
 import Link from "next/link";
-import { Header, Item, Label } from "semantic-ui-react";
+import { Header, Item, Label, Image } from "semantic-ui-react";
 
 //List => Panel => ItemView
 
@@ -22,14 +22,28 @@ export default function PostList(props) {
             }
             return (
               <Item key={item._id}>
-                <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
-                  <Item.Image as="a" src={item.image} />
-                </Link>
+                <div className="image">
+                  <Link
+                    href={`/blog/[slug]`}
+                    as={`/blog/${item.slug}`}
+                    passHref
+                  >
+                    <a>
+                      <Image src={item.image} />
+                    </a>
+                  </Link>
+                </div>
 
                 <Item.Content>
-                  <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
-                    <Item.Header as="a">{item.title}</Item.Header>
-                  </Link>
+                  <Item.Header>
+                    <Link
+                      href={`/blog/[slug]`}
+                      as={`/blog/${item.slug}`}
+                      passHref
+                    >
+                      <a>{item.title}</a>
+                    </Link>
+                  </Item.Header>
                   <Item.Meta>
                     <span className="cinema">
                       {author} | <TimeAgo date={item.createdAt} />

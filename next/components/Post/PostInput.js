@@ -13,6 +13,7 @@ import { titleCase, slugify, debounce } from "../../helpers/common";
 //Headps, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
 
 export default class PostInput extends React.Component {
+  _isMounted = false;
   state = {
     fileName: null,
     data: this.props.data ? this.props.data : {},
@@ -31,6 +32,7 @@ export default class PostInput extends React.Component {
   }
 
   async componentDidMount() {
+    this._isMounted = true;
     const ret = await getTags(this.props.accessToken);
 
     const allTags = ret.data.data;
@@ -45,7 +47,13 @@ export default class PostInput extends React.Component {
       tags: tagsInputOptions,
     };
 
-    this.setState({ allOptions: newAllOptions });
+    if (this._isMounted) {
+      this.setState({ allOptions: newAllOptions });
+    }
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   cleaMessage = (ms) => {

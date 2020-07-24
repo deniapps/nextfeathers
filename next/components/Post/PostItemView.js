@@ -9,9 +9,12 @@ const PostItemView = (props) => {
       {props.items.map((item) => (
         <Item key={item._id}>
           <Item.Content>
-            <Link href={"/dashboard/post/" + item._id}>
-              <Item.Header as="a">{item.title}</Item.Header>
-            </Link>
+            <Item.Header>
+              <Link href={"/dashboard/post/" + item._id}>
+                <a>{item.title}</a>
+              </Link>
+            </Item.Header>
+
             <Item.Description>{item.summary}</Item.Description>
             <Item.Extra>
               {item.tags.map((tag) => (
