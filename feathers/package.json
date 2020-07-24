@@ -26,7 +26,7 @@
     "eslint": "eslint src/. test/. --config .eslintrc.json",
     "dev": "nodemon src/",
     "start": "node src/",
-    "prod": "PORT=5050 NODE_ENV=production node src/",
+    "prod": "PORT=5051 NODE_ENV=production node src/",
     "mocha": "mocha test/ --recursive --exit"
   },
   "dependencies": {
