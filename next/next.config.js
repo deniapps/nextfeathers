@@ -26,7 +26,8 @@ module.exports = {
         : "http://localhost:3030",
     //We use localStorage to save loginUser info, set unique key here,
     //and could be distinguished by ENV
-    UER_LC_KEY: "DENIUSER-" + process.NODE_ENV,
+    USER_LC_KEY: "DENIUSER-" + process.NODE_ENV,
     SITE_NAME: "DENIAPPS",
+    PAGE_SIZE: 20, //pagination default page size
   },
 };

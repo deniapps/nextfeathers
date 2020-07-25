@@ -233,7 +233,6 @@ export default class PostInput extends React.Component {
    */
 
   onSaveDraft = async () => {
-    console.log("save!");
     const postDataInput = {
       ...this.state.data,
       tagOptions: this.getTagOptions(),
@@ -254,8 +253,15 @@ export default class PostInput extends React.Component {
     this.setState({ isLoading: true, isError: false, message: "" });
     let newMessage = "Draft saved!";
     try {
-      if (doCreate) await createPost(this.props.accessToken, postDataInput);
-      else
+      if (doCreate) {
+        const result = await createPost(this.props.accessToken, postDataInput);
+        if (result && result.data) {
+          // const newData = { ...this.state.data, _id: result.data._id };
+          this.setState({
+            data: result.data,
+          });
+        }
+      } else
         await updatePost(
           this.props.accessToken,
           this.state.data._id,
