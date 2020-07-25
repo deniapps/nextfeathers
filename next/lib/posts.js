@@ -27,14 +27,24 @@ const updatePost = (accessToken, id, data) => {
     });
 };
 
-const getPosts = (accessToken) => {
+const getPosts = (accessToken, pageId) => {
+  const pageSize = process.env.PAGE_SIZE ? process.env.PAGE_SIZE : 20;
+  const skip = pageId * pageSize;
   return axios
-    .get(process.env.API_HOST + "/posts?$sort[createdAt]=-1", {
-      headers: {
-        "content-type": "application/json",
-        Authorization: accessToken,
-      },
-    })
+    .get(
+      process.env.API_HOST +
+        "/posts?$sort[createdAt]=-1" +
+        "&$limit=" +
+        pageSize +
+        "&$skip=" +
+        skip,
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: accessToken,
+        },
+      }
+    )
     .then((res) => {
       // console.log(res);
       return res;
@@ -76,6 +86,42 @@ const deletePost = (accessToken, id) => {
     });
 };
 
+//undelete
+const undeletePost = (accessToken, id) => {
+  return axios
+    .patch(
+      process.env.API_HOST + "/posts/" + id,
+      {
+        isDeleted: false,
+      },
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: accessToken,
+        },
+      }
+    )
+    .then((res) => {
+      // console.log(res);
+      return res;
+    });
+};
+
+// permanently delete
+const permanentlyDeletePost = (accessToken, id) => {
+  return axios
+    .delete(process.env.API_HOST + "/posts/" + id, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: accessToken,
+      },
+    })
+    .then((res) => {
+      // console.log(res);
+      return res;
+    });
+};
+
 /**
  *
  * @param {*} slug
@@ -98,4 +144,13 @@ const checkSlug = (accessToken, slug) => {
     });
 };
 
-export { createPost, getPosts, updatePost, getPost, deletePost, checkSlug };
+export {
+  createPost,
+  getPosts,
+  updatePost,
+  getPost,
+  deletePost,
+  checkSlug,
+  undeletePost,
+  permanentlyDeletePost,
+};

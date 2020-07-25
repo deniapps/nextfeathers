@@ -23,10 +23,11 @@ module.exports = {
     API_HOST:
       process.env.NODE_ENV !== "production"
         ? "http://localhost:3030"
-        : "http://localhost:3030",
+        : "https://api.analyticalexpert.net",
     //We use localStorage to save loginUser info, set unique key here,
     //and could be distinguished by ENV
-    UER_LC_KEY: "AE-" + process.NODE_ENV,
-    SITE_NAME: "Analytical Expert",
+    USER_LC_KEY: "DENIUSER-" + process.NODE_ENV,
+    SITE_NAME: "DENIAPPS",
+    PAGE_SIZE: 20, //pagination default page size
   },
 };

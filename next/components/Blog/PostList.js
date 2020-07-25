@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import TimeAgo from "react-timeago";
 import Link from "next/link";
-import { Header, Item, Label, Image } from "semantic-ui-react";
+import { Header, Item, Label, Image, Segment, Button } from "semantic-ui-react";
 
 //List => Panel => ItemView
 
@@ -66,6 +66,13 @@ export default function PostList(props) {
             );
           })}
       </Item.Group>
+      {props.showLoadMore && (
+        <Segment textAlign="center">
+          <Button color="blue" onClick={props.loadMore}>
+            Load More
+          </Button>
+        </Segment>
+      )}
     </div>
   );
 }
@@ -73,4 +80,6 @@ export default function PostList(props) {
 PostList.propTypes = {
   posts: PropTypes.array,
   tagData: PropTypes.object,
+  showLoadMore: PropTypes.bool,
+  loadMore: PropTypes.func,
 };

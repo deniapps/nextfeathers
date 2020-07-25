@@ -5,19 +5,21 @@
 module.exports = (options = {}) => {
   return async (context) => {
     if (context.data) {
-      console.log(context.data);
       const tagOptions = context.data.tagOptions;
-      const Tag = context.app.service("tags").Model;
-      const insertData = tagOptions.map((tag) => ({
-        name: tag.text,
-        slug: tag.value,
-      }));
+      //soft delete will call this hook as well, in that case, the context data does not have tagOptions.
+      if (tagOptions) {
+        const Tag = context.app.service("tags").Model;
+        const insertData = tagOptions.map((tag) => ({
+          name: tag.text,
+          slug: tag.value,
+        }));
 
-      const insertionPromises = insertData.map((tag) => {
-        return Tag.findOneAndUpdate(tag, tag, { upsert: true });
-      });
+        const insertionPromises = insertData.map((tag) => {
+          return Tag.findOneAndUpdate(tag, tag, { upsert: true });
+        });
 
-      await Promise.all(insertionPromises);
+        await Promise.all(insertionPromises);
+      }
     }
 
     return context;

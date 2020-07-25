@@ -1,6 +1,15 @@
 import PropTypes from "prop-types";
 import { Loader, Tab } from "semantic-ui-react";
 import PostItemView from "./PostItemView";
+// import { useState, useRef, useEffect } from "react";
+
+// function usePrevious(value) {
+//   const ref = useRef();
+//   useEffect(() => {
+//     ref.current = value;
+//   });
+//   return ref.current;
+// }
 
 const PostPanel = (props) => {
   const posts = props.posts;
@@ -23,7 +32,11 @@ const PostPanel = (props) => {
 
   const deletedPanel = () => (
     <Tab.Pane attached={false}>
-      <PostItemView items={deleted} onRemove={props.onRemove} />
+      <PostItemView
+        items={deleted}
+        onRemove={props.onPermanentlyRemove}
+        onRecover={props.onRecover}
+      />
     </Tab.Pane>
   );
 
@@ -51,6 +64,8 @@ const PostPanel = (props) => {
 PostPanel.propTypes = {
   posts: PropTypes.array,
   onRemove: PropTypes.func,
+  onPermanentlyRemove: PropTypes.func,
+  onRecover: PropTypes.func,
 };
 
 export default PostPanel;
