@@ -51,6 +51,23 @@ const getPosts = (accessToken, pageId) => {
     });
 };
 
+const getDraft = (accessToken, originalId) => {
+  return axios
+    .get(
+      process.env.API_HOST + "/posts/?isDeleted=0&originalId=" + originalId,
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: accessToken,
+        },
+      }
+    )
+    .then((res) => {
+      // console.log(res);
+      return res;
+    });
+};
+
 const getPost = (accessToken, id) => {
   return axios
     .get(process.env.API_HOST + "/posts/" + id, {
@@ -149,6 +166,7 @@ export {
   getPosts,
   updatePost,
   getPost,
+  getDraft,
   deletePost,
   checkSlug,
   undeletePost,

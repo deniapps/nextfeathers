@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
 import uploadFile from "lib/upload";
+import CustomFigureAttributes from "./CustomFigureAttributes";
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -60,6 +61,33 @@ const DNXCustomUploadAdapterPlugin = (editor) => {
   };
 };
 
+// This plugin brings customization to the downcast pipeline of the editor.
+// function AddClassToAllTables(editor) {
+//   // Both the data and the editing pipelines are affected by this conversion.
+//   editor.conversion.for("upcast").add((dispatcher) => {
+//     // Headings are represented in the model as a "heading1" element.
+//     // Use the "low" listener priority to apply the changes after the headings feature.
+//     dispatcher.on(
+//       "element:table",
+//       (evt, data, conversionApi) => {
+//         const viewWriter = conversionApi.writer;
+//         const viewFigure = conversionApi.mapper.toViewElement(data.item);
+//         if (!viewFigure) {
+//           return;
+//         }
+
+//         if (viewWriter) {
+//           viewWriter.addClass(
+//             ["ui", "table"],
+//             conversionApi.mapper.toViewElement(data.item)
+//           );
+//         }
+//       },
+//       { priority: "low" }
+//     );
+//   });
+// }
+
 class CKEditor5 extends Component {
   static get propTypes() {
     return {
@@ -76,7 +104,7 @@ class CKEditor5 extends Component {
         editor={ClassicEditor}
         data={this.props.value}
         config={{
-          extraPlugins: [DNXCustomUploadAdapterPlugin],
+          extraPlugins: [DNXCustomUploadAdapterPlugin, CustomFigureAttributes],
           link: {
             decorators: {
               addTargetToExternalLinks: {
