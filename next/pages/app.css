@@ -168,3 +168,11 @@ figcaption {
   font-size: small;
   margin: 0.5em 0 1em;
 }
+
+.ck-content figure.table {
+  display: block;
+}
+
+figure.table {
+  margin-bottom: 1em;
+}

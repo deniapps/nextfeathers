@@ -6,7 +6,13 @@ import shortid from "shortid";
 
 import PostInputForm from "./PostInputForm";
 
-import { createPost, updatePost, deletePost, checkSlug } from "../../lib/posts";
+import {
+  createPost,
+  updatePost,
+  deletePost,
+  checkSlug,
+  getDraft,
+} from "../../lib/posts";
 import { getTags } from "../../lib/tags";
 import { titleCase, slugify, debounce } from "../../helpers/common";
 
@@ -228,8 +234,11 @@ export default class PostInput extends React.Component {
 
   /**
    * case1: new draft, i.e. not from editting existing post - do create without original ID
+   *  case1a: save draft after case1 - edit existing draft, but not pubished post yet - falls to case3
    * case2: exisiting post to draft - do create with original ID
+   *  case2a: save draft after case2 -  edit published post, but has a draft already - should update draft
    * case3: draft to draft - do update
+   *
    */
 
   onSaveDraft = async () => {
@@ -241,10 +250,13 @@ export default class PostInput extends React.Component {
     };
     let doCreate = true;
     if (!this.state.data._id) {
+      //has no id - case 1
       postDataInput.originalId = null;
     } else if (!this.state.data.isDraft) {
+      //has id, but not a draft - case2
       postDataInput.originalId = this.state.data._id;
     } else {
+      // has id and it's draft
       doCreate = false; //do update on existing draft
     }
     if (postDataInput._id) {
@@ -254,12 +266,29 @@ export default class PostInput extends React.Component {
     let newMessage = "Draft saved!";
     try {
       if (doCreate) {
-        const result = await createPost(this.props.accessToken, postDataInput);
-        if (result && result.data) {
-          // const newData = { ...this.state.data, _id: result.data._id };
-          this.setState({
-            data: result.data,
-          });
+        let draftId = 0;
+        if (this.state.data._id) {
+          const draft = await getDraft(
+            this.props.accessToken,
+            this.state.data._id
+          );
+          if (draft && draft.data.total > 0) {
+            draftId = draft.data.data[0]._id;
+            await updatePost(this.props.accessToken, draftId, postDataInput);
+          }
+        }
+        if (!draftId) {
+          const result = await createPost(
+            this.props.accessToken,
+            postDataInput
+          );
+
+          if (result && result.data && !this.state.data.id) {
+            //case2a
+            this.setState({
+              data: result.data,
+            });
+          }
         }
       } else
         await updatePost(

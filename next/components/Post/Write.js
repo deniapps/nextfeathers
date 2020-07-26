@@ -4,6 +4,7 @@ import UserContext from "components/Context/UserContext";
 import { Header, Loader } from "semantic-ui-react";
 import PostInput from "components/Post/PostInput";
 import { getPost } from "lib/posts";
+import { getDraft } from "../../lib/posts";
 
 export default function Write() {
   const router = useRouter();
@@ -27,9 +28,17 @@ export default function Write() {
     setIsError(false);
     setIsLoading(true);
     try {
-      const result = await getPost(accessToken, id);
-      // console.log("RESUTL", result);
-      const data = result.data;
+      let data = {};
+      //check if draft exist, if so, restore it
+      const draftResult = await getDraft(accessToken, id);
+      if (draftResult && draftResult.data.total > 0) {
+        data = draftResult.data.data[0];
+      } else {
+        const result = await getPost(accessToken, id);
+        // console.log("RESUTL", result);
+        data = result.data;
+      }
+
       setData({
         title: "Edit Post",
         data,
