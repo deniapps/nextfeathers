@@ -26,8 +26,8 @@ module.exports = {
         : "https://api.analyticalexpert.net",
     //We use localStorage to save loginUser info, set unique key here,
     //and could be distinguished by ENV
-    USER_LC_KEY: "DENIUSER-" + process.NODE_ENV,
-    SITE_NAME: "DENIAPPS",
+    USER_LC_KEY: "AEUSER-" + process.NODE_ENV,
+    SITE_NAME: "Analytical Expert",
     PAGE_SIZE: 20, //pagination default page size
   },
 };
