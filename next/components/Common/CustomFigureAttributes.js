@@ -42,9 +42,9 @@ function setupCustomClassConversion(viewElementName, modelElementName, editor) {
   });
 
   // Define upcast converters for the <img> and <table> elements with a "low" priority so they are run after the default converters.
-  editor.conversion
-    .for("upcast")
-    .add(upcastCustomClasses(viewElementName), { priority: "low" });
+  // editor.conversion
+  //   .for("upcast")
+  //   .add(upcastCustomClasses(viewElementName), { priority: "low" });
 
   // Define downcast converters for a model element with a "low" priority so they are run after the default converters.
   // Use `downcastCustomClassesToFigure` if you'd like to keep your classes on <figure> element or `downcastCustomClassesToChild` if you'd like to keep your classes on a <figure> child element, i.e. <img>.

@@ -9,9 +9,8 @@ import PostInputForm from "./PostInputForm";
 import {
   createPost,
   updatePost,
-  deletePost,
+  permanentlyDeletePost,
   checkSlug,
-  getDraft,
 } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
 import { titleCase, slugify, debounce } from "../../helpers/common";
@@ -166,7 +165,7 @@ export default class PostInput extends React.Component {
 
   /**
    * case1: new post - do create
-   * case2: draft to publish, so we need to delete the original post - do update
+   * case2: draft to publish, so we need to delete the original post if any - do update
    * case3: publish to publish - do update
    */
 
@@ -207,7 +206,10 @@ export default class PostInput extends React.Component {
         delete postDataInput._id;
       }
       if (this.state.data.originalId) {
-        await deletePost(this.props.accessToken, this.state.data.originalId);
+        await permanentlyDeletePost(
+          this.props.accessToken,
+          this.state.data.originalId
+        );
       }
       try {
         if (doCreate) {
@@ -233,15 +235,19 @@ export default class PostInput extends React.Component {
   };
 
   /**
-   * case1: new draft, i.e. not from editting existing post - do create without original ID
-   *  case1a: save draft after case1 - edit existing draft, but not pubished post yet - falls to case3
+   * case1: new draft, i.e. not from editting a existing post - do create without original ID
+   *  case1a: save draft after case1 - edit existing draft, but not pubish the post yet - so follow case3
    * case2: exisiting post to draft - do create with original ID
    *  case2a: save draft after case2 -  edit published post, but has a draft already - should update draft
+   *  NO MORE case2a, because when there is a draft, we will load draft not the published one. - so follow case3
    * case3: draft to draft - do update
    *
    */
 
   onSaveDraft = async () => {
+    if (this.state.isLoading) {
+      return; //stop auto saving when it's loading, i.e. publishing.
+    }
     const postDataInput = {
       ...this.state.data,
       tagOptions: this.getTagOptions(),
@@ -266,24 +272,29 @@ export default class PostInput extends React.Component {
     let newMessage = "Draft saved!";
     try {
       if (doCreate) {
-        let draftId = 0;
-        if (this.state.data._id) {
-          const draft = await getDraft(
-            this.props.accessToken,
-            this.state.data._id
-          );
-          if (draft && draft.data.total > 0) {
-            draftId = draft.data.data[0]._id;
-            await updatePost(this.props.accessToken, draftId, postDataInput);
-          }
-        }
+        const draftId = null;
+        // we don't need to check draft anymore, because if there is draft, we load draft,
+        // then the state.data._id exists & isDraft = true, then doCreate = false
+
+        // below is old code for reference only
+        // let draftId = 0;
+        // if (this.state.data._id) {
+        //   const draft = await getDraft(
+        //     this.props.accessToken,
+        //     this.state.data._id
+        //   );
+        //   if (draft && draft.data.total > 0) {
+        //     draftId = draft.data.data[0]._id;
+        //     await updatePost(this.props.accessToken, draftId, postDataInput);
+        //   }
+        // }
         if (!draftId) {
           const result = await createPost(
             this.props.accessToken,
             postDataInput
           );
 
-          if (result && result.data && !this.state.data.id) {
+          if (result && result.data && !this.state.data._id) {
             //case2a
             this.setState({
               data: result.data,

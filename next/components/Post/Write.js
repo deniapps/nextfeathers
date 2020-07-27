@@ -29,7 +29,7 @@ export default function Write() {
     setIsLoading(true);
     try {
       let data = {};
-      //check if draft exist, if so, restore it
+      //check if draft exists, if so, restore it
       const draftResult = await getDraft(accessToken, id);
       if (draftResult && draftResult.data.total > 0) {
         data = draftResult.data.data[0];
