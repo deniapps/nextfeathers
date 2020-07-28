@@ -22,6 +22,7 @@
     "chart.js": "^2.9.3",
     "ckeditor5-build-classic-dna": "^1.0.4",
     "dotenv": "^8.2.0",
+    "gitalk": "^1.6.2",
     "isomorphic-unfetch": "^3.0.0",
     "jwt-decode": "^2.2.0",
     "mobile-detect": "^1.4.4",

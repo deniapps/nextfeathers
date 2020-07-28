@@ -5,6 +5,11 @@ import { getPublicPost } from "lib/blog";
 import { Container, Header } from "semantic-ui-react";
 import Prism from "prismjs";
 import TimeAgo from "react-timeago";
+import dynamic from "next/dynamic";
+
+const DNAComments = dynamic(() => import("components/Common/Comments"), {
+  ssr: false,
+});
 
 const Post = (props) => {
   const title = props.blog.title;
@@ -44,6 +49,10 @@ const Post = (props) => {
         </Header>
 
         <div dangerouslySetInnerHTML={{ __html: content }} />
+
+        {process.env.GITTALK && process.env.GITTALK === "on" && (
+          <DNAComments slug={props.blog.slug} />
+        )}
       </Container>
     </Layout>
   );
