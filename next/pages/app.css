@@ -47,6 +47,11 @@
     font-weight: 200;
     color: #666666;
   }
+
+  .ui.items:not(.unstackable) > .item > .image,
+  .ui.items:not(.unstackable) > .item > .image > img {
+    overflow: hidden;
+  }
 }
 
 .ui.items > .item > .image:not(.ui) {

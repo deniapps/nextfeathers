@@ -35,7 +35,7 @@ const slugify = (text) => {
 // N milliseconds. If `immediate` is passed, trigger the function on the
 // leading edge, instead of the trailing.
 const debounce = (func, wait, immediate) => {
-  console.log(func);
+  // console.log(func);
   var timeout;
   return function () {
     var context = this,

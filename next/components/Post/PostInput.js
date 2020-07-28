@@ -228,10 +228,14 @@ export default class PostInput extends React.Component {
       } catch (err) {
         newMessage = "Something wrong!";
         error = true;
+        this.setState({
+          isLoading: false,
+          isError: error,
+          message: newMessage,
+        });
+        this.cleaMessage(3000);
       }
     }
-    this.setState({ isLoading: false, isError: error, message: newMessage });
-    this.cleaMessage(3000);
   };
 
   /**
