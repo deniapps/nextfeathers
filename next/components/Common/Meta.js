@@ -50,7 +50,7 @@ const Meta = (props) => {
             __html: `window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.GA}');`,
+            gtag('config', ${process.env.GA});`,
           }}
         </script>
       )}
