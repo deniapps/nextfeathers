@@ -1,6 +1,8 @@
 import React from "react";
 import App from "next/app";
 import Router from "next/router";
+import * as gtag from "../lib/gtag";
+
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
@@ -18,6 +20,10 @@ export default class deniApp extends App {
     isReady: false
   };
 
+  handleRouteChange = url => {
+    gtag.pageview(url);
+  };
+
   componentDidMount = () => {
     const deniUser = localStorage.getItem(NEXT_PUBLIC_USER_LC_KEY);
     if (deniUser) {
@@ -30,11 +36,22 @@ export default class deniApp extends App {
     this.setState({
       isReady: true
     });
+
+    Router.events.on("routeChangeComplete", this.handleRouteChange);
+  };
+
+  componentWillUnmount = () => {
+    Router.events.off("routeChangeComplete", this.handleRouteChange);
   };
 
   signIn = (username, accessToken) => {
     const deniUser = { username, accessToken };
     localStorage.setItem(NEXT_PUBLIC_USER_LC_KEY, JSON.stringify(deniUser));
+
+    gtag.event({
+      action: "sign_in",
+      category: "User"
+    });
 
     this.setState(
       {
@@ -49,6 +66,10 @@ export default class deniApp extends App {
 
   signOut = () => {
     localStorage.removeItem(NEXT_PUBLIC_USER_LC_KEY);
+    gtag.event({
+      action: "sign_out",
+      category: "User"
+    });
     this.setState({
       user: null,
       accessToken: null
