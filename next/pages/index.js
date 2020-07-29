@@ -1,4 +1,4 @@
-import { Grid } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 import Layout from "components/Layout";
 
 export default function Index() {
@@ -16,7 +16,7 @@ export default function Index() {
     desc,
     summary,
     canonical,
-    image,
+    image
   };
 
   return (

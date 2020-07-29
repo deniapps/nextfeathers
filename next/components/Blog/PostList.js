@@ -8,14 +8,14 @@ import { Header, Item, Label, Image, Segment, Button } from "semantic-ui-react";
 export default function PostList(props) {
   return (
     <div>
-      <Header as="h2" icon textAlign="center" style={{ marginBottom: "40px" }}>
+      <Header as="h1" icon textAlign="center">
         <Header.Content>
           All Posts{props.tagData && <span> In {props.tagData.name}</span>}
         </Header.Content>
       </Header>
       <Item.Group divided>
         {props.posts &&
-          props.posts.map((item) => {
+          props.posts.map(item => {
             let author = "Admin";
             if (item.author) {
               author = item.author.firstName + " " + item.author.lastName;
@@ -51,7 +51,7 @@ export default function PostList(props) {
                   </Item.Meta>
                   <Item.Description>{item.summary}</Item.Description>
                   <Item.Extra>
-                    {item.tags.map((tag) => (
+                    {item.tags.map(tag => (
                       <Link
                         key={tag}
                         href={`/blog/tags/[slug]`}
@@ -81,5 +81,5 @@ PostList.propTypes = {
   posts: PropTypes.array,
   tagData: PropTypes.object,
   showLoadMore: PropTypes.bool,
-  loadMore: PropTypes.func,
+  loadMore: PropTypes.func
 };
