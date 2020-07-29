@@ -36,6 +36,24 @@ const Meta = (props) => {
       {props.image && <meta name="twitter:image" content={props.image} />}
       {props.canonical && <link rel="canonical" href={props.canonical} />}
       {props.js && <script type="text/javascript" src={props.js}></script>}
+
+      {process.env.GA && (
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA}`}
+        ></script>
+      )}
+      {process.env.GA && (
+        <script>
+          dangerouslySetInnerHTML=
+          {{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.GA}');`,
+          }}
+        </script>
+      )}
     </Head>
   );
 };
