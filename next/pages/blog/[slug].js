@@ -8,10 +8,10 @@ import TimeAgo from "react-timeago";
 import dynamic from "next/dynamic";
 
 const DNAComments = dynamic(() => import("components/Common/Comments"), {
-  ssr: false,
+  ssr: false
 });
 
-const Post = (props) => {
+const Post = props => {
   const title = props.blog.title;
   const desc = props.blog.summary;
 
@@ -31,7 +31,7 @@ const Post = (props) => {
     desc,
     summary,
     canonical,
-    image,
+    image
   };
 
   useEffect(() => {
@@ -50,16 +50,17 @@ const Post = (props) => {
 
         <div dangerouslySetInnerHTML={{ __html: content }} />
 
-        {process.env.GITTALK && process.env.GITTALK === "on" && (
-          <DNAComments slug={props.blog.slug} />
-        )}
+        {process.env.NEXT_PUBLIC_GITALK &&
+          process.env.NEXT_PUBLIC_GITALK === "on" && (
+            <DNAComments slug={props.blog.slug} />
+          )}
       </Container>
     </Layout>
   );
 };
 
 Post.propTypes = {
-  blog: PropTypes.object,
+  blog: PropTypes.object
 };
 
 export async function getServerSideProps(context) {
@@ -68,7 +69,7 @@ export async function getServerSideProps(context) {
   const result = await getPublicPost(slug);
 
   return {
-    props: { blog: result.data.data[0] }, // will be passed to the page component as props
+    props: { blog: result.data.data[0] } // will be passed to the page component as props
   };
 }
 

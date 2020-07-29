@@ -5,7 +5,9 @@ import PropTypes from "prop-types";
 import { Loader } from "semantic-ui-react";
 import { useState } from "react";
 
-const pageSize = process.env.PAGE_SIZE ? process.env.PAGE_SIZE : 20;
+const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
+  ? process.env.NEXT_PUBLIC_PAGE_SIZE
+  : 20;
 
 export default function Posts(props) {
   const title = "Blog - DeNiApps";
@@ -21,7 +23,7 @@ export default function Posts(props) {
     desc,
     summary,
     canonical,
-    image,
+    image
   };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -31,7 +33,7 @@ export default function Posts(props) {
   const [pageId, setPageId] = useState(0);
   const [showLoadMore, setShowLoadMore] = useState(props.showLoadMore);
 
-  const fetchList = async (pageId) => {
+  const fetchList = async pageId => {
     setIsError(false);
     setIsLoading(true);
     try {
@@ -68,7 +70,7 @@ export default function Posts(props) {
 
 Posts.propTypes = {
   posts: PropTypes.array,
-  showLoadMore: PropTypes.bool,
+  showLoadMore: PropTypes.bool
 };
 
 export async function getServerSideProps() {
@@ -83,6 +85,6 @@ export async function getServerSideProps() {
   }
 
   return {
-    props: { posts: posts, showLoadMore: showLoadMore }, // will be passed to the page component as props
+    props: { posts: posts, showLoadMore: showLoadMore } // will be passed to the page component as props
   };
 }

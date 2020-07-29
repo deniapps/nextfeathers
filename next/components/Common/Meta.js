@@ -37,20 +37,20 @@ const Meta = props => {
       {props.canonical && <link rel="canonical" href={props.canonical} />}
       {props.js && <script type="text/javascript" src={props.js}></script>}
 
-      {process.env.GA && (
+      {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
         <script
           async
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA}`}
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS_ID}`}
         ></script>
       )}
-      {process.env.GA && (
+      {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
         <script>
           dangerouslySetInnerHTML=
           {{
             __html: `window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.GA}');`
+            gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}');`
           }}
         </script>
       )}

@@ -9,37 +9,37 @@ import "prismjs/themes/prism.css";
 import "gitalk/dist/gitalk.css";
 // import MobileDetect from "mobile-detect";
 
-const USER_LC_KEY = process.env.USER_LC_KEY;
+const NEXT_PUBLIC_USER_LC_KEY = process.env.NEXT_PUBLIC_USER_LC_KEY;
 
 export default class deniApp extends App {
   state = {
     user: null,
     accessToken: null,
-    isReady: false,
+    isReady: false
   };
 
   componentDidMount = () => {
-    const deniUser = localStorage.getItem(USER_LC_KEY);
+    const deniUser = localStorage.getItem(NEXT_PUBLIC_USER_LC_KEY);
     if (deniUser) {
       const deniUserObj = JSON.parse(deniUser);
       this.setState({
         user: deniUserObj.username,
-        accessToken: deniUserObj.accessToken,
+        accessToken: deniUserObj.accessToken
       });
     }
     this.setState({
-      isReady: true,
+      isReady: true
     });
   };
 
   signIn = (username, accessToken) => {
     const deniUser = { username, accessToken };
-    localStorage.setItem(USER_LC_KEY, JSON.stringify(deniUser));
+    localStorage.setItem(NEXT_PUBLIC_USER_LC_KEY, JSON.stringify(deniUser));
 
     this.setState(
       {
         user: username,
-        accessToken,
+        accessToken
       },
       () => {
         Router.push("/");
@@ -48,10 +48,10 @@ export default class deniApp extends App {
   };
 
   signOut = () => {
-    localStorage.removeItem(USER_LC_KEY);
+    localStorage.removeItem(NEXT_PUBLIC_USER_LC_KEY);
     this.setState({
       user: null,
-      accessToken: null,
+      accessToken: null
     });
     Router.push("/");
   };
@@ -66,7 +66,7 @@ export default class deniApp extends App {
           signIn: this.signIn,
           signOut: this.signOut,
           isReady: this.state.isReady,
-          isMobileFromSSR,
+          isMobileFromSSR
         }}
       >
         <Component {...pageProps} />
