@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
-import axios from "axios";
 import UserContext from "../components/Context/UserContext";
 import {
   Button,
@@ -11,6 +10,7 @@ import {
   Segment
 } from "semantic-ui-react";
 import Layout from "../components/Layout";
+import { getToken } from "lib/authentication";
 
 // import getConfig from "next/config";
 // const { publicRuntimeConfig } = getConfig();
@@ -77,23 +77,16 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const authenticate = e => {
+  const authenticate = async e => {
     e.preventDefault();
     if (username != "" && password != "") {
-      axios
-        .post(process.env.NEXT_PUBLIC_API_HOST + "/authentication", {
-          strategy: "local",
-          email: username,
-          password: password
-        })
-        .then(ret => {
-          // console.log(ret.data);
-          signIn(username, ret.data.accessToken);
-        })
-        .catch(error => {
-          console.log(error);
-          setMessage("Invalid Login");
-        });
+      try {
+        const ret = await getToken(username, password);
+        signIn(username, ret.data.accessToken);
+      } catch (error) {
+        console.log(error);
+        setMessage("Invalid Login");
+      }
     } else {
       setMessage("Please enter your username and password");
     }

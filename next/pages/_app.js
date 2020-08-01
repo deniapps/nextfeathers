@@ -44,7 +44,10 @@ export default class deniApp extends App {
     Router.events.off("routeChangeComplete", this.handleRouteChange);
   };
 
-  signIn = (username, accessToken) => {
+  // if autoRevew = true, which means login with JWT token, then only need to refresh accessToken
+  // should not redirect
+
+  signIn = (username, accessToken, autoRenew = false) => {
     const deniUser = { username, accessToken };
     localStorage.setItem(NEXT_PUBLIC_USER_LC_KEY, JSON.stringify(deniUser));
 
@@ -59,7 +62,7 @@ export default class deniApp extends App {
         accessToken
       },
       () => {
-        Router.push("/");
+        if (!autoRenew) Router.push("/");
       }
     );
   };

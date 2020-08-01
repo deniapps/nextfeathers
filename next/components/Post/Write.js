@@ -5,6 +5,7 @@ import { Header, Loader } from "semantic-ui-react";
 import PostInput from "components/Post/PostInput";
 import { getPost } from "lib/posts";
 import { getDraft } from "../../lib/posts";
+import { renewJWT } from "lib/authentication";
 
 export default function Write() {
   const router = useRouter();
@@ -14,14 +15,25 @@ export default function Write() {
   const [isError, setIsError] = useState(false);
   const [data, setData] = useState([]);
 
-  const { accessToken } = useContext(UserContext);
+  const { accessToken, signIn, user, signOut } = useContext(UserContext);
+
+  const reLogin = async () => {
+    if (accessToken) {
+      try {
+        const ret = await renewJWT(accessToken);
+        signIn(user, ret.data.accessToken, true); //silently relogin
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const fetchData = async () => {
     if (!id) return false;
     if (id === "new") {
       setData({
         title: "Add New Post",
-        data: {},
+        data: {}
       });
       return true;
     }
@@ -41,7 +53,7 @@ export default function Write() {
 
       setData({
         title: "Edit Post",
-        data,
+        data
       });
     } catch (err) {
       setIsError(true);
@@ -52,7 +64,7 @@ export default function Write() {
 
   useEffect(() => {
     fetchData();
-  }, [id, accessToken]);
+  }, [id]);
 
   return (
     <div>
@@ -69,7 +81,12 @@ export default function Write() {
           >
             <Header.Content>{data.title}</Header.Content>
           </Header>
-          <PostInput accessToken={accessToken} data={data.data} />
+          <PostInput
+            accessToken={accessToken}
+            data={data.data}
+            reLogin={reLogin}
+            signOut={signOut}
+          />
         </>
       )}
     </div>

@@ -1,15 +1,23 @@
 //List of common functions
 
+import jwtDecode from "jwt-decode";
+
 /**
  *
- * @param {*} expiresAt - timestamp from jwt = seconds
+ * @param accessToken - jwt
+ * @param offset - isExpired in (offset) mins
+ * - timestamp from jwt = seconds
  */
-const isExpired = (expiresAt) => {
-  //new Date (milliseconds)
-  return new Date() > new Date(expiresAt * 1000);
+const isExpired = (accessToken, offset = 0) => {
+  const decodedToken = jwtDecode(accessToken);
+  if (decodedToken && decodedToken.exp) {
+    //new Date (milliseconds)
+    return new Date() > new Date(decodedToken.exp * 1000 - offset * 60 * 1000);
+  }
+  return true;
 };
 
-const titleCase = (str) => {
+const titleCase = str => {
   return str
     .toLowerCase()
     .split(/\s+/)
@@ -19,7 +27,7 @@ const titleCase = (str) => {
     .join(" ");
 };
 
-const slugify = (text) => {
+const slugify = text => {
   return text
     .toString()
     .toLowerCase()
