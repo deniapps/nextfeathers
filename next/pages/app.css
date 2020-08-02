@@ -47,6 +47,11 @@
     font-weight: 200;
     color: #666666;
   }
+
+  .ui.items:not(.unstackable) > .item > .image,
+  .ui.items:not(.unstackable) > .item > .image > img {
+    overflow: hidden;
+  }
 }
 
 .ui.items > .item > .image:not(.ui) {
@@ -77,6 +82,7 @@
   flex-direction: column;
   min-height: 100vh;
   margin: 0; /** this is super important **/
+  overflow-wrap: break-word;
 }
 #deniFooter {
   margin: auto auto 0 auto;
@@ -90,7 +96,7 @@
 
 .deniPage {
   margin: 2em 0 4em;
-  padding-top: 5em;
+  padding-top: 4em;
 }
 
 .ck-editor__editable_inline {

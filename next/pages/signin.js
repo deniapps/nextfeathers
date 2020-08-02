@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useState, useContext } from "react";
-import axios from "axios";
 import UserContext from "../components/Context/UserContext";
 import {
   Button,
@@ -8,14 +7,15 @@ import {
   Grid,
   Header,
   Message,
-  Segment,
+  Segment
 } from "semantic-ui-react";
 import Layout from "../components/Layout";
+import { getToken } from "lib/authentication";
 
 // import getConfig from "next/config";
 // const { publicRuntimeConfig } = getConfig();
 
-const LoginForm = (props) => (
+const LoginForm = props => (
   <div className="login-form">
     <Grid textAlign="center" verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
@@ -31,7 +31,7 @@ const LoginForm = (props) => (
               iconPosition="left"
               placeholder="Username"
               name="email"
-              onChange={(ev) => props.setUsername(ev.target.value)}
+              onChange={ev => props.setUsername(ev.target.value)}
             />
             <Form.Input
               fluid
@@ -40,10 +40,10 @@ const LoginForm = (props) => (
               placeholder="Password"
               type="password"
               name="password"
-              onChange={(ev) => props.setPassword(ev.target.value)}
+              onChange={ev => props.setPassword(ev.target.value)}
             />
 
-            <Button fluid size="large" onClick={(ev) => props.login(ev)}>
+            <Button fluid size="large" onClick={ev => props.login(ev)}>
               Login
             </Button>
           </Segment>
@@ -68,7 +68,7 @@ LoginForm.propTypes = {
   setPassword: PropTypes.func,
   setUsername: PropTypes.func,
   setMessage: PropTypes.func,
-  login: PropTypes.func,
+  login: PropTypes.func
 };
 
 const Login = () => {
@@ -77,23 +77,16 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
 
-  const authenticate = (e) => {
+  const authenticate = async e => {
     e.preventDefault();
     if (username != "" && password != "") {
-      axios
-        .post(process.env.API_HOST + "/authentication", {
-          strategy: "local",
-          email: username,
-          password: password,
-        })
-        .then((ret) => {
-          // console.log(ret.data);
-          signIn(username, ret.data.accessToken);
-        })
-        .catch((error) => {
-          console.log(error);
-          setMessage("Invalid Login");
-        });
+      try {
+        const ret = await getToken(username, password);
+        signIn(username, ret.data.accessToken);
+      } catch (error) {
+        console.log(error);
+        setMessage("Invalid Login");
+      }
     } else {
       setMessage("Please enter your username and password");
     }

@@ -7,7 +7,7 @@ const Index = () => {
   // const { accessToken } = useContext(UserContext);
   return (
     <Layout authPage>
-      <Header as="h2" icon textAlign="center" style={{ marginBottom: "40px" }}>
+      <Header as="h1" icon textAlign="center">
         <Header.Content>Comming Soon!</Header.Content>
       </Header>
       <Container>

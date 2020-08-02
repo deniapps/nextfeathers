@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Head from "next/head";
-const Meta = (props) => {
+const Meta = props => {
   const defaultTitle = "DeNiApps";
   const defaultDesc = "We Create Websites & Apps";
   const defaultImg = "https://deniapps.com/images/dnx.png";
@@ -36,6 +36,23 @@ const Meta = (props) => {
       {props.image && <meta name="twitter:image" content={props.image} />}
       {props.canonical && <link rel="canonical" href={props.canonical} />}
       {props.js && <script type="text/javascript" src={props.js}></script>}
+
+      {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
+        <script
+          async
+          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_ANALYTICS_ID}`}
+        />
+      )}
+      {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}');`
+          }}
+        />
+      )}
     </Head>
   );
 };
@@ -48,5 +65,5 @@ Meta.propTypes = {
   canonical: PropTypes.string,
   image: PropTypes.string,
   css: PropTypes.string,
-  js: PropTypes.string,
+  js: PropTypes.string
 };

@@ -1,56 +1,81 @@
 import React from "react";
 import App from "next/app";
 import Router from "next/router";
+import * as gtag from "../lib/gtag";
+
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./ae.css";
 import "highlight.js/styles/nord.css";
 import "prismjs/themes/prism.css";
+import "gitalk/dist/gitalk.css";
 // import MobileDetect from "mobile-detect";
 
-const USER_LC_KEY = process.env.USER_LC_KEY;
+const NEXT_PUBLIC_USER_LC_KEY = process.env.NEXT_PUBLIC_USER_LC_KEY;
 
 export default class deniApp extends App {
   state = {
     user: null,
     accessToken: null,
-    isReady: false,
+    isReady: false
+  };
+
+  handleRouteChange = url => {
+    gtag.pageview(url);
   };
 
   componentDidMount = () => {
-    const deniUser = localStorage.getItem(USER_LC_KEY);
+    const deniUser = localStorage.getItem(NEXT_PUBLIC_USER_LC_KEY);
     if (deniUser) {
       const deniUserObj = JSON.parse(deniUser);
       this.setState({
         user: deniUserObj.username,
-        accessToken: deniUserObj.accessToken,
+        accessToken: deniUserObj.accessToken
       });
     }
     this.setState({
-      isReady: true,
+      isReady: true
     });
+
+    Router.events.on("routeChangeComplete", this.handleRouteChange);
   };
 
-  signIn = (username, accessToken) => {
+  componentWillUnmount = () => {
+    Router.events.off("routeChangeComplete", this.handleRouteChange);
+  };
+
+  // if autoRevew = true, which means login with JWT token, then only need to refresh accessToken
+  // should not redirect
+
+  signIn = (username, accessToken, autoRenew = false) => {
     const deniUser = { username, accessToken };
-    localStorage.setItem(USER_LC_KEY, JSON.stringify(deniUser));
+    localStorage.setItem(NEXT_PUBLIC_USER_LC_KEY, JSON.stringify(deniUser));
+
+    gtag.event({
+      action: "sign_in",
+      category: "User"
+    });
 
     this.setState(
       {
         user: username,
-        accessToken,
+        accessToken
       },
       () => {
-        Router.push("/");
+        if (!autoRenew) Router.push("/");
       }
     );
   };
 
   signOut = () => {
-    localStorage.removeItem(USER_LC_KEY);
+    localStorage.removeItem(NEXT_PUBLIC_USER_LC_KEY);
+    gtag.event({
+      action: "sign_out",
+      category: "User"
+    });
     this.setState({
       user: null,
-      accessToken: null,
+      accessToken: null
     });
     Router.push("/");
   };
@@ -65,7 +90,7 @@ export default class deniApp extends App {
           signIn: this.signIn,
           signOut: this.signOut,
           isReady: this.state.isReady,
-          isMobileFromSSR,
+          isMobileFromSSR
         }}
       >
         <Component {...pageProps} />

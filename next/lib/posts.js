@@ -2,13 +2,13 @@ import axios from "axios";
 
 const createPost = (accessToken, data) => {
   return axios
-    .post(process.env.API_HOST + "/posts", data, {
+    .post(process.env.NEXT_PUBLIC_API_HOST + "/posts", data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
-      },
+        Authorization: accessToken
+      }
     })
-    .then((res) => {
+    .then(res => {
       return res;
     });
 };
@@ -16,23 +16,25 @@ const createPost = (accessToken, data) => {
 // use patch to update certain filed, and get createdBy automatically updated.
 const updatePost = (accessToken, id, data) => {
   return axios
-    .patch(process.env.API_HOST + "/posts/" + id, data, {
+    .patch(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
-      },
+        Authorization: accessToken
+      }
     })
-    .then((res) => {
+    .then(res => {
       return res;
     });
 };
 
 const getPosts = (accessToken, pageId) => {
-  const pageSize = process.env.PAGE_SIZE ? process.env.PAGE_SIZE : 20;
+  const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
+    ? process.env.NEXT_PUBLIC_PAGE_SIZE
+    : 20;
   const skip = pageId * pageSize;
   return axios
     .get(
-      process.env.API_HOST +
+      process.env.NEXT_PUBLIC_API_HOST +
         "/posts?$sort[createdAt]=-1" +
         "&$limit=" +
         pageSize +
@@ -41,11 +43,11 @@ const getPosts = (accessToken, pageId) => {
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
-        },
+          Authorization: accessToken
+        }
       }
     )
-    .then((res) => {
+    .then(res => {
       // console.log(res);
       return res;
     });
@@ -54,15 +56,17 @@ const getPosts = (accessToken, pageId) => {
 const getDraft = (accessToken, originalId) => {
   return axios
     .get(
-      process.env.API_HOST + "/posts/?isDeleted=0&originalId=" + originalId,
+      process.env.NEXT_PUBLIC_API_HOST +
+        "/posts/?isDeleted=0&originalId=" +
+        originalId,
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
-        },
+          Authorization: accessToken
+        }
       }
     )
-    .then((res) => {
+    .then(res => {
       // console.log(res);
       return res;
     });
@@ -70,13 +74,13 @@ const getDraft = (accessToken, originalId) => {
 
 const getPost = (accessToken, id) => {
   return axios
-    .get(process.env.API_HOST + "/posts/" + id, {
+    .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
-      },
+        Authorization: accessToken
+      }
     })
-    .then((res) => {
+    .then(res => {
       // console.log(res);
       return res;
     });
@@ -86,18 +90,18 @@ const getPost = (accessToken, id) => {
 const deletePost = (accessToken, id) => {
   return axios
     .patch(
-      process.env.API_HOST + "/posts/" + id,
+      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
       {
-        isDeleted: true,
+        isDeleted: true
       },
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
-        },
+          Authorization: accessToken
+        }
       }
     )
-    .then((res) => {
+    .then(res => {
       // console.log(res);
       return res;
     });
@@ -107,18 +111,18 @@ const deletePost = (accessToken, id) => {
 const undeletePost = (accessToken, id) => {
   return axios
     .patch(
-      process.env.API_HOST + "/posts/" + id,
+      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
       {
-        isDeleted: false,
+        isDeleted: false
       },
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
-        },
+          Authorization: accessToken
+        }
       }
     )
-    .then((res) => {
+    .then(res => {
       // console.log(res);
       return res;
     });
@@ -127,13 +131,13 @@ const undeletePost = (accessToken, id) => {
 // permanently delete
 const permanentlyDeletePost = (accessToken, id) => {
   return axios
-    .delete(process.env.API_HOST + "/posts/" + id, {
+    .delete(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
-      },
+        Authorization: accessToken
+      }
     })
-    .then((res) => {
+    .then(res => {
       // console.log(res);
       return res;
     });
@@ -149,13 +153,18 @@ const permanentlyDeletePost = (accessToken, id) => {
  */
 const checkSlug = (accessToken, slug) => {
   return axios
-    .get(process.env.API_HOST + "/posts/?isDeleted=0&isDraft=0&slug=" + slug, {
-      headers: {
-        "content-type": "application/json",
-        Authorization: accessToken,
-      },
-    })
-    .then((res) => {
+    .get(
+      process.env.NEXT_PUBLIC_API_HOST +
+        "/posts/?isDeleted=0&isDraft=0&slug=" +
+        slug,
+      {
+        headers: {
+          "content-type": "application/json",
+          Authorization: accessToken
+        }
+      }
+    )
+    .then(res => {
       if (res.status === 200) return res.data.total !== 0;
       return false;
     });
@@ -170,5 +179,5 @@ export {
   deletePost,
   checkSlug,
   undeletePost,
-  permanentlyDeletePost,
+  permanentlyDeletePost
 };

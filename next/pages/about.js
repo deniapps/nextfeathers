@@ -1,5 +1,5 @@
 import Layout from "../components/Layout";
-import { Grid, Header, Button, Segment, Image } from "semantic-ui-react";
+import { Grid, Header, Button, Image } from "semantic-ui-react";
 
 const sendEmail = () => {
   const url = "mailto:info@AnalyticalExpert.net";
@@ -20,7 +20,7 @@ export default function About() {
     desc,
     summary,
     canonical,
-    image,
+    image
   };
 
   return (
