@@ -11,6 +11,8 @@ const DNAComments = dynamic(() => import("components/Common/Comments"), {
   ssr: false
 });
 
+import FBComments from "components/Common/FBComments";
+
 const Post = props => {
   const title = props.blog.title;
   const desc = props.blog.summary;
@@ -54,14 +56,7 @@ const Post = props => {
           process.env.NEXT_PUBLIC_GITALK === "on" && (
             <DNAComments slug={props.blog.slug} />
           )}
-        {process.env.NEXT_PUBLIC_FB_COMMENTS && (
-          <div
-            className="fb-comments"
-            data-href={canonical}
-            data-numposts="10"
-            data-width=""
-          ></div>
-        )}
+        {process.env.NEXT_PUBLIC_FB_COMMENTS && <FBComments url={canonical} />}
       </Container>
     </Layout>
   );

@@ -9,12 +9,18 @@ import jwtDecode from "jwt-decode";
  * - timestamp from jwt = seconds
  */
 const isExpired = (accessToken, offset = 0) => {
-  const decodedToken = jwtDecode(accessToken);
-  if (decodedToken && decodedToken.exp) {
-    //new Date (milliseconds)
-    return new Date() > new Date(decodedToken.exp * 1000 - offset * 60 * 1000);
+  try {
+    const decodedToken = jwtDecode(accessToken);
+    if (decodedToken && decodedToken.exp) {
+      //new Date (milliseconds)
+      return (
+        new Date() > new Date(decodedToken.exp * 1000 - offset * 60 * 1000)
+      );
+    }
+    return true;
+  } catch (error) {
+    return true;
   }
-  return true;
 };
 
 const titleCase = str => {
