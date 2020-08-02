@@ -59,7 +59,7 @@ const Post = props => {
           )}
         {process.env.NEXT_PUBLIC_FB_COMMENTS && (
           <DiscussionEmbed
-            shortname="denihow"
+            shortname="analyticalexpert"
             config={{
               url: canonical,
               identifier: props.blog._id,
