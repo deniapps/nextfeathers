@@ -2,7 +2,6 @@ import PropTypes from "prop-types";
 import Footer from "./Common/AEMiniFooter";
 import { useContext } from "react";
 import UserContext from "./Context/UserContext";
-import jwtDecode from "jwt-decode";
 import { isExpired } from "../helpers/common";
 import Head from "next/head";
 
@@ -12,20 +11,14 @@ import Head from "next/head";
 //   return new Date() > new Date(expiresAt * 1000);
 // };
 
-const Layout = (props) => {
-  const { user, accessToken, signOut, isReady } = useContext(UserContext);
+const Layout = props => {
+  const { accessToken, signOut } = useContext(UserContext);
   if (accessToken) {
-    const decodedToken = jwtDecode(accessToken);
-    if (isExpired(decodedToken.exp)) {
+    if (isExpired(accessToken)) {
       signOut();
       return null;
     }
   }
-
-  const pageClass =
-    props.pageType === "home" || props.pageType === "login"
-      ? "coverPage"
-      : "deniPage";
 
   return (
     <div id="deniApps" className={props.pageType}>
@@ -52,7 +45,7 @@ Layout.propTypes = {
   pageTitle: PropTypes.string,
   pageDescription: PropTypes.string,
   authPage: PropTypes.bool,
-  children: PropTypes.node,
+  children: PropTypes.node
 };
 
 export default Layout;

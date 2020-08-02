@@ -36,7 +36,7 @@ const Header = () => {
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="menu-1a">
+        <Menu.Item key="menu-1c">
           <Link href="/about">
             <a>About Us</a>
           </Link>
@@ -60,7 +60,7 @@ const Header = () => {
               >
                 <Icon disabled name="sign out" />
               </button>
-            </Menu.Item>,
+            </Menu.Item>
           ]}
         {isReady && !user && (
           <Menu.Item position="right" key="menu-3">

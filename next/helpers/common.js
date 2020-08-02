@@ -19,6 +19,7 @@ const isExpired = (accessToken, offset = 0) => {
     }
     return true;
   } catch (error) {
+    console.log(error);
     return true;
   }
 };
