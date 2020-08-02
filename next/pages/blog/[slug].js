@@ -6,12 +6,13 @@ import { Container, Header } from "semantic-ui-react";
 import Prism from "prismjs";
 import TimeAgo from "react-timeago";
 import dynamic from "next/dynamic";
+import { DiscussionEmbed } from "disqus-react";
 
 const DNAComments = dynamic(() => import("components/Common/Comments"), {
   ssr: false
 });
 
-import FBComments from "components/Common/FBComments";
+// import FBComments from "components/Common/FBComments";
 
 const Post = props => {
   const title = props.blog.title;
@@ -56,7 +57,16 @@ const Post = props => {
           process.env.NEXT_PUBLIC_GITALK === "on" && (
             <DNAComments slug={props.blog.slug} />
           )}
-        {process.env.NEXT_PUBLIC_FB_COMMENTS && <FBComments url={canonical} />}
+        {process.env.NEXT_PUBLIC_FB_COMMENTS && (
+          <DiscussionEmbed
+            shortname="denihow"
+            config={{
+              url: canonical,
+              identifier: props.blog._id,
+              title: title
+            }}
+          />
+        )}
       </Container>
     </Layout>
   );
