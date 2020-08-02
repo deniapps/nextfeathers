@@ -5,7 +5,7 @@ import { FacebookProvider, Comments } from "react-facebook";
 export default class FBComments extends Component {
   render() {
     return (
-      <FacebookProvider appId="1380073982198547">
+      <FacebookProvider appId="231986133995343">
         <Comments href={this.props.url} width="100%" />
       </FacebookProvider>
     );
