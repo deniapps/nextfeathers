@@ -19,7 +19,7 @@ const Header = () => {
         <Menu.Item header key="menu-0">
           <Link href="/">
             <a>
-              <Icon name="world" /> {process.env.SITE_NAME}
+              <Icon name="world" /> {process.env.NEXT_PUBLIC_SITE_NAME}
             </a>
           </Link>
         </Menu.Item>
