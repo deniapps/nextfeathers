@@ -54,7 +54,7 @@ const Post = props => {
           process.env.NEXT_PUBLIC_GITALK === "on" && (
             <DNAComments slug={props.blog.slug} />
           )}
-        {process.env.FB_COMMENTS && (
+        {process.env.NEXT_PUBLIC_FB_COMMENTS && (
           <div
             className="fb-comments"
             data-href={canonical}

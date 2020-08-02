@@ -34,7 +34,7 @@ const Layout = props => {
 
   return (
     <div id="deniApps" className={pageWrapperClass}>
-      {process.env.FB_COMMENTS && <div id="fb-root"></div>}
+      {process.env.NEXT_PUBLIC_FB_COMMENTS && <div id="fb-root"></div>}
       <Container>
         <Meta
           title={title}

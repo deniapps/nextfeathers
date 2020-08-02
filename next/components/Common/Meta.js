@@ -53,7 +53,7 @@ const Meta = props => {
           }}
         />
       )}
-      {process.env.FB_COMMENTS && (
+      {process.env.NEXT_PUBLIC_FB_COMMENTS && (
         <script
           async
           defer
