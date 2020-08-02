@@ -53,6 +53,15 @@ const Meta = props => {
           }}
         />
       )}
+      {process.env.FB_COMMENTS && (
+        <script
+          async
+          defer
+          crossOrigin="anonymous"
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v7.0"
+          nonce="OVC9FRrs"
+        ></script>
+      )}
     </Head>
   );
 };

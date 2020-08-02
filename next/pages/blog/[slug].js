@@ -54,6 +54,14 @@ const Post = props => {
           process.env.NEXT_PUBLIC_GITALK === "on" && (
             <DNAComments slug={props.blog.slug} />
           )}
+        {process.env.FB_COMMENTS && (
+          <div
+            className="fb-comments"
+            data-href={canonical}
+            data-numposts="10"
+            data-width=""
+          ></div>
+        )}
       </Container>
     </Layout>
   );
