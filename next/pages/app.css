@@ -93,9 +93,8 @@
   margin: auto 0;
 }
 
-.homeWrapper #deniFooter {
-  position: fixed;
-  bottom: 0;
+#deniApps.homeWrapper {
+  height: 100vh;
 }
 
 .deniPage {
