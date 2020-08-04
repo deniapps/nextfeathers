@@ -80,14 +80,11 @@
 #deniApps {
   display: flex;
   flex-direction: column;
-  position: relative;
   min-height: 100vh;
   margin: 0; /** this is super important **/
   overflow-wrap: break-word;
 }
 #deniFooter {
-  position: absolute;
-  bottom: 0;
   margin: auto auto 0 auto;
   width: 100%;
 }
@@ -95,6 +92,11 @@
 .coverPage {
   margin: auto 0;
   padding-top: 5em;
+}
+
+.homeWrapper #deniFooter {
+  position: fixed;
+  bottom: 0;
 }
 
 .deniPage {
