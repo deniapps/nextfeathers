@@ -85,6 +85,8 @@
   overflow-wrap: break-word;
 }
 #deniFooter {
+  display: absolute;
+  bottom: 0;
   margin: auto auto 0 auto;
   width: 100%;
 }
