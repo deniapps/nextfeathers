@@ -80,12 +80,13 @@
 #deniApps {
   display: flex;
   flex-direction: column;
+  position: relative;
   min-height: 100vh;
   margin: 0; /** this is super important **/
   overflow-wrap: break-word;
 }
 #deniFooter {
-  display: absolute;
+  position: absolute;
   bottom: 0;
   margin: auto auto 0 auto;
   width: 100%;
