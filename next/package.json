@@ -27,7 +27,7 @@
     "jwt-decode": "^2.2.0",
     "mobile-detect": "^1.4.4",
     "next": "^9.5.0",
-    "prismjs": "^1.20.0",
+    "prismjs": "^1.21.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",
     "react-codepen-embed": "^1.0.1",
