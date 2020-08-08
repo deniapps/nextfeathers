@@ -11,7 +11,7 @@ import {
   createPost,
   updatePost,
   permanentlyDeletePost,
-  checkSlug
+  checkSlug,
 } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
 import { titleCase, slugify, debounce, isExpired } from "../../helpers/common";
@@ -26,7 +26,7 @@ export default class PostInput extends React.Component {
     allOptions: { tags: [] },
     isLoading: false,
     isError: false,
-    message: ""
+    message: "",
   };
 
   static get propTypes() {
@@ -35,7 +35,7 @@ export default class PostInput extends React.Component {
       originalId: PropTypes.string,
       data: PropTypes.object,
       reLogin: PropTypes.func,
-      signOut: PropTypes.func
+      signOut: PropTypes.func,
     };
   }
 
@@ -44,15 +44,15 @@ export default class PostInput extends React.Component {
     const ret = await getTags(this.props.accessToken);
 
     const allTags = ret.data.data;
-    const tagsInputOptions = allTags.map(item => ({
+    const tagsInputOptions = allTags.map((item) => ({
       value: item.slug,
       text: item.name,
-      key: item._id
+      key: item._id,
     }));
 
     const newAllOptions = {
       ...this.state.allOptions,
-      tags: tagsInputOptions
+      tags: tagsInputOptions,
     };
 
     if (this._isMounted) {
@@ -64,15 +64,15 @@ export default class PostInput extends React.Component {
     this._isMounted = false;
   }
 
-  cleaMessage = ms => {
+  cleaMessage = (ms) => {
     setTimeout(() => {
       this.setState({
-        message: ""
+        message: "",
       });
     }, ms);
   };
 
-  autoFixSlug = async slug => {
+  autoFixSlug = async (slug) => {
     let newSlug = slugify(slug);
     const isExist = await checkSlug(this.props.accessToken, newSlug);
     if (isExist) {
@@ -87,7 +87,7 @@ export default class PostInput extends React.Component {
       const slug = await this.autoFixSlug(currentSlug);
       const newInputs = {
         ...this.state.data,
-        slug: slug
+        slug: slug,
       };
       this.setState({ data: newInputs });
     }
@@ -103,19 +103,19 @@ export default class PostInput extends React.Component {
     let val = value;
 
     if (name === "tags") {
-      val = val.map(value => slugify(value));
+      val = val.map((value) => slugify(value));
     }
 
     const newInputs = {
       ...this.state.data,
-      [name]: val
+      [name]: val,
     };
 
     this.setState({ data: newInputs });
   };
 
   // custom action - when ckeditor upload a image, auto add feature image
-  autoGenerateFeatureImage = url => {
+  autoGenerateFeatureImage = (url) => {
     if (!this.state.data.image) {
       this.updateInput("image", url);
     }
@@ -128,7 +128,7 @@ export default class PostInput extends React.Component {
 
       const newInputs = {
         ...this.state.data,
-        slug: slug
+        slug: slug,
       };
       this.setState({ data: newInputs });
     }
@@ -143,12 +143,12 @@ export default class PostInput extends React.Component {
       const newOption = {
         text: caseFixedText,
         value: caseFixedValue,
-        key: caseFixedValue
+        key: caseFixedValue,
       };
       const newOptions = [...this.state.allOptions[key], newOption];
       const newAllOptions = {
         ...this.state.allOptions,
-        [key]: newOptions
+        [key]: newOptions,
       };
       // console.log(newAllOptions);
       this.setState({ allOptions: newAllOptions });
@@ -159,7 +159,7 @@ export default class PostInput extends React.Component {
   getTagOptions = () => {
     let tagOptions = [];
     if (this.state.data.tags) {
-      tagOptions = this.state.allOptions.tags.filter(tag =>
+      tagOptions = this.state.allOptions.tags.filter((tag) =>
         this.state.data.tags.includes(tag.value)
       );
     }
@@ -181,8 +181,15 @@ export default class PostInput extends React.Component {
       tagOptions: this.getTagOptions(),
       isDraft: false,
       isDeleted: false,
-      originalId: this.state.data.originalId ? this.state.data.originalId : null
+      originalId: this.state.data.originalId
+        ? this.state.data.originalId
+        : null,
     };
+
+    //if this is the first time published, then set createdAt
+    if (!this.state.data.originalId) {
+      postDataInput.createdAt = new Date().toISOString();
+    }
     console.log(postDataInput);
     // Final Validation
     if (!postDataInput.title) {
@@ -232,7 +239,7 @@ export default class PostInput extends React.Component {
         this.setState({
           isLoading: false,
           isError: error,
-          message: newMessage
+          message: newMessage,
         });
         this.cleaMessage(3000);
       }
@@ -276,8 +283,8 @@ export default class PostInput extends React.Component {
         },
         onClose: () => {
           clearInterval(timerInterval);
-        }
-      }).then(result => {
+        },
+      }).then((result) => {
         /* Read more about handling dismissals below */
         if (result.dismiss === Swal.DismissReason.timer) {
           this.props.signOut();
@@ -294,7 +301,7 @@ export default class PostInput extends React.Component {
       ...this.state.data,
       tagOptions: this.getTagOptions(),
       isDraft: true,
-      isDeleted: false
+      isDeleted: false,
     };
     let doCreate = true;
     if (!this.state.data._id) {
@@ -339,7 +346,7 @@ export default class PostInput extends React.Component {
           if (result && result.data && !this.state.data._id) {
             //case2a
             this.setState({
-              data: result.data
+              data: result.data,
             });
           }
         }
@@ -355,7 +362,7 @@ export default class PostInput extends React.Component {
     }
     this.setState({
       isLoading: false,
-      message: newMessage
+      message: newMessage,
     });
 
     this.cleaMessage(3000);
@@ -365,7 +372,7 @@ export default class PostInput extends React.Component {
     const isInline = this.state.inlineField;
 
     this.setState({
-      inlineField: !isInline
+      inlineField: !isInline,
     });
   };
 
@@ -386,7 +393,7 @@ export default class PostInput extends React.Component {
           handleAllFocus={{}}
           handleAllBlur={{
             slug: this.validateSlug,
-            title: this.autoGenerateSlug
+            title: this.autoGenerateSlug,
           }}
           autoGenerateFeatureImage={this.autoGenerateFeatureImage}
           accessToken={this.props.accessToken}
