@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import Codepen from "react-codepen-embed";
 import Layout from "../../../components/Layout";
 import { Form, Message, Header, Checkbox, Button } from "semantic-ui-react";
 
@@ -50,6 +51,8 @@ const UseRef = () => {
         </Form.Field>
         <Button type="submit">Submit</Button>
       </Form>
+      <Header as="h3">Codepen Demo</Header>
+      <Codepen hash="wvGaaPV" user="deniapps" defaultTab="js,result" />
     </Layout>
   );
 };

@@ -1,4 +1,5 @@
 import Layout from "../../../components/Layout";
+import Codepen from "react-codepen-embed";
 
 import { Header, Form, Button, Message } from "semantic-ui-react";
 
@@ -52,6 +53,9 @@ class Ref extends React.Component {
             />
           </Form.Field>
           <Button onClick={this.incremenetInput}>Increase Value</Button>
+
+          <Header as="h3">Codepen Demo</Header>
+          <Codepen hash="dyMooJK" user="deniapps" defaultTab="js,result" />
         </Form>
       </Layout>
     );
