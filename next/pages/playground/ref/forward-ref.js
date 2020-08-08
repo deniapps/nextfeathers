@@ -3,13 +3,13 @@ import Layout from "../../../components/Layout";
 import { Header, Form, Button } from "semantic-ui-react";
 
 // eslint-disable-next-line react/display-name
-const ChildInput = React.forwardRef((props, ref) => {
-  return <input {...props} ref={ref} />;
-});
+// const ChildInput = React.forwardRef((props, ref) => {
+//   return <input {...props} ref={ref} />;
+// });
 
-// const ChildInput = (props) => {
-//   return <input ref={props.forwardRef} />;
-// };
+const ChildInput = () => {
+  return <input />;
+};
 
 class ForwardRef extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class ForwardRef extends React.Component {
         <Header as="h3">Ref Forward Demo</Header>
 
         <Form>
-          <ChildInput type="text" forwardRef={this.childRef} />
+          <ChildInput type="text" ref={this.childRef} />
         </Form>
         <br />
         <Button onClick={this.handleClick}>Focus Child Input</Button>
