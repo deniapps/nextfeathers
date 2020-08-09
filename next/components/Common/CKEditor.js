@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
+// import ClassicEditor from "lib/CK";
 import uploadFile from "lib/upload";
 import CustomFigureAttributes from "./CustomFigureAttributes";
 
@@ -14,6 +15,7 @@ class MyUploadAdapter {
   // Starts the upload process.
   upload() {
     // const file = this.loader.file;
+    console.log("triggered");
     return this.loader.file.then(async (file) => {
       let formData = new FormData();
       formData.append("file", file);
@@ -105,6 +107,27 @@ class CKEditor5 extends Component {
         data={this.props.value}
         config={{
           extraPlugins: [DNXCustomUploadAdapterPlugin, CustomFigureAttributes],
+          toolbar: [
+            "heading",
+            "|",
+            "bold",
+            "italic",
+            "link",
+            "bulletedList",
+            "numberedList",
+            "|",
+            "indent",
+            "outdent",
+            "|",
+            "insertImage",
+            "code",
+            "codeBlock",
+            "blockQuote",
+            "insertTable",
+            "mediaEmbed",
+            "undo",
+            "redo",
+          ],
           link: {
             decorators: {
               addTargetToExternalLinks: {
