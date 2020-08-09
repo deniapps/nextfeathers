@@ -181,9 +181,7 @@ export default class PostInput extends React.Component {
       tagOptions: this.getTagOptions(),
       isDraft: false,
       isDeleted: false,
-      originalId: this.state.data.originalId
-        ? this.state.data.originalId
-        : null,
+      originalId: null,
     };
 
     //if this is the first time published, then set createdAt
@@ -214,10 +212,14 @@ export default class PostInput extends React.Component {
         delete postDataInput._id;
       }
       if (this.state.data.originalId) {
-        await permanentlyDeletePost(
-          this.props.accessToken,
-          this.state.data.originalId
-        );
+        try {
+          await permanentlyDeletePost(
+            this.props.accessToken,
+            this.state.data.originalId
+          );
+        } catch (error) {
+          console.log(error);
+        }
       }
       try {
         if (doCreate) {
