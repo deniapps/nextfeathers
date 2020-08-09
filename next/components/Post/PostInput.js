@@ -10,6 +10,7 @@ import PostInputForm from "./PostInputForm";
 import {
   createPost,
   updatePost,
+  publishPost,
   permanentlyDeletePost,
   checkSlug,
 } from "../../lib/posts";
@@ -185,8 +186,11 @@ export default class PostInput extends React.Component {
     };
 
     //if this is the first time published, then set createdAt
-    if (!this.state.data.originalId) {
+    //if we edit a published post, which has originalId = null, and publish it before is auto saved,
+    //then we don't want to overwrite createdAt, so we need to check isDraft or not.
+    if (!this.state.data.originalId && this.state.data.isDraft) {
       postDataInput.createdAt = new Date().toISOString();
+      postDataInput.updatedAt = postDataInput.createdAt;
     }
     console.log(postDataInput);
     // Final Validation
@@ -224,6 +228,13 @@ export default class PostInput extends React.Component {
       try {
         if (doCreate) {
           await createPost(this.props.accessToken, postDataInput);
+        } else if (!this.state.data.originalId && this.state.data.isDraft) {
+          // when no published yet, we publish draft using "put" to update createdAt to current
+          await publishPost(
+            this.props.accessToken,
+            this.state.data._id,
+            postDataInput
+          );
         } else {
           await updatePost(
             this.props.accessToken,
@@ -345,7 +356,7 @@ export default class PostInput extends React.Component {
             postDataInput
           );
 
-          if (result && result.data && !this.state.data._id) {
+          if (result && result.data) {
             //case2a
             this.setState({
               data: result.data,

@@ -5,24 +5,38 @@ const createPost = (accessToken, data) => {
     .post(process.env.NEXT_PUBLIC_API_HOST + "/posts", data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken
-      }
+        Authorization: accessToken,
+      },
     })
-    .then(res => {
+    .then((res) => {
       return res;
     });
 };
 
-// use patch to update certain filed, and get createdBy automatically updated.
+// use patch to update certain filed, and get updatedBy automatically updated.
 const updatePost = (accessToken, id, data) => {
   return axios
     .patch(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken
-      }
+        Authorization: accessToken,
+      },
     })
-    .then(res => {
+    .then((res) => {
+      return res;
+    });
+};
+
+//use put to publish post at the first, so we can control the createdAt.
+const publishPost = (accessToken, id, data) => {
+  return axios
+    .put(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, data, {
+      headers: {
+        "content-type": "application/json",
+        Authorization: accessToken,
+      },
+    })
+    .then((res) => {
       return res;
     });
 };
@@ -43,11 +57,11 @@ const getPosts = (accessToken, pageId) => {
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken
-        }
+          Authorization: accessToken,
+        },
       }
     )
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
@@ -62,11 +76,11 @@ const getDraft = (accessToken, originalId) => {
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken
-        }
+          Authorization: accessToken,
+        },
       }
     )
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
@@ -77,10 +91,10 @@ const getPost = (accessToken, id) => {
     .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken
-      }
+        Authorization: accessToken,
+      },
     })
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
@@ -92,16 +106,16 @@ const deletePost = (accessToken, id) => {
     .patch(
       process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
       {
-        isDeleted: true
+        isDeleted: true,
       },
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken
-        }
+          Authorization: accessToken,
+        },
       }
     )
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
@@ -113,16 +127,16 @@ const undeletePost = (accessToken, id) => {
     .patch(
       process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
       {
-        isDeleted: false
+        isDeleted: false,
       },
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken
-        }
+          Authorization: accessToken,
+        },
       }
     )
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
@@ -134,10 +148,10 @@ const permanentlyDeletePost = (accessToken, id) => {
     .delete(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken
-      }
+        Authorization: accessToken,
+      },
     })
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
@@ -160,11 +174,11 @@ const checkSlug = (accessToken, slug) => {
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken
-        }
+          Authorization: accessToken,
+        },
       }
     )
-    .then(res => {
+    .then((res) => {
       if (res.status === 200) return res.data.total !== 0;
       return false;
     });
@@ -179,5 +193,6 @@ export {
   deletePost,
   checkSlug,
   undeletePost,
-  permanentlyDeletePost
+  permanentlyDeletePost,
+  publishPost,
 };
