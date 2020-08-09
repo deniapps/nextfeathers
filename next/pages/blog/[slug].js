@@ -50,9 +50,11 @@ const Post = (props) => {
           {title}
           <Header.Subheader>
             {author} | <TimeAgo date={publishedOn} />
-            <Button floated="right">
-              {user && <a href={"/dashboard/post/" + id}>Edit</a>}
-            </Button>
+            {user && (
+              <Button floated="right">
+                <a href={"/dashboard/post/" + id}>Edit</a>
+              </Button>
+            )}
           </Header.Subheader>
         </Header>
 
