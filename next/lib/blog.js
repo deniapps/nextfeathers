@@ -14,18 +14,26 @@ export const getPublicPosts = (pageId = 0) => {
         "&$skip=" +
         skip
     )
-    .then(res => {
+    .then((res) => {
       // console.log(res);
       return res;
     });
 };
 
-export const getPublicPost = slug => {
+export const searchPublicPost = (kw) => {
+  return axios
+    .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/?q=" + kw + "&_isPublic=1")
+    .then((res) => {
+      return res;
+    });
+};
+
+export const getPublicPost = (slug) => {
   return axios
     .get(
       process.env.NEXT_PUBLIC_API_HOST + "/posts/?slug=" + slug + "&_isPublic=1"
     )
-    .then(res => {
+    .then((res) => {
       return res;
     });
 };
@@ -46,7 +54,7 @@ export const getPublicPostsByTag = (tag, pageId = 0) => {
         "&$skip=" +
         skip
     )
-    .then(res => {
+    .then((res) => {
       return res;
     });
 };
@@ -54,7 +62,7 @@ export const getPublicPostsByTag = (tag, pageId = 0) => {
 export const getPublicTags = () => {
   return axios
     .get(process.env.NEXT_PUBLIC_API_HOST + "/tags?$sort[createdAt]=-1")
-    .then(res => {
+    .then((res) => {
       return res;
     });
 };
