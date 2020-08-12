@@ -7,12 +7,12 @@ import { Header, Label, Icon } from "semantic-ui-react";
 export default function PostList(props) {
   return (
     <div>
-      <Header as="h1" icon textAlign="center">
+      <Header as="h1" icon>
         <Header.Content>All Tags</Header.Content>
       </Header>
       <div>
         {props.tags &&
-          props.tags.map(item => (
+          props.tags.map((item) => (
             <Link
               key={item._id}
               href={`/blog/tags/[slug]`}
@@ -29,5 +29,5 @@ export default function PostList(props) {
 }
 
 PostList.propTypes = {
-  tags: PropTypes.array
+  tags: PropTypes.array,
 };

@@ -6,6 +6,7 @@ import * as gtag from "../lib/gtag";
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
+import "./navi.css";
 import "highlight.js/styles/nord.css";
 import "prismjs/themes/prism.css";
 import "gitalk/dist/gitalk.css";
@@ -17,10 +18,10 @@ export default class deniApp extends App {
   state = {
     user: null,
     accessToken: null,
-    isReady: false
+    isReady: false,
   };
 
-  handleRouteChange = url => {
+  handleRouteChange = (url) => {
     gtag.pageview(url);
   };
 
@@ -30,11 +31,11 @@ export default class deniApp extends App {
       const deniUserObj = JSON.parse(deniUser);
       this.setState({
         user: deniUserObj.username,
-        accessToken: deniUserObj.accessToken
+        accessToken: deniUserObj.accessToken,
       });
     }
     this.setState({
-      isReady: true
+      isReady: true,
     });
 
     Router.events.on("routeChangeComplete", this.handleRouteChange);
@@ -53,13 +54,13 @@ export default class deniApp extends App {
 
     gtag.event({
       action: "sign_in",
-      category: "User"
+      category: "User",
     });
 
     this.setState(
       {
         user: username,
-        accessToken
+        accessToken,
       },
       () => {
         if (!autoRenew) Router.push("/");
@@ -71,11 +72,11 @@ export default class deniApp extends App {
     localStorage.removeItem(NEXT_PUBLIC_USER_LC_KEY);
     gtag.event({
       action: "sign_out",
-      category: "User"
+      category: "User",
     });
     this.setState({
       user: null,
-      accessToken: null
+      accessToken: null,
     });
     Router.push("/");
   };
@@ -90,7 +91,7 @@ export default class deniApp extends App {
           signIn: this.signIn,
           signOut: this.signOut,
           isReady: this.state.isReady,
-          isMobileFromSSR
+          isMobileFromSSR,
         }}
       >
         <Component {...pageProps} />

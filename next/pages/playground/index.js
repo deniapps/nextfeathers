@@ -6,7 +6,7 @@ import demos from "data/demo.json";
 export default function Index() {
   return (
     <Layout>
-      <Header as="h1" icon textAlign="center">
+      <Header as="h1" icon>
         <Header.Content>Playground</Header.Content>
       </Header>
       <ItemView items={demos} />

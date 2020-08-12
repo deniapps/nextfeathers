@@ -1,9 +1,10 @@
 import axios from "axios";
 
+const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
+  ? process.env.NEXT_PUBLIC_PAGE_SIZE
+  : 20;
+
 export const getPublicPosts = (pageId = 0) => {
-  const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
-    ? process.env.NEXT_PUBLIC_PAGE_SIZE
-    : 20;
   const skip = pageId * pageSize;
   return axios
     .get(
@@ -20,9 +21,19 @@ export const getPublicPosts = (pageId = 0) => {
     });
 };
 
-export const searchPublicPost = (kw) => {
+export const searchPublicPosts = (kw, pageId = 0) => {
+  const skip = pageId * pageSize;
   return axios
-    .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/?q=" + kw + "&_isPublic=1")
+    .get(
+      process.env.NEXT_PUBLIC_API_HOST +
+        "/posts/?$search=" +
+        encodeURIComponent(kw) +
+        "&_isPublic=1" +
+        "&$limit=" +
+        pageSize +
+        "&$skip=" +
+        skip
+    )
     .then((res) => {
       return res;
     });
@@ -39,9 +50,6 @@ export const getPublicPost = (slug) => {
 };
 
 export const getPublicPostsByTag = (tag, pageId = 0) => {
-  const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
-    ? process.env.NEXT_PUBLIC_PAGE_SIZE
-    : 20;
   const skip = pageId * pageSize;
   return axios
     .get(

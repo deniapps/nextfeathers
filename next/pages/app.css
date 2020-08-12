@@ -99,7 +99,12 @@
 
 .deniPage {
   margin: 2em 0 4em;
-  padding-top: 4em;
+  padding-top: 5em;
+}
+
+.deniPage h1 {
+  padding: 0.5em 0 !important;
+  border-bottom: 2px solid #ccc !important;
 }
 
 .ck-editor__editable_inline {

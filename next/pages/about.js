@@ -4,7 +4,7 @@ import { Grid, Header } from "semantic-ui-react";
 export default function About() {
   return (
     <Layout>
-      <Header as="h1" icon textAlign="center">
+      <Header as="h1" icon>
         <Header.Content>About Us</Header.Content>
       </Header>
       <Grid>

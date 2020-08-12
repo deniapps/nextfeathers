@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Meta from "components/Common/Meta";
 import { Container, Loader } from "semantic-ui-react";
-import Header from "./Common/Header";
+import Header from "./Common/ResponsiveHeader";
 import Footer from "./Common/MiniFooter";
 import { useContext } from "react";
 import UserContext from "./Context/UserContext";
@@ -14,7 +14,7 @@ import { isExpired } from "../helpers/common";
 //   return new Date() > new Date(expiresAt * 1000);
 // };
 
-const Layout = props => {
+const Layout = (props) => {
   const { user, accessToken, signOut, isReady } = useContext(UserContext);
   const { seoData, pageType, authPage, children } = props;
   const seoDataObj = seoData ? seoData : {};
@@ -34,16 +34,15 @@ const Layout = props => {
 
   return (
     <div id="deniApps" className={pageWrapperClass}>
-      <Container>
-        <Meta
-          title={title}
-          desc={desc}
-          summary={summary}
-          canonical={canonical}
-          image={image}
-        />
-        <Header />
-      </Container>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Header />
+
       <Container className={pageClass}>
         {authPage && !isReady && <Loader active></Loader>}
         {authPage && !user && isReady && <p>Please Login</p>}
@@ -59,7 +58,7 @@ Layout.propTypes = {
   pageType: PropTypes.string,
   authPage: PropTypes.bool,
   children: PropTypes.node,
-  seoData: PropTypes.object
+  seoData: PropTypes.object,
 };
 
 export default Layout;
