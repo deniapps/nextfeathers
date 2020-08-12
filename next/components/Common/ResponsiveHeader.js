@@ -112,7 +112,7 @@ const Header = () => {
       </div>
       <form onSubmit={handleFormSubmit}>
         <Input
-          icon="search"
+          icon={<Icon name="search" link onClick={handleFormSubmit} />}
           className="search-data"
           required
           placeholder="Search..."

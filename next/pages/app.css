@@ -1,3 +1,11 @@
+body {
+  font-size: 16px;
+}
+input,
+select {
+  font-size: 100%;
+}
+
 @media only screen and (min-width: 1200px) {
   .ui.container {
     width: 980px !important;
