@@ -30,8 +30,8 @@ const Meta = (props) => {
       <meta name="twitter:description" content={props.desc || defaultDesc} />
       <meta name="twitter:site" content="@denixuan" />
       <meta name="twitter:creator" content="@denixuan" />
-      <link rel="icon" type="image/png" href="/images/favicon.ico" />
-      <link rel="apple-touch-icon" href="/images/favicon.ico" />
+      <link rel="icon" type="image/png" href="/images/dna-favico.png" />
+      <link rel="apple-touch-icon" href="/images/dna-icon.png" />
       {props.css && <link rel="stylesheet" href={props.css} />}
       {props.image && <meta name="twitter:image" content={props.image} />}
       {props.canonical && <link rel="canonical" href={props.canonical} />}
