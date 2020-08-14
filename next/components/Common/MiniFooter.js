@@ -7,13 +7,13 @@ const Footer = () => (
     vertical
     style={{
       padding: "1em 0em",
-      backgroundColor: "rgba(248,248,248, 0.3)"
+      backgroundColor: "rgba(248,248,248, 0.3)",
     }}
   >
     <Container>
       <Grid inverted>
         <Grid.Row>
-          <Grid.Column id="copyRight">DeNiApps 2020</Grid.Column>
+          <Grid.Column id="copyRight">DeNi Apps LLC - 2020</Grid.Column>
         </Grid.Row>
       </Grid>
     </Container>
