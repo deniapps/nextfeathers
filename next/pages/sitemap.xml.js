@@ -23,7 +23,7 @@ const blogPostsXml = (blogPosts) => {
 
     const pDate = formatDate(postDate);
 
-    const url = "https://deniapps.com/" + post.slug;
+    const url = "https://deniapps.com/blog/" + post.slug;
     postsXml += `
     <url>
       <loc>${url}</loc>
