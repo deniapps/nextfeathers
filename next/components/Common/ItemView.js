@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { Item, Label } from "semantic-ui-react";
 import Link from "next/link";
+import { dnaParser } from "helpers/common";
 
 const ItemView = (props) => {
   return (
@@ -11,7 +12,7 @@ const ItemView = (props) => {
             <Link href={item.url}>
               <Item.Header as="a">{item.title}</Item.Header>
             </Link>
-            <Item.Description>{item.summary}</Item.Description>
+            <Item.Description>{dnaParser(item.summary)}</Item.Description>
             <Item.Extra>
               {item.tags.map((tag) => (
                 <Label key={tag}>{tag}</Label>
