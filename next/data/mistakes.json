@@ -3,12 +3,14 @@
     "title": "Append Content to HTML Body",
     "summary": "This seems to be very easy one, but never do <code>x.innerHTML += y</code>, because it will disable all Javascript event predefined. Use <code>document.body.appendChild(Elm)</code> instead.",
     "url": "/mistakes/append-content-to-html-body",
+    "updatedDate": "2020-08-18",
     "tags": ["vanilla javascript"]
   },
   {
     "title": "Pass Props via onClick",
     "summary": "The first parameter in onClick function is \"event\", so if you want to pass other props, then make sure don't define them as the first parameter.",
     "url": "/mistakes/pass-props-to-onclick-event",
+    "updatedDate": "2020-08-18",
     "tags": ["react"]
   }
 ]

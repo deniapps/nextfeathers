@@ -12,6 +12,21 @@ const CKEditor = dynamic(() => import("components/Common/CKEditor"), {
   ssr: false,
 });
 
+const title = "CKEditor Demo - DeNiApps";
+const desc = `CKEdtior Demo for CKEditor Class Build with DNA. Built on the top of CKEditor Class Build, with some useful custom plugins allow us to inserting image url and adding code block or inline code features. Also integrated in NEXTJS with SSR.`;
+
+const summary = desc;
+const canonical = "https://deniapps.com/playground/ckeditor";
+const image = "https://deniapps.com/images/dna.png";
+
+const seoData = {
+  title,
+  desc,
+  summary,
+  canonical,
+  image,
+};
+
 const CKEditorDemo = (props) => {
   const [content, setContent] = useState(
     `<p>CKEditor rocks!</p><pre data-language="PHP" spellcheck="false"><code class="language-php">&lt;?php
@@ -22,7 +37,7 @@ const CKEditorDemo = (props) => {
   );
 
   return (
-    <Layout>
+    <Layout seoData={seoData}>
       <Header as="h3">CKEditor Demo</Header>
       <CKEditor value={content} onChange={setContent} />
       <List>

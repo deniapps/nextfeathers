@@ -75,6 +75,12 @@ const Header = () => {
           </Link>
         </li>
 
+        <li key="mistake-menu">
+          <Link href="/mistakes">
+            <a>Mistakes</a>
+          </Link>
+        </li>
+
         {isReady &&
           user && [
             <li key="userMenu-1">

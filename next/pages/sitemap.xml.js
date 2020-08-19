@@ -1,4 +1,6 @@
 import { getAllPublicPosts } from "lib/blog";
+import mPages from "data/mistakes.json";
+import pPages from "data/demo.json";
 
 function formatDate(date) {
   var d = new Date(date),
@@ -15,7 +17,7 @@ function formatDate(date) {
 const blogPostsXml = (blogPosts) => {
   let latestPost = 0;
   let postsXml = "";
-  blogPosts.map((post) => {
+  blogPosts.forEach((post) => {
     const postDate = Date.parse(post.updatedAt);
     if (!latestPost || postDate > latestPost) {
       latestPost = postDate;
@@ -38,6 +40,30 @@ const blogPostsXml = (blogPosts) => {
   };
 };
 
+let pPagesXml = "";
+
+pPages.forEach((post) => {
+  const url = "https://deniapps.com" + post.url;
+  pPagesXml += `
+    <url>
+      <loc>${url}</loc>
+      <lastmod>${post.updatedDate}</lastmod>
+      <priority>0.80</priority>
+    </url>`;
+});
+
+let mPagesXml = "";
+
+mPages.forEach((post) => {
+  const url = "https://deniapps.com" + post.url;
+  mPagesXml += `
+    <url>
+      <loc>${url}</loc>
+      <lastmod>${post.updatedDate}</lastmod>
+      <priority>0.80</priority>
+    </url>`;
+});
+
 const sitemapXml = (blogPosts) => {
   const { postsXml, lDate } = blogPostsXml(blogPosts);
   return `<?xml version="1.0" encoding="UTF-8"?>
@@ -51,6 +77,8 @@ const sitemapXml = (blogPosts) => {
       <loc>https://deniapps.com/about</loc>
       <priority>0.5</priority>
     </url>
+    ${pPagesXml}
+    ${mPagesXml}
     ${postsXml}
   </urlset>`;
 };

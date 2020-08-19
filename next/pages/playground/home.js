@@ -12,11 +12,26 @@ import {
   Segment,
 } from "semantic-ui-react";
 import HomepageHeading from "../../components/Home/HomepageHeading";
+import Meta from "components/Common/Meta";
 import MobileDetect from "mobile-detect";
+
+const title = "Semantic UI React Responsive Header Demo (SSR) - DeNiApps";
+const desc = `At this writing, Semantic UI still does not come with Responsive Header out of Box. The way to to do it in their example is really not that graceful. It even has a bug to display it correctly in Mobile SSR. This demo shows the fixed version`;
+
+const summary = desc;
+const canonical = "https://deniapps.com/playground/home";
+const image = "https://deniapps.com/images/dna.png";
 
 const Home = ({ isMobileFromSSR }) => {
   return (
     <ResponsiveLayout isMobileFromSSR={isMobileFromSSR}>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
       <HomepageHeading />
 
       <Segment style={{ padding: "8em 0em" }} vertical>
