@@ -9,9 +9,12 @@ const ItemView = (props) => {
       {props.items.map((item) => (
         <Item key={item._id}>
           <Item.Content>
-            <Link href={item.url}>
-              <Item.Header as="a">{item.title}</Item.Header>
-            </Link>
+            <Item.Header>
+              <Link href={item.url} passHref>
+                <a>{item.title}</a>
+              </Link>
+            </Item.Header>
+
             <Item.Description>{dnaParser(item.summary)}</Item.Description>
             <Item.Extra>
               {item.tags.map((tag) => (

@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
-// import ClassicEditor from "lib/CKV2";
 import uploadFile from "lib/upload";
-import CustomFigureAttributes from "./CustomFigureAttributes";
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -14,8 +12,6 @@ class MyUploadAdapter {
 
   // Starts the upload process.
   upload() {
-    // const file = this.loader.file;
-    console.log("triggered");
     return this.loader.file.then(async (file) => {
       let formData = new FormData();
       formData.append("file", file);
@@ -25,9 +21,8 @@ class MyUploadAdapter {
       } catch (error) {
         console.log(error);
       }
-      // default image
-      let url =
-        "https://b7a9m2p8.rocketcdn.me/wp-content/uploads/Fix-WordPress-401-Error.png";
+      // default image - in case upload failed
+      let url = "https://source.unsplash.com/random";
 
       if (result && result.url) {
         url = result.url;
@@ -51,10 +46,7 @@ class MyUploadAdapter {
   }
 }
 
-// ...
 const DNXCustomUploadAdapterPlugin = (editor) => {
-  // console.log(editor);
-  // const s3Config = editor.s3Config;
   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
     // Configure the URL to the upload script in your back-end here!
     loader.onUpload = editor.onUpload;
@@ -62,33 +54,6 @@ const DNXCustomUploadAdapterPlugin = (editor) => {
     return new MyUploadAdapter(loader);
   };
 };
-
-// This plugin brings customization to the downcast pipeline of the editor.
-// function AddClassToAllTables(editor) {
-//   // Both the data and the editing pipelines are affected by this conversion.
-//   editor.conversion.for("upcast").add((dispatcher) => {
-//     // Headings are represented in the model as a "heading1" element.
-//     // Use the "low" listener priority to apply the changes after the headings feature.
-//     dispatcher.on(
-//       "element:table",
-//       (evt, data, conversionApi) => {
-//         const viewWriter = conversionApi.writer;
-//         const viewFigure = conversionApi.mapper.toViewElement(data.item);
-//         if (!viewFigure) {
-//           return;
-//         }
-
-//         if (viewWriter) {
-//           viewWriter.addClass(
-//             ["ui", "table"],
-//             conversionApi.mapper.toViewElement(data.item)
-//           );
-//         }
-//       },
-//       { priority: "low" }
-//     );
-//   });
-// }
 
 class CKEditor5 extends Component {
   static get propTypes() {
@@ -106,8 +71,9 @@ class CKEditor5 extends Component {
         editor={ClassicEditor}
         data={this.props.value}
         config={{
-          extraPlugins: [DNXCustomUploadAdapterPlugin, CustomFigureAttributes],
+          extraPlugins: [DNXCustomUploadAdapterPlugin],
           toolbar: [
+            //customize your toolbar
             "heading",
             "|",
             "bold",
@@ -151,14 +117,13 @@ class CKEditor5 extends Component {
         onChange={(event, editor) => {
           const data = editor.getData();
           this.props.onChange(data);
-          //console.log({ event, editor, data });
         }}
-        // onBlur={(event, editor) => {
-        //   console.log("Blur.", editor);
-        // }}
-        // onFocus={(event, editor) => {
-        //   console.log("Focus.", editor);
-        // }}
+        onBlur={(event, editor) => {
+          console.log("Blur.", editor);
+        }}
+        onFocus={(event, editor) => {
+          console.log("Focus.", editor);
+        }}
       />
     );
   }

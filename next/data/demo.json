@@ -1,5 +1,6 @@
 [
   {
+    "_id": "playgound-05",
     "title": "Semantic UI Responsive Homepage - Fixed",
     "summary": "What a shame! Semantic UI does not support a responsive menu out of the box. They provide a 'hack', but I don't like it. Because there are two sets of layout containers: one for desktop and the other for mobile, you have to detect the device before rendering with the correct layout, which causes a redundant code, and is especially hard if you use SSR like nextJS. Also, their example code does not work well when reloading in the mobile device because it does not do the real device detection on SSR. This demo intends to fix that.",
     "url": "/playground/home",
@@ -7,6 +8,7 @@
     "tags": ["semantic-ui", "next-js", "repsonsive", "ssr"]
   },
   {
+    "_id": "playgound-04",
     "title": "NextJS Fetching Example",
     "summary": "Pretty much is an exmple from NextJS official site. It's so easy to set up a page with NextJS, and you can do pre-render at build time using the props returned by `getStaticProps` (in the production mode), and dynamic routes and more",
     "url": "/playground/movies",
@@ -14,6 +16,7 @@
     "tags": ["next-js", "ssr", "static file serving", "dynamic routes"]
   },
   {
+    "_id": "playgound-03",
     "title": "Semantic Table Example",
     "summary": "With NextJS, Play a component from Semamtic UI React has never been easier. Just copy the code and create a page under 'pages/playground/', and it's ready to go!",
     "url": "/playground/table",
@@ -21,6 +24,7 @@
     "tags": ["next-js", "example", "table", "semantic-ui"]
   },
   {
+    "_id": "playgound-02",
     "title": "UseReducer (Redux-Like) with NextJS Example",
     "summary": "A simple example to demostrate how to use UseReducer within NextJS ",
     "url": "/playground/contact-view",
@@ -28,6 +32,7 @@
     "tags": ["next-js", "semantic-ui", "reducer"]
   },
   {
+    "_id": "playgound-01",
     "title": "ckeditor5-build-classic-dna Demo",
     "summary": "My First NPM package :-), actually I did not do much. But I think it's helpful if you want to have inserting image url and adding code block features which do not come with default classic build. Also I will show you how to load CKEditor in NEXTJS with SSR.",
     "url": "/playground/ckeditor",
