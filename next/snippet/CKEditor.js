@@ -112,7 +112,7 @@ class CKEditor5 extends Component {
           editor.onUpload = this.props.onUpload; //append event
           editor.accessToken = this.props.accessToken;
           // You can store the "editor" and use when it is needed.
-          console.log("Editor is ready to use!", editor);
+          // console.log("Editor is ready to use!", editor);
         }}
         onChange={(event, editor) => {
           const data = editor.getData();

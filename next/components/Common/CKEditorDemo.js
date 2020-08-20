@@ -104,7 +104,7 @@ class CKEditor5 extends Component {
     return (
       <CKEditor
         editor={ClassicEditor}
-        data={this.props.value}
+        data=""
         config={{
           extraPlugins: [DNXCustomUploadAdapterPlugin, CustomFigureAttributes],
           toolbar: [

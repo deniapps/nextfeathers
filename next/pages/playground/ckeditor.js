@@ -1,10 +1,7 @@
-import PropTypes from "prop-types";
 import Layout from "../../components/Layout";
-
-import { Header, List } from "semantic-ui-react";
+import { Header } from "semantic-ui-react";
 import { useState } from "react";
-
-import Highlight from "react-highlight";
+import CKDemoCode from "../../components/Demo/CKDemoCode";
 
 // import CKEditor from "components/Common/CKEditor";
 import dynamic from "next/dynamic";
@@ -35,35 +32,20 @@ const CKEditorDemo = (props) => {
     $perfect = $nextJS + $feathersJS;</code></pre>`
   );
 
+  const handeEditorChange = (newData) => {
+    setContent(newData);
+  };
+
   return (
     <Layout seoData={seoData}>
       <Header as="h2">CKEditor Demo</Header>
-      <CKEditor value={content} onChange={setContent} />
-      <List>
-        <List.Item>
-          <List.Header as="h2">Download NPM Package</List.Header>
-          <a href="https://www.npmjs.com/package/ckeditor5-build-classic-dna">
-            ckeditor5-build-classic-dna
-          </a>
-        </List.Item>
-        <List.Item>
-          <List.Header as="h2">CKEditor Component</List.Header>
-          <Highlight className="javascript">{props.source1}</Highlight>
-        </List.Item>
-        <List.Item>
-          <List.Header as="h2">How to Call in SSR</List.Header>
-          <Highlight className="javascript">{props.source2}</Highlight>
-        </List.Item>
-      </List>
+      <CKEditor value={content} onChange={handeEditorChange} />
+      <CKDemoCode {...props} />
     </Layout>
   );
 };
 
 export default CKEditorDemo;
-CKEditorDemo.propTypes = {
-  source1: PropTypes.string,
-  source2: PropTypes.string,
-};
 
 export async function getStaticProps() {
   const fs = require("fs");

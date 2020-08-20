@@ -24,7 +24,7 @@
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "axios": "^0.19.2",
     "chart.js": "^2.9.3",
-    "ckeditor5-build-classic-dna": "^1.0.6",
+    "ckeditor5-build-classic-dna": "1.0.5",
     "dotenv": "^8.2.0",
     "gitalk": "^1.6.2",
     "isomorphic-unfetch": "^3.0.0",
