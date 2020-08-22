@@ -21,7 +21,8 @@ const Layout = (props) => {
   const { title, desc, summary, canonical, image } = seoDataObj;
 
   if (accessToken) {
-    if (isExpired(accessToken)) {
+    // only check for authPage - 8/22/2020
+    if (authPage && isExpired(accessToken)) {
       signOut();
       return null;
     }

@@ -51,7 +51,7 @@ const Post = (props) => {
           <Header.Subheader>
             {author} | <TimeAgo date={publishedOn} />
             {user && (
-              <Button floated="right">
+              <Button floated="right" style={{ marginTop: "-15px" }}>
                 <a href={"/dashboard/post/" + id}>Edit</a>
               </Button>
             )}

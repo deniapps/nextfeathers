@@ -17,8 +17,8 @@ export default function About() {
             React.js, GraphQL, MySQL, and MongoDB. We are also experienced in
             following programming languages: PHP, Perl, Java, JavaScript,
             jQuery, XHTML, HTML5, cascading style sheets (CSS), and CSS3, and
-            the CakePHP, Drupal, WordPress, Solr, and Sphinx open-source
-            technologies.
+            with strong experience in CakePHP, Drupal, WordPress, Solr, and
+            Sphinx open-source technologies.
           </p>
           <p>
             We provide Consulting/Freelancing for Web Development projects, such

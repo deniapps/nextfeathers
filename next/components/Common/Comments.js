@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import GitalkComponent from "gitalk/dist/gitalk-component";
 
-const DNAComments = props => {
+const DNAComments = (props) => {
   if (
     !process.env.NEXT_PUBLIC_GH_CLIENT_ID ||
     !process.env.NEXT_PUBLIC_GH_CLIENT_SECRET
@@ -25,15 +25,15 @@ const DNAComments = props => {
         repo: "dna-comments",
         owner: "deniapps",
         admin: ["deniapps"],
-        id: props.slug, // Ensure uniqueness and length less than 50
-        distractionFreeMode: false // Facebook-like distraction free mode
+        id: props.slug.substr(0, 50), // Ensure uniqueness and length less than 50
+        distractionFreeMode: false, // Facebook-like distraction free mode
       }}
     />
   );
 };
 
 DNAComments.propTypes = {
-  slug: PropTypes.string
+  slug: PropTypes.string,
 };
 
 export default DNAComments;
