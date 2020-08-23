@@ -2,6 +2,21 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
 
+const title = "Semantic UI React Table Example - DeNiApps";
+const desc = `Simple Semantic UI React Table integration with NextJs`;
+
+const summary = desc;
+const canonical = "https://deniapps.com/playground/home";
+const image = "https://deniapps.com/images/dna.png";
+
+const seoData = {
+  title,
+  desc,
+  summary,
+  canonical,
+  image,
+};
+
 const TableExamplePagination = () => (
   <Table celled>
     <Table.Header>
@@ -55,7 +70,7 @@ const TableExamplePagination = () => (
 
 const myTable = () => {
   return (
-    <Layout>
+    <Layout seoData={seoData}>
       <h1>Table</h1>
       <TableExamplePagination />
     </Layout>

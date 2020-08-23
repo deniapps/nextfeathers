@@ -14,14 +14,15 @@ import { isExpired } from "../helpers/common";
 //   return new Date() > new Date(expiresAt * 1000);
 // };
 
-const Layout = props => {
+const Layout = (props) => {
   const { user, accessToken, signOut, isReady } = useContext(UserContext);
   const { seoData, pageType, authPage, children } = props;
   const seoDataObj = seoData ? seoData : {};
   const { title, desc, summary, canonical, image } = seoDataObj;
 
   if (accessToken) {
-    if (isExpired(accessToken)) {
+    // only check for authPage - 8/22/2020
+    if (authPage && isExpired(accessToken)) {
       signOut();
       return null;
     }
@@ -34,16 +35,15 @@ const Layout = props => {
 
   return (
     <div id="deniApps" className={pageWrapperClass}>
-      <Container>
-        <Meta
-          title={title}
-          desc={desc}
-          summary={summary}
-          canonical={canonical}
-          image={image}
-        />
-        <Header />
-      </Container>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Header />
+
       <Container className={pageClass}>
         {authPage && !isReady && <Loader active></Loader>}
         {authPage && !user && isReady && <p>Please Login</p>}
@@ -59,7 +59,7 @@ Layout.propTypes = {
   pageType: PropTypes.string,
   authPage: PropTypes.bool,
   children: PropTypes.node,
-  seoData: PropTypes.object
+  seoData: PropTypes.object,
 };
 
 export default Layout;

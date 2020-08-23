@@ -1,3 +1,11 @@
+body {
+  font-size: 16px;
+}
+input,
+select {
+  font-size: 100%;
+}
+
 @media only screen and (min-width: 1200px) {
   .ui.container {
     width: 980px !important;
@@ -91,12 +99,20 @@
 
 .coverPage {
   margin: auto 0;
-  padding-top: 5em;
+}
+
+#deniApps.homeWrapper {
+  height: 100vh;
 }
 
 .deniPage {
   margin: 2em 0 4em;
-  padding-top: 4em;
+  padding-top: 5em;
+}
+
+.deniPage h1 {
+  padding: 0.5em 0 !important;
+  border-bottom: 2px solid #ccc !important;
 }
 
 .ck-editor__editable_inline {
@@ -181,4 +197,35 @@ figcaption {
 
 figure.table {
   margin-bottom: 1em;
+}
+
+blockquote {
+  background: #f9f9f9;
+  border-left: 10px solid #ccc;
+  margin: 1.5em 10px;
+  padding: 0.5em 10px;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+blockquote:before {
+  color: #ccc;
+  content: open-quote;
+  font-size: 4em;
+  line-height: 0.1em;
+  vertical-align: -0.4em;
+  margin-right: 0.1em;
+  font-family: serif;
+}
+blockquote p {
+  display: inline;
+  font-style: italic;
+}
+
+code,
+pre {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+}
+
+code {
+  background: rgba(255, 229, 100, 0.2);
+  color: #1a1a1a;
 }

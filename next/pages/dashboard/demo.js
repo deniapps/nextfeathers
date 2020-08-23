@@ -5,7 +5,7 @@ import JobInput from "../../components/Demo/JobInput";
 export default function Demo() {
   return (
     <Layout authPage>
-      <Header as="h1" icon textAlign="center">
+      <Header as="h1" icon>
         <Header.Content>Talent Finder</Header.Content>
       </Header>
       <JobInput />

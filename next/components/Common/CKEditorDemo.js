@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
-// import ClassicEditor from "lib/CKV3";
+// import ClassicEditor from "lib/CKV2";
 import uploadFile from "lib/upload";
 import CustomFigureAttributes from "./CustomFigureAttributes";
 
@@ -104,7 +104,7 @@ class CKEditor5 extends Component {
     return (
       <CKEditor
         editor={ClassicEditor}
-        data={this.props.value}
+        data=""
         config={{
           extraPlugins: [DNXCustomUploadAdapterPlugin, CustomFigureAttributes],
           toolbar: [

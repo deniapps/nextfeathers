@@ -20,7 +20,7 @@ export default function About() {
     desc,
     summary,
     canonical,
-    image
+    image,
   };
 
   return (

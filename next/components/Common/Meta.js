@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import Head from "next/head";
-const Meta = props => {
+const Meta = (props) => {
   const defaultTitle = "DeNiApps";
   const defaultDesc = "We Create Websites & Apps";
   const defaultImg = "https://deniapps.com/images/dnx.png";
@@ -30,8 +30,8 @@ const Meta = props => {
       <meta name="twitter:description" content={props.desc || defaultDesc} />
       <meta name="twitter:site" content="@denixuan" />
       <meta name="twitter:creator" content="@denixuan" />
-      <link rel="icon" type="image/png" href="/images/favicon.ico" />
-      <link rel="apple-touch-icon" href="/images/favicon.ico" />
+      <link rel="icon" type="image/png" href="/images/dna-favico.png" />
+      <link rel="apple-touch-icon" href="/images/dna-icon.png" />
       {props.css && <link rel="stylesheet" href={props.css} />}
       {props.image && <meta name="twitter:image" content={props.image} />}
       {props.canonical && <link rel="canonical" href={props.canonical} />}
@@ -49,7 +49,7 @@ const Meta = props => {
             __html: `window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}');`
+            gtag('config', '${process.env.NEXT_PUBLIC_ANALYTICS_ID}');`,
           }}
         />
       )}
@@ -65,5 +65,5 @@ Meta.propTypes = {
   canonical: PropTypes.string,
   image: PropTypes.string,
   css: PropTypes.string,
-  js: PropTypes.string
+  js: PropTypes.string,
 };

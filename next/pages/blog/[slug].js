@@ -1,20 +1,23 @@
 import PropTypes from "prop-types";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
+import { Link } from "next/link";
 import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
-import { Container, Header } from "semantic-ui-react";
+import { Container, Header, Button } from "semantic-ui-react";
 import Prism from "prismjs";
 import TimeAgo from "react-timeago";
 import dynamic from "next/dynamic";
 import { DiscussionEmbed } from "disqus-react";
+import UserContext from "components/Context/UserContext";
 
 const DNAComments = dynamic(() => import("components/Common/Comments"), {
-  ssr: false
+  ssr: false,
 });
 
-// import FBComments from "components/Common/FBComments";
-
-const Post = props => {
+const Post = (props) => {
+  const { user } = useContext(UserContext);
+  const id = props.blog._id;
+  console.log(id);
   const title = props.blog.title;
   const desc = props.blog.summary;
 
@@ -34,7 +37,7 @@ const Post = props => {
     desc,
     summary,
     canonical,
-    image
+    image,
   };
 
   useEffect(() => {
@@ -48,6 +51,11 @@ const Post = props => {
           {title}
           <Header.Subheader>
             {author} | <TimeAgo date={publishedOn} />
+            {user && (
+              <Button floated="right" style={{ marginTop: "-15px" }}>
+                <a href={"/dashboard/post/" + id}>Edit</a>
+              </Button>
+            )}
           </Header.Subheader>
         </Header>
 
@@ -63,7 +71,7 @@ const Post = props => {
             config={{
               url: canonical,
               identifier: props.blog._id,
-              title: title
+              title: title,
             }}
           />
         )}
@@ -73,7 +81,7 @@ const Post = props => {
 };
 
 Post.propTypes = {
-  blog: PropTypes.object
+  blog: PropTypes.object,
 };
 
 export async function getServerSideProps(context) {
@@ -82,7 +90,7 @@ export async function getServerSideProps(context) {
   const result = await getPublicPost(slug);
 
   return {
-    props: { blog: result.data.data[0] } // will be passed to the page component as props
+    props: { blog: result.data.data[0] }, // will be passed to the page component as props
   };
 }
 

@@ -3,8 +3,23 @@ import Layout from "components/Layout";
 import Link from "next/link";
 import fetch from "isomorphic-unfetch";
 
+const title = "NextJS getStaticProps Example - DeNiApps";
+const desc = `A simple example to demostrate how to use getStaticProps within NextJS `;
+
+const summary = desc;
+const canonical = "https://deniapps.com/playground/movies";
+const image = "https://deniapps.com/images/dna.png";
+
+const seoData = {
+  title,
+  desc,
+  summary,
+  canonical,
+  image,
+};
+
 const Index = (props) => (
-  <Layout>
+  <Layout seoData={seoData}>
     <h1>NBA TV Shows</h1>
     <div>
       <pre>HELLO NEXT</pre>

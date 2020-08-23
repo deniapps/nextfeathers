@@ -24,7 +24,7 @@ const isExpired = (accessToken, offset = 0) => {
   }
 };
 
-const titleCase = str => {
+const titleCase = (str) => {
   return str
     .toLowerCase()
     .split(/\s+/)
@@ -34,7 +34,7 @@ const titleCase = str => {
     .join(" ");
 };
 
-const slugify = text => {
+const slugify = (text) => {
   return text
     .toString()
     .toLowerCase()
@@ -66,4 +66,14 @@ const debounce = (func, wait, immediate) => {
   };
 };
 
-export { isExpired, titleCase, slugify, debounce };
+const dnaParser = (htmlCode) => {
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: htmlCode,
+      }}
+    ></div>
+  );
+};
+
+export { isExpired, titleCase, slugify, debounce, dnaParser };
