@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { useEffect, useContext } from "react";
-import { Link } from "next/link";
 import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
 import { Container, Header, Button } from "semantic-ui-react";

@@ -75,7 +75,7 @@ const sitemapXml = (blogPosts) => {
     </url>
     <url>
       <loc>https://deniapps.com/about</loc>
-      <lastmod>08/22/2020</lastmod>
+      <lastmod>2020-08-22</lastmod>
       <priority>0.5</priority>
     </url>
     ${pPagesXml}
