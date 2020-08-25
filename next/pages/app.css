@@ -60,6 +60,10 @@ select {
   .ui.items:not(.unstackable) > .item > .image > img {
     overflow: hidden;
   }
+  .deniPage {
+    margin: 0 0 4em;
+    padding-top: 4em;
+  }
 }
 
 .ui.items > .item > .image:not(.ui) {
