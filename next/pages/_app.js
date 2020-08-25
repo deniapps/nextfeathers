@@ -6,10 +6,11 @@ import * as gtag from "../lib/gtag";
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
-import "./navi.css";
+// import "./navi.css";
 import "highlight.js/styles/nord.css";
 import "prismjs/themes/prism.css";
 import "gitalk/dist/gitalk.css";
+import "dna-responsive-nav/dist/dna-rn.css";
 // import MobileDetect from "mobile-detect";
 
 const NEXT_PUBLIC_USER_LC_KEY = process.env.NEXT_PUBLIC_USER_LC_KEY;
