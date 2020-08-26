@@ -150,7 +150,7 @@ class CKEditor5 extends Component {
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
-          console.log(data);
+          // console.log(data);
           this.props.onChange(data);
           //console.log({ event, editor, data });
         }}

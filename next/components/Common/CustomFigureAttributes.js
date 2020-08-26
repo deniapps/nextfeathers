@@ -140,11 +140,13 @@ function downcastCustomClassesToFigure(modelElementName) {
         return;
       }
 
-      // The code below assumes that classes are set on the <figure> element.
-      conversionApi.writer.addClass(
-        modelElement.getAttribute("customClass"),
-        viewFigure
-      );
+      if (conversionApi && conversionApi.writer) {
+        // The code below assumes that classes are set on the <figure> element.
+        conversionApi.writer.addClass(
+          modelElement.getAttribute("customClass"),
+          viewFigure
+        );
+      }
     });
 }
 
@@ -171,11 +173,13 @@ function downcastCustomClassesToChild(viewElementName, modelElementName) {
         conversionApi
       );
 
-      conversionApi.writer.addClass(
-        // modelElement.getAttribute("customClass"),
-        ["ui", "table", "celled"],
-        viewElement
-      );
+      if (conversionApi && conversionApi.writer) {
+        conversionApi.writer.addClass(
+          // modelElement.getAttribute("customClass"),
+          ["ui", "table", "celled"],
+          viewElement
+        );
+      }
     });
 }
 
