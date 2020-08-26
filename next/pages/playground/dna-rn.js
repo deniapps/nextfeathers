@@ -38,6 +38,7 @@ const App = () => {
       siteName="DeNiApps"
       links={links}
       handleSearch={handleSearch}
+      logo="/images/dna-computer.png"
     />
   );
 };

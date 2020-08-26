@@ -77,6 +77,7 @@ const Header = () => {
       siteName={siteName}
       links={links}
       handleSearch={handleSearch}
+      logo="/images/dna-computer.png"
     />
   );
 };
