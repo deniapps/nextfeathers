@@ -11,7 +11,7 @@ const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
   : 20;
 
 export default function Search(props) {
-  const title = "Search Results - DeNiApps.com";
+  const title = "Search Results - Deni Apps.com";
   const desc = `Search Results for  "${props.kw}"`;
 
   const summary = "Search - DiNiApps";

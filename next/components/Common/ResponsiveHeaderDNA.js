@@ -19,25 +19,30 @@ const Header = () => {
   const links = (
     <ul>
       <li key="blog-menu">
-        {" "}
         <Link href="/blog">
-          <a>Blog</a>
+          <a className={router.pathname === "/blog" ? "is-active" : ""}>Blog</a>
         </Link>
       </li>
       <li key="about-menu">
         <Link href="/about">
-          <a>About Us</a>
+          <a className={router.pathname === "/about" ? "is-active" : ""}>
+            About Us
+          </a>
         </Link>
       </li>
       <li key="playground-menu">
         <Link href="/playground">
-          <a>Playground</a>
+          <a className={router.pathname === "/playground" ? "is-active" : ""}>
+            Playground
+          </a>
         </Link>
       </li>
 
-      <li key="mistake-menu">
+      <li key="mistakes-menu">
         <Link href="/mistakes">
-          <a>Mistakes</a>
+          <a className={router.pathname === "/mistakes" ? "is-active" : ""}>
+            Mistakes
+          </a>
         </Link>
       </li>
 
@@ -45,7 +50,11 @@ const Header = () => {
         user && [
           <li key="userMenu-1">
             <Link href="/dashboard">
-              <a>Dashboard</a>
+              <a
+                className={router.pathname === "/dashboard" ? "is-active" : ""}
+              >
+                Dashboard
+              </a>
             </Link>
           </li>,
           <li key="userMenu-2" className="right">

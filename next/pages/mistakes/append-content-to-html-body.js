@@ -26,7 +26,7 @@ dnxModal.innerHTML += \`<div class="dnx-modal-overlay" id="dnx-modal-overlay"></
 document.body.appendChild(dnxModal);
 `;
 
-const title = "Append Child to the DOM - DeNiApps";
+const title = "Append Child to the DOM - Deni Apps";
 const desc = `Don't use "x.innerHTML += y" to add a new Element to the DOM, instead, use document.body.appendChild(Ele). Otherwise the Javascript events will suddenly stop working`;
 
 const summary = desc;

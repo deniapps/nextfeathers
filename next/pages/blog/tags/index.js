@@ -4,7 +4,7 @@ import { getPublicTags } from "lib/blog";
 import PropTypes from "prop-types";
 
 export default function Tags(props) {
-  const title = "Blog Tags - DeNiApps.com";
+  const title = "Blog Tags - Deni Apps.com";
   const desc = "Articles in all area";
 
   const summary = "Tags Page - DiNiApps";

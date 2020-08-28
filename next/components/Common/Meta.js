@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import Head from "next/head";
 const Meta = (props) => {
-  const defaultTitle = "DeNiApps";
+  const defaultTitle = "Deni Apps";
   const defaultDesc = "We Create Websites & Apps";
   const defaultImg = "https://deniapps.com/images/dnx.png";
   const siteUrl = "https://deniapps.com";
-  const siteName = "DeNiApps";
+  const siteName = "Deni Apps";
 
   return (
     <Head>

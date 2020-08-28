@@ -5,7 +5,7 @@ import ContactForm from "components/Contact/ContactForm";
 import ContactTable from "components/Contact/ContactTable";
 import { ContactContextProvider } from "components/Context/ContactContext";
 
-const title = "UseReducer Example - DeNiApps";
+const title = "UseReducer Example - Deni Apps";
 const desc = `A simple example to demostrate how to use UseReducer within NextJS `;
 
 const summary = desc;

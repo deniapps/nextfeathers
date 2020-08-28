@@ -9,7 +9,7 @@ const CKEditor = dynamic(() => import("components/Common/CKEditor"), {
   ssr: false,
 });
 
-const title = "CKEditor Demo - DeNiApps";
+const title = "CKEditor Demo - Deni Apps";
 const desc = `CKEdtior Demo for CKEditor Class Build with DNA. Built on the top of CKEditor Class Build, with some useful custom plugins allow us to inserting image url and adding code block or inline code features. Also integrated in NEXTJS with SSR.`;
 
 const summary = desc;

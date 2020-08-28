@@ -22,7 +22,7 @@ onClick={() => props.handleSelect(photo)}
 />
 `;
 
-const title = "How to Pass Props to onClick Event - DeNiApps";
+const title = "How to Pass Props to onClick Event - Deni Apps";
 const desc = `The first parameter in onClick function is "event", so if you want to pass other props, then make sure don't define them as the first parameter.`;
 
 const summary = desc;

@@ -10,7 +10,7 @@ const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
   : 20;
 
 export default function Posts(props) {
-  const title = "Blog - DeNiApps";
+  const title = "Blog - Deni Apps";
   const desc =
     "Software Engineer for React.js, Node.js, GraphQL and JavaScript. Based in USA, Chinese/English speaking. Consulting/Freelancing for Web Development project: Code Audits/Reviews, Workshops, Training, Implementation ...";
 
@@ -23,7 +23,7 @@ export default function Posts(props) {
     desc,
     summary,
     canonical,
-    image
+    image,
   };
 
   const [isLoading, setIsLoading] = useState(false);
@@ -33,7 +33,7 @@ export default function Posts(props) {
   const [pageId, setPageId] = useState(0);
   const [showLoadMore, setShowLoadMore] = useState(props.showLoadMore);
 
-  const fetchList = async pageId => {
+  const fetchList = async (pageId) => {
     setIsError(false);
     setIsLoading(true);
     try {
@@ -70,7 +70,7 @@ export default function Posts(props) {
 
 Posts.propTypes = {
   posts: PropTypes.array,
-  showLoadMore: PropTypes.bool
+  showLoadMore: PropTypes.bool,
 };
 
 export async function getServerSideProps() {
@@ -85,6 +85,6 @@ export async function getServerSideProps() {
   }
 
   return {
-    props: { posts: posts, showLoadMore: showLoadMore } // will be passed to the page component as props
+    props: { posts: posts, showLoadMore: showLoadMore }, // will be passed to the page component as props
   };
 }

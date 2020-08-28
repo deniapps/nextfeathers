@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../../components/Layout";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
 
-const title = "Semantic UI React Table Example - DeNiApps";
+const title = "Semantic UI React Table Example - Deni Apps";
 const desc = `Simple Semantic UI React Table integration with NextJs`;
 
 const summary = desc;

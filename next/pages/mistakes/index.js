@@ -3,7 +3,7 @@ import Layout from "components/Layout";
 import ItemView from "components/Common/ItemView";
 import demos from "data/mistakes.json";
 
-const title = "Mistakes in Development - DeNiApps";
+const title = "Mistakes in Development - Deni Apps";
 const desc = `We all make mistakes in the web development, some are common, some are uncommon, some are even stupid, but we should not be shame to share them. Write them down, and hopefully we don't make the same mistakes again.`;
 
 const summary = `Big colletion of the mistakes made in the web development. Review them and avoid to make the same mistakes again.`;

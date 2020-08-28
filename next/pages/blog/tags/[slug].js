@@ -6,7 +6,7 @@ import { getPublicPostsByTag } from "lib/blog";
 import { getTagBySlug } from "../../../lib/tags";
 
 const Tag = (props) => {
-  const title = props.tagData.name + " - DeNiApps.com";
+  const title = props.tagData.name + " - Deni Apps.com";
   const desc = "Recently Articles in " + props.tagData.name;
 
   const summary = "Recently Articles in " + props.tagData.name + " - DiNiApps";

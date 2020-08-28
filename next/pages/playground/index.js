@@ -3,7 +3,7 @@ import Layout from "components/Layout";
 import ItemView from "components/Common/ItemView";
 import demos from "data/demo.json";
 
-const title = "Playground - DeNiApps";
+const title = "Playground - Deni Apps";
 const desc = `Playground for code snippets and demo pages in the web development including NextJS, Semantic-UI, Feathers.js, 
   React.js, Node.js, GraphQL, JavaScript, HTML, CSS, etc.`;
 
