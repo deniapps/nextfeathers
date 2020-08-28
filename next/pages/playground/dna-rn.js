@@ -13,14 +13,8 @@ const links = (
     <li key="playground-menu">
       <a href="/playground">Playground</a>
     </li>
-    <li key="docs">
-      <a href="/docs">Docs</a>
-    </li>
-    <li key="tutorial">
-      <a href="/tutorial">Tutorial</a>
-    </li>
-    <li key="community">
-      <a href="/community">Community</a>
+    <li key="mistakes">
+      <a href="/mistakes">Mistakes</a>
     </li>
   </ul>
 );
