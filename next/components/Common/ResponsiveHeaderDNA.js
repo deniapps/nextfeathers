@@ -71,7 +71,7 @@ const Header = () => {
           </li>,
         ]}
       {isReady && !user && (
-        <li>
+        <li className="right">
           <Icon disabled name="user" key="userMenu-3" />
           <Link href="/signin">
             <a>Login</a>
