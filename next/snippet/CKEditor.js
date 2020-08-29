@@ -72,6 +72,12 @@ class CKEditor5 extends Component {
         data={this.props.value}
         config={{
           extraPlugins: [DNXCustomUploadAdapterPlugin],
+          table: {
+            customClass: ["ui", "table", "celled"], // Important!!! need to be array
+          },
+          image: {
+            customClass: ["ui", "fluid", "image"], // Use whatever class names defined in your theme
+          },
           toolbar: [
             //customize your toolbar
             "heading",

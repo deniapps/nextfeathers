@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
-// import ClassicEditor from "lib/CKV3";
+// import ClassicEditor from "lib/CKV4";
 import uploadFile from "lib/upload";
-import CustomFigureAttributes from "./CustomFigureAttributes";
+// import CustomFigureAttributes from "./CustomFigureAttributes";
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -106,6 +106,9 @@ class CKEditor5 extends Component {
         editor={ClassicEditor}
         data={this.props.value}
         config={{
+          table: {
+            customClass: ["ui", "table", "celled"],
+          },
           extraPlugins: [DNXCustomUploadAdapterPlugin],
           toolbar: [
             "heading",

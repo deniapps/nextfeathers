@@ -24,7 +24,7 @@
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "axios": "^0.20.0",
     "chart.js": "^2.9.3",
-    "ckeditor5-build-classic-dna": "^1.0.8",
+    "ckeditor5-build-classic-dna": "^1.0.9",
     "dna-responsive-nav": "^1.0.10",
     "dotenv": "^8.2.0",
     "gitalk": "^1.6.2",

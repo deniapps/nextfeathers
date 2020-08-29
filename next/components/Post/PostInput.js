@@ -185,6 +185,8 @@ export default class PostInput extends React.Component {
       originalId: null,
     };
 
+    console.log(postDataInput);
+
     //if this is the first time published, then set createdAt
     //if we edit a published post, which has originalId = null, and publish it before is auto saved,
     //then we don't want to overwrite createdAt, so we need to check isDraft or not.
@@ -249,14 +251,15 @@ export default class PostInput extends React.Component {
       } catch (err) {
         newMessage = "Something wrong!";
         error = true;
-        this.setState({
-          isLoading: false,
-          isError: error,
-          message: newMessage,
-        });
-        this.cleaMessage(3000);
       }
     }
+    this.setState({
+      isLoading: false,
+      isError: error,
+      message: newMessage,
+    });
+
+    this.cleaMessage(3000);
   };
 
   /**
