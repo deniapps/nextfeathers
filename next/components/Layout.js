@@ -18,7 +18,7 @@ const Layout = (props) => {
   const { user, accessToken, signOut, isReady } = useContext(UserContext);
   const { seoData, pageType, authPage, children } = props;
   const seoDataObj = seoData ? seoData : {};
-  const { title, desc, summary, canonical, image } = seoDataObj;
+  const { title, desc, summary, canonical, image, css, js } = seoDataObj;
 
   if (accessToken) {
     // only check for authPage - 8/22/2020
@@ -41,6 +41,8 @@ const Layout = (props) => {
         summary={summary}
         canonical={canonical}
         image={image}
+        css={css}
+        js={js}
       />
       <Header />
 
