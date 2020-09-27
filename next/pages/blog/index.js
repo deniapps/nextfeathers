@@ -61,7 +61,12 @@ export default function Posts(props) {
 
   return (
     <Layout seoData={seoData}>
-      <PostList posts={list} showLoadMore={showLoadMore} loadMore={loadMore} />
+      <PostList
+        posts={list}
+        showLoadMore={showLoadMore}
+        isLoading={isLoading}
+        loadMore={loadMore}
+      />
       {isError && <div>Something went wrong ...</div>}
       {isLoading && <Loader inline>Loading...</Loader>}
     </Layout>

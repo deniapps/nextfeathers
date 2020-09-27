@@ -130,9 +130,12 @@ export default function PostList() {
 
           {showMore && (
             <Segment textAlign="center">
-              <Button color="blue" onClick={loadMore}>
-                Load More
-              </Button>
+              {isLoading && <Loader inline />}
+              {!isLoading && (
+                <Button color="blue" onClick={loadMore}>
+                  Load More
+                </Button>
+              )}
             </Segment>
           )}
         </>

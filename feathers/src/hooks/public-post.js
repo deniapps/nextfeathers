@@ -11,7 +11,7 @@ module.exports = (options = {}) => {
       context.params.query.isDraft = false;
       return context;
     } else {
-      console.log("admin only");
+      // console.log("admin only");
       return authenticate("jwt")(context);
     }
   };
