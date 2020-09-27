@@ -2,7 +2,7 @@ import Layout from "components/Layout";
 import PostList from "components/Blog/PostList";
 import { searchPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
-import { Loader } from "semantic-ui-react";
+import { Loader, Segment } from "semantic-ui-react";
 import { useState, useEffect } from "react";
 import { useIsMount } from "components/Common/useIsMount";
 
@@ -88,9 +88,9 @@ export default function Search(props) {
       />
       {isError && <div>Something went wrong ...</div>}
       {isLoading && (
-        <Loader active inline>
-          Loading...
-        </Loader>
+        <Segment textAlign="center">
+          <Loader active>Loading...</Loader>
+        </Segment>
       )}
     </Layout>
   );

@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react"; //hook
 import UserContext from "components/Context/UserContext";
-import { Header, Loader } from "semantic-ui-react";
+import { Header, Loader, Segment } from "semantic-ui-react";
 import PostInput from "components/Post/PostInput";
 import { getPost } from "lib/posts";
 import { getDraft } from "../../lib/posts";
@@ -70,9 +70,9 @@ export default function Write() {
     <div>
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? (
-        <Loader active inline>
-          Loading...
-        </Loader>
+        <Segment textAlign="center">
+          <Loader active>Loading...</Loader>
+        </Segment>
       ) : (
         <>
           <Header

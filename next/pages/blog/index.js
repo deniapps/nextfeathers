@@ -2,7 +2,7 @@ import Layout from "components/Layout";
 import PostList from "components/Blog/PostList";
 import { getPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
-import { Loader } from "semantic-ui-react";
+import { Loader, Segment } from "semantic-ui-react";
 import { useState } from "react";
 
 const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
@@ -69,9 +69,9 @@ export default function Posts(props) {
       />
       {isError && <div>Something went wrong ...</div>}
       {isLoading && (
-        <Loader active inline>
-          Loading...
-        </Loader>
+        <Segment textAlign="center">
+          <Loader active>Loading...</Loader>
+        </Segment>
       )}
     </Layout>
   );

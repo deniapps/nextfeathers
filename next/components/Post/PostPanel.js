@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Loader, Tab } from "semantic-ui-react";
+import { Loader, Tab, Segment } from "semantic-ui-react";
 import PostItemView from "./PostItemView";
 // import { useState, useRef, useEffect } from "react";
 
@@ -15,9 +15,9 @@ const PostPanel = (props) => {
   const posts = props.posts;
   if (!posts)
     return (
-      <Loader active inline>
-        Loading...
-      </Loader>
+      <Segment textAlign="center">
+        <Loader active>Loading...</Loader>
+      </Segment>
     );
   const published = posts.filter((post) => !post.isDeleted && !post.isDraft);
   const drafts = posts.filter((post) => !post.isDeleted && post.isDraft);
