@@ -1,15 +1,7 @@
 import PropTypes from "prop-types";
 import TimeAgo from "react-timeago";
 import Link from "next/link";
-import {
-  Header,
-  Item,
-  Label,
-  Image,
-  Segment,
-  Button,
-  Loader,
-} from "semantic-ui-react";
+import { Header, Item, Label, Image, Segment, Button } from "semantic-ui-react";
 
 //List => Panel => ItemView
 
@@ -85,7 +77,6 @@ export default function PostList(props) {
       </Item.Group>
       {props.showLoadMore && (
         <Segment textAlign="center">
-          {props.isLoading && <Loader active />}
           {!props.isLoading && (
             <Button color="blue" onClick={props.loadMore}>
               Load More

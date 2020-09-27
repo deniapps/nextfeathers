@@ -101,7 +101,9 @@ export default function PostList() {
     <div>
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? (
-        <Loader active>Loading...</Loader>
+        <Loader active inline>
+          Loading...
+        </Loader>
       ) : (
         <>
           <Header
@@ -130,7 +132,6 @@ export default function PostList() {
 
           {showMore && (
             <Segment textAlign="center">
-              {isLoading && <Loader inline />}
               {!isLoading && (
                 <Button color="blue" onClick={loadMore}>
                   Load More
