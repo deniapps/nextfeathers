@@ -24,14 +24,13 @@
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "axios": "^0.20.0",
     "chart.js": "^2.9.3",
-    "ckeditor5-build-classic-dna": "^1.0.9",
-    "dna-responsive-nav": "^1.0.10",
+    "ckeditor5-build-classic-dna": "^1.0.10",
+    "dna-responsive-nav": "^1.0.12",
     "dotenv": "^8.2.0",
     "gitalk": "^1.6.2",
-    "isomorphic-unfetch": "^3.0.0",
     "jwt-decode": "^2.2.0",
     "mobile-detect": "^1.4.4",
-    "next": "^9.5.2",
+    "next": "^9.5.3",
     "prismjs": "^1.21.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",
@@ -42,14 +41,17 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^1.2.1",
     "shortid": "^2.2.15",
-    "sweetalert2": "^9.17.1",
+    "sweetalert2": "^10.2.0",
     "uuid": "^8.3.0"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.7.0",
+    "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.20.6",
-    "file-loader": "^6.0.0",
+    "file-loader": "^6.1.0",
     "url-loader": "^4.1.0"
+  },
+  "resolutions": {
+    "node-fetch": "2.6.1"
   }
 }

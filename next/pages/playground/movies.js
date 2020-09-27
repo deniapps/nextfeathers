@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import Layout from "components/Layout";
 import Link from "next/link";
-import fetch from "isomorphic-unfetch";
 
 const title = "NextJS getStaticProps Example - Deni Apps";
 const desc = `A simple example to demostrate how to use getStaticProps within NextJS `;

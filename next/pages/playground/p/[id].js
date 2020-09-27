@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import Layout from "components/Layout";
-import fetch from "isomorphic-unfetch";
+// import fetch from "isomorphic-unfetch";
 
 const Post = (props) => {
   const router = useRouter();
