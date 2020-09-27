@@ -16,7 +16,9 @@ const PostPanel = (props) => {
   if (!posts)
     return (
       <Segment textAlign="center">
-        <Loader active>Loading...</Loader>
+        <Loader inline active>
+          Loading...
+        </Loader>
       </Segment>
     );
   const published = posts.filter((post) => !post.isDeleted && !post.isDraft);

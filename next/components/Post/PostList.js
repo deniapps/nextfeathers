@@ -102,7 +102,9 @@ export default function PostList() {
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? (
         <Segment textAlign="center">
-          <Loader active>Loading...</Loader>
+          <Loader inline active>
+            Loading...
+          </Loader>
         </Segment>
       ) : (
         <>

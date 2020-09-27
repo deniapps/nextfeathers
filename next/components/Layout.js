@@ -47,7 +47,7 @@ const Layout = (props) => {
       <Header />
 
       <Container className={pageClass}>
-        {authPage && !isReady && <Loader active></Loader>}
+        {authPage && !isReady && <Loader inline active></Loader>}
         {authPage && !user && isReady && <p>Please Login</p>}
         {(!authPage || !!user) && children}
       </Container>

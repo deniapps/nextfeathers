@@ -70,7 +70,9 @@ export default function Posts(props) {
       {isError && <div>Something went wrong ...</div>}
       {isLoading && (
         <Segment textAlign="center">
-          <Loader active>Loading...</Loader>
+          <Loader inline active>
+            Loading...
+          </Loader>
         </Segment>
       )}
     </Layout>
