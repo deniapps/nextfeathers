@@ -33,7 +33,7 @@ export default function Write() {
     if (id === "new") {
       setData({
         title: "Add New Post",
-        data: {}
+        data: {},
       });
       return true;
     }
@@ -53,7 +53,7 @@ export default function Write() {
 
       setData({
         title: "Edit Post",
-        data
+        data,
       });
     } catch (err) {
       setIsError(true);
@@ -70,7 +70,9 @@ export default function Write() {
     <div>
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? (
-        <Loader inline>Loading...</Loader>
+        <Loader active inline>
+          Loading...
+        </Loader>
       ) : (
         <>
           <Header

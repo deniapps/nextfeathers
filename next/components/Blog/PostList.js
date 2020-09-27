@@ -85,7 +85,7 @@ export default function PostList(props) {
       </Item.Group>
       {props.showLoadMore && (
         <Segment textAlign="center">
-          {props.isLoading && <Loader inline />}
+          {props.isLoading && <Loader active />}
           {!props.isLoading && (
             <Button color="blue" onClick={props.loadMore}>
               Load More

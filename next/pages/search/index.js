@@ -87,7 +87,11 @@ export default function Search(props) {
         headline={desc}
       />
       {isError && <div>Something went wrong ...</div>}
-      {isLoading && <Loader inline>Loading...</Loader>}
+      {isLoading && (
+        <Loader active inline>
+          Loading...
+        </Loader>
+      )}
     </Layout>
   );
 }

@@ -13,7 +13,12 @@ import PostItemView from "./PostItemView";
 
 const PostPanel = (props) => {
   const posts = props.posts;
-  if (!posts) return <Loader inline>Loading</Loader>;
+  if (!posts)
+    return (
+      <Loader active inline>
+        Loading
+      </Loader>
+    );
   const published = posts.filter((post) => !post.isDeleted && !post.isDraft);
   const drafts = posts.filter((post) => !post.isDeleted && post.isDraft);
   const deleted = posts.filter((post) => post.isDeleted);

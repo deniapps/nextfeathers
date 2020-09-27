@@ -101,7 +101,7 @@ export default function PostList() {
     <div>
       {isError && <div>Something went wrong ...</div>}
       {isLoading ? (
-        <Loader inline>Loading...</Loader>
+        <Loader active>Loading...</Loader>
       ) : (
         <>
           <Header

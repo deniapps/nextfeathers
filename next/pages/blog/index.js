@@ -68,7 +68,11 @@ export default function Posts(props) {
         loadMore={loadMore}
       />
       {isError && <div>Something went wrong ...</div>}
-      {isLoading && <Loader inline>Loading...</Loader>}
+      {isLoading && (
+        <Loader active inline>
+          Loading...
+        </Loader>
+      )}
     </Layout>
   );
 }
