@@ -130,13 +130,11 @@ export default function PostList() {
             onPermanentlyRemove={handlePermanentlyRemove}
           />
 
-          {showMore && (
+          {showMore && !isLoading && (
             <Segment textAlign="center">
-              {!isLoading && (
-                <Button color="blue" onClick={loadMore}>
-                  Load More
-                </Button>
-              )}
+              <Button color="blue" onClick={loadMore}>
+                Load More
+              </Button>
             </Segment>
           )}
         </>

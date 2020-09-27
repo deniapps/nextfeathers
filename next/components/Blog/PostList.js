@@ -75,13 +75,11 @@ export default function PostList(props) {
             );
           })}
       </Item.Group>
-      {props.showLoadMore && (
+      {props.showLoadMore && !props.isLoading && (
         <Segment textAlign="center">
-          {!props.isLoading && (
-            <Button color="blue" onClick={props.loadMore}>
-              Load More
-            </Button>
-          )}
+          <Button color="blue" onClick={props.loadMore}>
+            Load More
+          </Button>
         </Segment>
       )}
     </div>
