@@ -4,7 +4,6 @@ import Layout from "../../components/Layout";
 import { Header, Container, List } from "semantic-ui-react";
 
 const Index = () => {
-  // const { accessToken } = useContext(UserContext);
   return (
     <Layout authPage>
       <Header as="h1" icon textAlign="center">

@@ -1,7 +1,7 @@
-import { useContext, useEffect, useState } from "react"; //hook
+import { useEffect, useState } from "react"; //hook
 import Link from "next/link";
 import { useRouter } from "next/router";
-import UserContext from "components/Context/UserContext";
+
 import {
   Header,
   Loader,
@@ -18,12 +18,13 @@ import {
 } from "lib/posts";
 import PostPanel from "./PostPanel";
 import DNAMessage from "components/Common/Message";
+import APIError from "components/Common/HandleError";
 
 //List => Panel => ItemView
 
 export default function PostList() {
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [apiError, setApiError] = useState(false);
   const [list, setList] = useState([]);
   const [pageId, setPageId] = useState(0);
   const [showMore, setShowMore] = useState(false);
@@ -31,13 +32,11 @@ export default function PostList() {
   const router = useRouter();
   const [message, setMessage] = useState(router.query.message);
 
-  const { accessToken } = useContext(UserContext);
-
   const fetchList = async (pageId) => {
-    setIsError(false);
+    setApiError(null);
     setIsLoading(true);
     try {
-      const result = await getPosts(accessToken, pageId);
+      const result = await getPosts(pageId);
       //TO-DO: check status for error handling, and add pagination if needed.
       const newList = list.concat(result.data.data);
       if (result.data.total > newList.length) {
@@ -47,7 +46,10 @@ export default function PostList() {
       }
       setList(newList);
     } catch (err) {
-      setIsError(true);
+      // console.log(err.response.status);
+      // if (err.response && err.response.status === 401) {
+      // }
+      setApiError(err);
     }
     setIsLoading(false);
     return true;
@@ -58,7 +60,7 @@ export default function PostList() {
     setTimeout(() => {
       setMessage("");
     }, 3000);
-  }, [accessToken, pageId]);
+  }, [pageId]);
 
   const loadMore = (e) => {
     console.log(e);
@@ -67,7 +69,7 @@ export default function PostList() {
   };
 
   const handleRemove = async (id) => {
-    await deletePost(accessToken, id);
+    await deletePost(id);
     // await fetchList();
     const newList = list.map((item) => {
       if (item._id === id) {
@@ -79,7 +81,7 @@ export default function PostList() {
   };
 
   const handleRecover = async (id) => {
-    await undeletePost(accessToken, id);
+    await undeletePost(id);
     // await fetchList();
     const newList = list.map((item) => {
       if (item._id === id) {
@@ -91,7 +93,7 @@ export default function PostList() {
   };
 
   const handlePermanentlyRemove = async (id) => {
-    await permanentlyDeletePost(accessToken, id);
+    await permanentlyDeletePost(id);
     // await fetchList();
     const newList = list.filter((item) => item._id != id);
     setList(newList);
@@ -99,14 +101,8 @@ export default function PostList() {
 
   return (
     <div>
-      {isError && <div>Something went wrong ...</div>}
-      {isLoading ? (
-        <Segment textAlign="center">
-          <Loader inline active>
-            Loading...
-          </Loader>
-        </Segment>
-      ) : (
+      {apiError && <APIError error={apiError} />}
+      {!apiError && (
         <>
           <Header
             as="h2"
@@ -131,7 +127,13 @@ export default function PostList() {
             onRecover={handleRecover}
             onPermanentlyRemove={handlePermanentlyRemove}
           />
-
+          {isLoading && (
+            <Segment textAlign="center">
+              <Loader inline active>
+                Loading...
+              </Loader>
+            </Segment>
+          )}
           {showMore && !isLoading && (
             <Segment textAlign="center">
               <Button color="blue" onClick={loadMore}>

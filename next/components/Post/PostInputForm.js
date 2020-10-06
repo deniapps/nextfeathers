@@ -40,7 +40,6 @@ const PostInputForm = (props) => {
               : null
           }
           autoGenerateFeatureImage={props.autoGenerateFeatureImage}
-          accessToken={props.accessToken}
         />
       ))}
       <Button onClick={props.onSaveDraft}>Save Draft</Button>
@@ -71,7 +70,6 @@ PostInputForm.propTypes = {
   isError: PropTypes.bool,
   handleAllFocus: PropTypes.object,
   handleAllBlur: PropTypes.object,
-  accessToken: PropTypes.string,
 };
 
 export default PostInputForm;

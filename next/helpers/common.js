@@ -9,7 +9,7 @@ import jwtDecode from "jwt-decode";
  * - timestamp from jwt = seconds
  */
 const isExpired = (accessToken, offset = 0) => {
-  const decodedToken = jwtDecode(accessToken);
+  const decodedToken = accessToken ? jwtDecode(accessToken) : null;
   if (decodedToken && decodedToken.exp) {
     //new Date (milliseconds)
     return new Date() > new Date(decodedToken.exp * 1000 - offset * 60 * 1000);

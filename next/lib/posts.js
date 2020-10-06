@@ -1,11 +1,10 @@
 import axios from "axios";
 
-const createPost = (accessToken, data) => {
+const createPost = (data) => {
   return axios
-    .post(process.env.NEXT_PUBLIC_API_HOST + "/posts", data, {
+    .post("/api/proxy/posts", data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
       },
     })
     .then((res) => {
@@ -14,12 +13,11 @@ const createPost = (accessToken, data) => {
 };
 
 // use patch to update certain filed, and get updatedBy automatically updated.
-const updatePost = (accessToken, id, data) => {
+const updatePost = (id, data) => {
   return axios
-    .patch(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, data, {
+    .patch("/api/proxy/posts/" + id, data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
       },
     })
     .then((res) => {
@@ -28,12 +26,11 @@ const updatePost = (accessToken, id, data) => {
 };
 
 //use put to publish post at the first, so we can control the createdAt.
-const publishPost = (accessToken, id, data) => {
+const publishPost = (id, data) => {
   return axios
-    .put(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, data, {
+    .put("/api/proxy/posts/" + id, data, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
       },
     })
     .then((res) => {
@@ -41,15 +38,14 @@ const publishPost = (accessToken, id, data) => {
     });
 };
 
-const getPosts = (accessToken, pageId) => {
+const getPosts = (pageId) => {
   const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
     ? process.env.NEXT_PUBLIC_PAGE_SIZE
     : 20;
   const skip = pageId * pageSize;
   return axios
     .get(
-      process.env.NEXT_PUBLIC_API_HOST +
-        "/posts?$sort[createdAt]=-1" +
+      "/api/proxy/posts?$sort[createdAt]=-1" +
         "&$limit=" +
         pageSize +
         "&$skip=" +
@@ -57,7 +53,6 @@ const getPosts = (accessToken, pageId) => {
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
         },
       }
     )
@@ -67,31 +62,24 @@ const getPosts = (accessToken, pageId) => {
     });
 };
 
-const getDraft = (accessToken, originalId) => {
+const getDraft = (originalId) => {
   return axios
-    .get(
-      process.env.NEXT_PUBLIC_API_HOST +
-        "/posts/?isDeleted=0&originalId=" +
-        originalId,
-      {
-        headers: {
-          "content-type": "application/json",
-          Authorization: accessToken,
-        },
-      }
-    )
-    .then((res) => {
-      // console.log(res);
-      return res;
-    });
-};
-
-const getPost = (accessToken, id) => {
-  return axios
-    .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
+    .get("/api/proxy/posts/?isDeleted=0&originalId=" + originalId, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
+      },
+    })
+    .then((res) => {
+      // console.log(res);
+      return res;
+    });
+};
+
+const getPost = (id) => {
+  return axios
+    .get("/api/proxy/posts/" + id, {
+      headers: {
+        "content-type": "application/json",
       },
     })
     .then((res) => {
@@ -101,17 +89,16 @@ const getPost = (accessToken, id) => {
 };
 
 // soft delete
-const deletePost = (accessToken, id) => {
+const deletePost = (id) => {
   return axios
     .patch(
-      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
+      "/api/proxy/posts/" + id,
       {
         isDeleted: true,
       },
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
         },
       }
     )
@@ -122,17 +109,16 @@ const deletePost = (accessToken, id) => {
 };
 
 //undelete
-const undeletePost = (accessToken, id) => {
+const undeletePost = (id) => {
   return axios
     .patch(
-      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
+      "/api/proxy/posts/" + id,
       {
         isDeleted: false,
       },
       {
         headers: {
           "content-type": "application/json",
-          Authorization: accessToken,
         },
       }
     )
@@ -143,12 +129,11 @@ const undeletePost = (accessToken, id) => {
 };
 
 // permanently delete
-const permanentlyDeletePost = (accessToken, id) => {
+const permanentlyDeletePost = (id) => {
   return axios
-    .delete(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
+    .delete("/api/proxy/posts/" + id, {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken,
       },
     })
     .then((res) => {
@@ -160,24 +145,17 @@ const permanentlyDeletePost = (accessToken, id) => {
 /**
  *
  * @param {*} slug
- * @param {*} accessToken
  * @returns Boolean
  * check if slug is taken by published post, i.e. isDeleted=0&isDraft=0
  * True means exists
  */
-const checkSlug = (accessToken, slug) => {
+const checkSlug = (slug) => {
   return axios
-    .get(
-      process.env.NEXT_PUBLIC_API_HOST +
-        "/posts/?isDeleted=0&isDraft=0&slug=" +
-        slug,
-      {
-        headers: {
-          "content-type": "application/json",
-          Authorization: accessToken,
-        },
-      }
-    )
+    .get("/api/proxy/posts/?isDeleted=0&isDraft=0&slug=" + slug, {
+      headers: {
+        "content-type": "application/json",
+      },
+    })
     .then((res) => {
       if (res.status === 200) return res.data.total !== 0;
       return false;

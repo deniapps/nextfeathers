@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import App from "next/app";
 import Router from "next/router";
 import * as gtag from "../lib/gtag";
@@ -18,7 +19,6 @@ const NEXT_PUBLIC_USER_LC_KEY = process.env.NEXT_PUBLIC_USER_LC_KEY;
 export default class deniApp extends App {
   state = {
     user: null,
-    accessToken: null,
     isReady: false,
   };
 
@@ -26,14 +26,19 @@ export default class deniApp extends App {
     gtag.pageview(url);
   };
 
-  componentDidMount = () => {
+  componentDidMount = async () => {
     const deniUser = localStorage.getItem(NEXT_PUBLIC_USER_LC_KEY);
+
     if (deniUser) {
-      const deniUserObj = JSON.parse(deniUser);
-      this.setState({
-        user: deniUserObj.username,
-        accessToken: deniUserObj.accessToken,
-      });
+      const userStatus = await axios
+        .get("/api/check-login")
+        .then((response) => response.data);
+      if (userStatus.loggedIn) {
+        const deniUserObj = JSON.parse(deniUser);
+        this.setState({
+          user: deniUserObj.firstName,
+        });
+      }
     }
     this.setState({
       isReady: true,
@@ -49,8 +54,8 @@ export default class deniApp extends App {
   // if autoRevew = true, which means login with JWT token, then only need to refresh accessToken
   // should not redirect
 
-  signIn = (username, accessToken, autoRenew = false) => {
-    const deniUser = { username, accessToken };
+  signIn = (userInfo, autoRenew = false) => {
+    const deniUser = userInfo;
     localStorage.setItem(NEXT_PUBLIC_USER_LC_KEY, JSON.stringify(deniUser));
 
     gtag.event({
@@ -60,8 +65,7 @@ export default class deniApp extends App {
 
     this.setState(
       {
-        user: username,
-        accessToken,
+        user: deniUser.firstName,
       },
       () => {
         if (!autoRenew) Router.push("/");
@@ -77,7 +81,6 @@ export default class deniApp extends App {
     });
     this.setState({
       user: null,
-      accessToken: null,
     });
     Router.push("/");
   };
@@ -88,7 +91,6 @@ export default class deniApp extends App {
       <UserContext.Provider
         value={{
           user: this.state.user,
-          accessToken: this.state.accessToken,
           signIn: this.signIn,
           signOut: this.signOut,
           isReady: this.state.isReady,

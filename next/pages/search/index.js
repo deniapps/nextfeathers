@@ -27,7 +27,6 @@ export default function Search(props) {
   };
 
   const isMount = useIsMount();
-  console.log("ISMOUNT:", isMount);
 
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -37,7 +36,6 @@ export default function Search(props) {
   const [showLoadMore, setShowLoadMore] = useState(props.showLoadMore);
 
   const fetchList = async (pageId) => {
-    console.log("fetching");
     setIsError(false);
     setIsLoading(true);
     try {

@@ -12,6 +12,7 @@ module.exports = function (app) {
   mongoose.set("useCreateIndex", true);
   mongoose.set("useFindAndModify", false);
   mongoose.Promise = global.Promise;
+  // mongoose.set("debug", true);
 
   app.set("mongooseClient", mongoose);
 };

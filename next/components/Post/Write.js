@@ -3,30 +3,19 @@ import { useContext, useEffect, useState } from "react"; //hook
 import UserContext from "components/Context/UserContext";
 import { Header, Loader, Segment } from "semantic-ui-react";
 import PostInput from "components/Post/PostInput";
-import { getPost } from "lib/posts";
-import { getDraft } from "../../lib/posts";
-import { renewJWT } from "lib/authentication";
+import { getPost, getDraft } from "lib/posts";
+import APIError from "component/Common/HandleError";
+// import { renewJWT } from "lib/authentication";
 
 export default function Write() {
   const router = useRouter();
   const { id } = router.query;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
+  const [apiError, setApiError] = useState(null);
   const [data, setData] = useState([]);
 
-  const { accessToken, signIn, user, signOut } = useContext(UserContext);
-
-  const reLogin = async () => {
-    if (accessToken) {
-      try {
-        const ret = await renewJWT(accessToken);
-        signIn(user, ret.data.accessToken, true); //silently relogin
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  };
+  const { signOut } = useContext(UserContext);
 
   const fetchData = async () => {
     if (!id) return false;
@@ -37,16 +26,16 @@ export default function Write() {
       });
       return true;
     }
-    setIsError(false);
+    setApiError(null);
     setIsLoading(true);
     try {
       let data = {};
       //check if draft exists, if so, restore it
-      const draftResult = await getDraft(accessToken, id);
+      const draftResult = await getDraft(id);
       if (draftResult && draftResult.data.total > 0) {
         data = draftResult.data.data[0];
       } else {
-        const result = await getPost(accessToken, id);
+        const result = await getPost(id);
         // console.log("RESUTL", result);
         data = result.data;
       }
@@ -56,7 +45,7 @@ export default function Write() {
         data,
       });
     } catch (err) {
-      setIsError(true);
+      setApiError(err);
     }
     setIsLoading(false);
     return true;
@@ -68,7 +57,7 @@ export default function Write() {
 
   return (
     <div>
-      {isError && <div>Something went wrong ...</div>}
+      {apiError && <APIError error={apiError} />}
       {isLoading ? (
         <Segment textAlign="center">
           <Loader inline active>
@@ -85,12 +74,7 @@ export default function Write() {
           >
             <Header.Content>{data.title}</Header.Content>
           </Header>
-          <PostInput
-            accessToken={accessToken}
-            data={data.data}
-            reLogin={reLogin}
-            signOut={signOut}
-          />
+          <PostInput data={data.data} signOut={signOut} />
         </>
       )}
     </div>

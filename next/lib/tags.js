@@ -1,27 +1,26 @@
 import axios from "axios";
 
-const getTags = accessToken => {
+const getTags = () => {
   return axios
-    .get(process.env.NEXT_PUBLIC_API_HOST + "/tags?$sort[name]", {
+    .get("/api/proxy/tags?$sort[name]", {
       headers: {
         "content-type": "application/json",
-        Authorization: accessToken
-      }
+      },
     })
-    .then(res => {
+    .then((res) => {
       console.log(res);
       return res;
     });
 };
 
-const getTagBySlug = tagSlug => {
+const getTagBySlug = (tagSlug) => {
   return axios
     .get(process.env.NEXT_PUBLIC_API_HOST + "/tags?slug=" + tagSlug, {
       headers: {
-        "content-type": "application/json"
-      }
+        "content-type": "application/json",
+      },
     })
-    .then(res => {
+    .then((res) => {
       console.log(res);
       return res;
     });

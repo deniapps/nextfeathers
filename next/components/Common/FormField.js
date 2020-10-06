@@ -112,7 +112,6 @@ const FormField = (props) => {
           value={props.value}
           onChange={handleEditorChange}
           onUpload={handleUpload}
-          accessToken={props.accessToken}
         />
       )}
     </Form.Field>
@@ -136,7 +135,6 @@ FormField.propTypes = {
   isInline: PropTypes.bool,
   placeholder: PropTypes.string,
   options: PropTypes.arrayOf(PropTypes.object),
-  accessToken: PropTypes.string,
 };
 
 export default FormField;

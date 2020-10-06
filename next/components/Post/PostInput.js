@@ -3,9 +3,10 @@ import { Container } from "semantic-ui-react";
 import _ from "lodash";
 import Router from "next/router";
 import shortid from "shortid";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 import PostInputForm from "./PostInputForm";
+import APIError from "components/Common/HandleError";
 
 import {
   createPost,
@@ -15,7 +16,7 @@ import {
   checkSlug,
 } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
-import { titleCase, slugify, debounce, isExpired } from "../../helpers/common";
+import { titleCase, slugify, debounce } from "../../helpers/common";
 
 //Headps, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
 
@@ -27,22 +28,21 @@ export default class PostInput extends React.Component {
     allOptions: { tags: [] },
     isLoading: false,
     isError: false,
+    apiError: null,
     message: "",
   };
 
   static get propTypes() {
     return {
-      accessToken: PropTypes.string,
       originalId: PropTypes.string,
       data: PropTypes.object,
-      reLogin: PropTypes.func,
       signOut: PropTypes.func,
     };
   }
 
   async componentDidMount() {
     this._isMounted = true;
-    const ret = await getTags(this.props.accessToken);
+    const ret = await getTags();
 
     const allTags = ret.data.data;
     const tagsInputOptions = allTags.map((item) => ({
@@ -75,7 +75,7 @@ export default class PostInput extends React.Component {
 
   autoFixSlug = async (slug) => {
     let newSlug = slugify(slug);
-    const isExist = await checkSlug(this.props.accessToken, newSlug);
+    const isExist = await checkSlug(newSlug);
     if (isExist) {
       newSlug += "-" + shortid.generate().toLowerCase();
     }
@@ -185,8 +185,6 @@ export default class PostInput extends React.Component {
       originalId: null,
     };
 
-    console.log(postDataInput);
-
     //if this is the first time published, then set createdAt
     //if we edit a published post, which has originalId = null, and publish it before is auto saved,
     //then we don't want to overwrite createdAt, so we need to check isDraft or not.
@@ -194,7 +192,7 @@ export default class PostInput extends React.Component {
       postDataInput.createdAt = new Date().toISOString();
       postDataInput.updatedAt = postDataInput.createdAt;
     }
-    console.log(postDataInput);
+
     // Final Validation
     if (!postDataInput.title) {
       error = true;
@@ -219,37 +217,29 @@ export default class PostInput extends React.Component {
       }
       if (this.state.data.originalId) {
         try {
-          await permanentlyDeletePost(
-            this.props.accessToken,
-            this.state.data.originalId
-          );
-        } catch (error) {
-          console.log(error);
+          await permanentlyDeletePost(this.state.data.originalId);
+        } catch (err) {
+          this.setState({ apiError: err });
+          newMessage = "Something went wrong!";
+          error = true;
         }
       }
       try {
         if (doCreate) {
-          await createPost(this.props.accessToken, postDataInput);
+          await createPost(postDataInput);
         } else if (!this.state.data.originalId && this.state.data.isDraft) {
           // when no published yet, we publish draft using "put" to update createdAt to current
-          await publishPost(
-            this.props.accessToken,
-            this.state.data._id,
-            postDataInput
-          );
+          await publishPost(this.state.data._id, postDataInput);
         } else {
-          await updatePost(
-            this.props.accessToken,
-            this.state.data._id,
-            postDataInput
-          );
+          await updatePost(this.state.data._id, postDataInput);
         }
         Router.push(
           "/dashboard/posts?message=" + newMessage,
           "/dashboard/posts"
         );
       } catch (err) {
-        newMessage = "Something wrong!";
+        this.setState({ apiError: err });
+        newMessage = "Something went wrong!";
         error = true;
       }
     }
@@ -277,41 +267,41 @@ export default class PostInput extends React.Component {
       return; //stop auto saving when it's loading, i.e. publishing.
     }
 
-    if (isExpired(this.props.accessToken)) {
-      //log out
-      let timerInterval;
-      Swal.fire({
-        title: "Session is Expired!",
-        html: "You will be logged out in <b></b> seconds.",
-        timer: 5000,
-        timerProgressBar: true,
-        onBeforeOpen: () => {
-          Swal.showLoading();
-          timerInterval = setInterval(() => {
-            const content = Swal.getContent();
-            if (content) {
-              const b = content.querySelector("b");
-              if (b) {
-                b.textContent = Math.ceil(Swal.getTimerLeft() / 1000);
-              }
-            }
-          }, 1000);
-        },
-        onClose: () => {
-          clearInterval(timerInterval);
-        },
-      }).then((result) => {
-        /* Read more about handling dismissals below */
-        if (result.dismiss === Swal.DismissReason.timer) {
-          this.props.signOut();
-        }
-      });
-    }
+    // if (isExpired(this.props.accessToken)) {
+    //   //log out
+    //   let timerInterval;
+    //   Swal.fire({
+    //     title: "Session is Expired!",
+    //     html: "You will be logged out in <b></b> seconds.",
+    //     timer: 5000,
+    //     timerProgressBar: true,
+    //     onBeforeOpen: () => {
+    //       Swal.showLoading();
+    //       timerInterval = setInterval(() => {
+    //         const content = Swal.getContent();
+    //         if (content) {
+    //           const b = content.querySelector("b");
+    //           if (b) {
+    //             b.textContent = Math.ceil(Swal.getTimerLeft() / 1000);
+    //           }
+    //         }
+    //       }, 1000);
+    //     },
+    //     onClose: () => {
+    //       clearInterval(timerInterval);
+    //     },
+    //   }).then((result) => {
+    //     /* Read more about handling dismissals below */
+    //     if (result.dismiss === Swal.DismissReason.timer) {
+    //       this.props.signOut();
+    //     }
+    //   });
+    // }
 
-    //if token will be expired in 5 mins, then autoRenew it
-    else if (isExpired(this.props.accessToken, 5)) {
-      await this.props.reLogin();
-    }
+    // //if token will be expired in 5 mins, then autoRenew it
+    // else if (isExpired(this.props.accessToken, 5)) {
+    //   await this.props.reLogin();
+    // }
 
     const postDataInput = {
       ...this.state.data,
@@ -354,10 +344,7 @@ export default class PostInput extends React.Component {
         //   }
         // }
         if (!draftId) {
-          const result = await createPost(
-            this.props.accessToken,
-            postDataInput
-          );
+          const result = await createPost(postDataInput);
 
           if (result && result.data) {
             //case2a
@@ -366,15 +353,10 @@ export default class PostInput extends React.Component {
             });
           }
         }
-      } else
-        await updatePost(
-          this.props.accessToken,
-          this.state.data._id,
-          postDataInput
-        );
-    } catch (error) {
+      } else await updatePost(this.state.data._id, postDataInput);
+    } catch (err) {
       newMessage = "Something wrong!";
-      this.setState({ isError: true });
+      this.setState({ isError: true, apiError: err });
     }
     this.setState({
       isLoading: false,
@@ -395,6 +377,7 @@ export default class PostInput extends React.Component {
   render() {
     return (
       <Container text style={{ marginBottom: "40px" }}>
+        {this.state.apiError && <APIError error={this.state.apiError} />}
         <PostInputForm
           handleChange={this.handleChange}
           onPublish={this.onPublish}
@@ -412,7 +395,6 @@ export default class PostInput extends React.Component {
             title: this.autoGenerateSlug,
           }}
           autoGenerateFeatureImage={this.autoGenerateFeatureImage}
-          accessToken={this.props.accessToken}
         />
       </Container>
     );

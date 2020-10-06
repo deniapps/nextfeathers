@@ -21,7 +21,7 @@ class MyUploadAdapter {
       formData.append("file", file);
       let result = false;
       try {
-        result = await uploadFile(this.loader.accessToken, formData);
+        result = await uploadFile(formData);
       } catch (error) {
         console.log(error);
       }
@@ -58,7 +58,6 @@ const DNXCustomUploadAdapterPlugin = (editor) => {
   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
     // Configure the URL to the upload script in your back-end here!
     loader.onUpload = editor.onUpload;
-    loader.accessToken = editor.accessToken;
     return new MyUploadAdapter(loader);
   };
 };
@@ -95,7 +94,6 @@ class CKEditor5 extends Component {
     return {
       value: PropTypes.string,
       onChange: PropTypes.func,
-      accessToken: PropTypes.string,
       onUpload: PropTypes.func,
     };
   }
@@ -144,7 +142,6 @@ class CKEditor5 extends Component {
         }}
         onInit={(editor) => {
           editor.onUpload = this.props.onUpload; //append event
-          editor.accessToken = this.props.accessToken;
           // You can store the "editor" and use when it is needed.
           // console.log("Editor is ready to use!", editor);
         }}

@@ -6,27 +6,11 @@ import Footer from "./Common/MiniFooter";
 import { useContext } from "react";
 import UserContext from "./Context/UserContext";
 
-import { isExpired } from "../helpers/common";
-
-// import redirect from "../lib/redirect";
-
-// const isExpired = (expiresAt) => {
-//   return new Date() > new Date(expiresAt * 1000);
-// };
-
 const Layout = (props) => {
-  const { user, accessToken, signOut, isReady } = useContext(UserContext);
+  const { user, isReady } = useContext(UserContext);
   const { seoData, pageType, authPage, children } = props;
   const seoDataObj = seoData ? seoData : {};
   const { title, desc, summary, canonical, image, css, js } = seoDataObj;
-
-  if (accessToken) {
-    // only check for authPage - 8/22/2020
-    if (authPage && isExpired(accessToken)) {
-      signOut();
-      return null;
-    }
-  }
 
   const pageWrapperClass = pageType ? pageType + "Wrapper" : "dnaWrapper";
 
