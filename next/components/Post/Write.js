@@ -4,7 +4,7 @@ import UserContext from "components/Context/UserContext";
 import { Header, Loader, Segment } from "semantic-ui-react";
 import PostInput from "components/Post/PostInput";
 import { getPost, getDraft } from "lib/posts";
-import APIError from "component/Common/HandleError";
+import APIError from "components/Common/HandleError";
 // import { renewJWT } from "lib/authentication";
 
 export default function Write() {
