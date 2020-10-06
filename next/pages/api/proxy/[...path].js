@@ -1,7 +1,6 @@
 import httpProxy from "http-proxy";
 import Cookies from "cookies";
 import url from "url";
-import isExpired from "helpers/common";
 
 const API_URL = process.env.NEXT_PUBLIC_API_HOST;
 
