@@ -1,16 +1,15 @@
-
-
-const typeCast = require('../../hooks/type-cast');
+const { authenticate } = require("@feathersjs/authentication").hooks;
+const typeCast = require("../../hooks/type-cast");
 
 module.exports = {
   before: {
     all: [],
     find: [typeCast()],
     get: [],
-    create: [],
-    update: [],
-    patch: [],
-    remove: []
+    create: [authenticate("jwt")],
+    update: [authenticate("jwt")],
+    patch: [authenticate("jwt")],
+    remove: [authenticate("jwt")],
   },
 
   after: {
@@ -20,7 +19,7 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
+    remove: [],
   },
 
   error: {
@@ -30,6 +29,6 @@ module.exports = {
     create: [],
     update: [],
     patch: [],
-    remove: []
-  }
+    remove: [],
+  },
 };
