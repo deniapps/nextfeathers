@@ -1,9 +1,11 @@
 
 
+const typeCast = require('../../hooks/type-cast');
+
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [typeCast()],
     get: [],
     create: [],
     update: [],
