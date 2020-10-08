@@ -14,10 +14,10 @@ select {
 
 @media only screen and (min-width: 768px) {
   .homeWrapper {
-    background: url("/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-large.jpg");
+    background: url("https://deniapps.com/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-large.jpg");
   }
   .loginWrapper {
-    background: url("/images/background/adrian-Xft-JdC-Jbc-unsplash-large.jpeg");
+    background: url("https://deniapps.com/images/background/adrian-Xft-JdC-Jbc-unsplash-large.jpeg");
   }
   .hp-header {
     text-align: center;
@@ -37,10 +37,10 @@ select {
 
 @media only screen and (max-width: 767px) {
   .homeWrapper {
-    background: url("/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-small.jpg");
+    background: url("https://deniapps.com/images/background/rafael-de-nadai-b0eg-PYGICQ-unsplash-small.jpg");
   }
   .loginWrapper {
-    background: url("/images/background/adrian-Xft-JdC-Jbc-unsplash-small.jpeg");
+    background: url("https://deniapps.com/images/background/adrian-Xft-JdC-Jbc-unsplash-small.jpeg");
   }
   .hp-header {
     text-align: center;
