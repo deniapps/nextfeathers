@@ -1,7 +1,7 @@
 /**
- * pages/api/me.js
+ * pages/api/check-login.js
  *
- * A demo API endpoint for getting the currently authenticated user.
+ * A API endpoint for checking if the user is logged in.
  */
 
 import { isExpired } from "helpers/common";
@@ -16,12 +16,4 @@ export default (req, res) => {
   res.status(200).json({
     loggedIn,
   });
-
-  // if (authToken === "123") {
-  //   res.status(200).json({ email: "admin@example.com" });
-  // } else if (!req.headers.authToken) {
-  //   res.status(401).json({ error: "Authentication required" });
-  // } else {
-  //   res.status(403).json({ error: "Not permitted" });
-  // }
 };
