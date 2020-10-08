@@ -2,7 +2,7 @@ import httpProxy from "http-proxy";
 import Cookies from "cookies";
 import url from "url";
 
-const API_URL = process.env.NEXT_PUBLIC_API_HOST;
+const API_URL = process.env.API_HOST;
 
 const proxy = httpProxy.createProxyServer();
 
