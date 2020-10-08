@@ -32,7 +32,7 @@
     "http-proxy": "^1.18.1",
     "jwt-decode": "^2.2.0",
     "mobile-detect": "^1.4.4",
-    "next": "^9.5.3",
+    "next": "^9.5.4",
     "prismjs": "^1.21.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.10.0",
