@@ -1,13 +1,5 @@
 [
   {
-    "_id": "playgound-05",
-    "title": "Semantic UI Responsive Homepage - Fixed",
-    "summary": "What a shame! Semantic UI does not support a responsive menu out of the box. They provide a 'hack', but I don't like it. Because there are two sets of layout containers: one for desktop and the other for mobile, you have to detect the device before rendering with the correct layout, which causes a redundant code, and is especially hard if you use SSR like nextJS. Also, their example code does not work well when reloading in the mobile device because it does not do the real device detection on SSR. This demo intends to fix that.",
-    "url": "/playground/home",
-    "updatedDate": "2020-07-13",
-    "tags": ["semantic-ui", "next-js", "repsonsive", "ssr"]
-  },
-  {
     "_id": "playgound-04",
     "title": "NextJS Fetching Example",
     "summary": "Pretty much is an exmple from NextJS official site. It's so easy to set up a page with NextJS, and you can do pre-render at build time using the props returned by `getStaticProps` (in the production mode), and dynamic routes and more",

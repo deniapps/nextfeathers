@@ -91,6 +91,7 @@ class CKEditor5 extends Component {
             "indent",
             "outdent",
             "|",
+            "imageUpload",
             "insertImage",
             "insertImageFromUnsplash",
             "code",
