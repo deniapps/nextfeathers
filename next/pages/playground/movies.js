@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import Layout from "components/Layout";
 import Link from "next/link";
+import { List } from "semantic-ui-react";
 
 const title = "NextJS getStaticProps Example - Deni Apps";
 const desc = `A simple example to demostrate how to use getStaticProps within NextJS `;
@@ -23,16 +24,16 @@ const Index = (props) => (
     <div>
       <pre>HELLO NEXT</pre>
     </div>
-    <ul>
+    <List>
       {props.shows &&
         props.shows.map((show) => (
-          <li key={show.id}>
+          <List.Item key={show.id}>
             <Link href="/playground/p/[id]" as={`/playground/p/${show.id}`}>
               <a>{show.name}</a>
             </Link>
-          </li>
+          </List.Item>
         ))}
-    </ul>
+    </List>
   </Layout>
 );
 

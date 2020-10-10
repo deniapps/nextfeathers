@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
-// import ClassicEditor from "lib/CKV2";
+// import ClassicEditor from "lib/CKV5";
 import uploadFile from "lib/upload";
-import CustomFigureAttributes from "./CustomFigureAttributes";
+// import CustomFigureAttributes from "./CustomFigureAttributes";
 
 class MyUploadAdapter {
   constructor(loader) {
@@ -26,8 +26,7 @@ class MyUploadAdapter {
         console.log(error);
       }
       // default image
-      let url =
-        "https://b7a9m2p8.rocketcdn.me/wp-content/uploads/Fix-WordPress-401-Error.png";
+      let url = "https://source.unsplash.com/random";
 
       if (result && result.url) {
         url = result.url;
@@ -102,9 +101,13 @@ class CKEditor5 extends Component {
     return (
       <CKEditor
         editor={ClassicEditor}
-        data=""
+        data={this.props.value}
         config={{
-          extraPlugins: [DNXCustomUploadAdapterPlugin, CustomFigureAttributes],
+          table: {
+            customClass: ["ui", "table", "celled"],
+          },
+          extraPlugins: [DNXCustomUploadAdapterPlugin],
+          // removePlugins: ["Base64UploadAdapter"],
           toolbar: [
             "heading",
             "|",
@@ -117,6 +120,7 @@ class CKEditor5 extends Component {
             "indent",
             "outdent",
             "|",
+            "imageUpload",
             "insertImage",
             "insertImageFromUnsplash",
             "code",
@@ -147,7 +151,7 @@ class CKEditor5 extends Component {
         }}
         onChange={(event, editor) => {
           const data = editor.getData();
-          console.log(data);
+          // console.log(data);
           this.props.onChange(data);
           //console.log({ event, editor, data });
         }}

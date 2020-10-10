@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import Layout from "components/Layout";
-// import fetch from "isomorphic-unfetch";
+import { dnaParser } from "helpers/common";
 
 const Post = (props) => {
   const router = useRouter();
@@ -9,13 +9,10 @@ const Post = (props) => {
   return (
     <Layout>
       <h1>{props.show ? props.show.name : router.query.title}</h1>
-      <p>
-        {props.show
-          ? props.show.summary.replace(/<[/]?p>/g, "")
-          : "Just a static post"}
-      </p>
+      {props.show ? dnaParser(props.show.summary) : <p>Just a static post</p>}
+
       {props.show && props.show.image ? (
-        <img src={props.show.image.medium} />
+        <img src={props.show.image.medium.replace("http:", "https:")} />
       ) : (
         <br />
       )}
