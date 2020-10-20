@@ -3,7 +3,7 @@ import { useEffect, useContext } from "react";
 import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
 import { DiscussionEmbed } from "disqus-react";
-import { Container, Header, Button } from "semantic-ui-react";
+import { Container, Header, Button, Divider } from "semantic-ui-react";
 import Prism from "prismjs";
 import TimeAgo from "react-timeago";
 // import dynamic from "next/dynamic";
@@ -59,6 +59,8 @@ const Post = (props) => {
         </Header>
 
         <div dangerouslySetInnerHTML={{ __html: content }} />
+
+        <Divider />
 
         {process.env.NEXT_PUBLIC_DISQUS &&
           process.env.NEXT_PUBLIC_DISQUS === "on" && (
