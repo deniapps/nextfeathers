@@ -2,15 +2,16 @@ import PropTypes from "prop-types";
 import { useEffect, useContext } from "react";
 import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
+import { DiscussionEmbed } from "disqus-react";
 import { Container, Header, Button } from "semantic-ui-react";
 import Prism from "prismjs";
 import TimeAgo from "react-timeago";
-import dynamic from "next/dynamic";
+// import dynamic from "next/dynamic";
 import UserContext from "components/Context/UserContext";
 
-const DNAComments = dynamic(() => import("components/Common/Comments"), {
-  ssr: false,
-});
+// const DNAComments = dynamic(() => import("components/Common/Comments"), {
+//   ssr: false,
+// });
 
 const Post = (props) => {
   const { user } = useContext(UserContext);
@@ -59,9 +60,16 @@ const Post = (props) => {
 
         <div dangerouslySetInnerHTML={{ __html: content }} />
 
-        {process.env.NEXT_PUBLIC_GITALK &&
-          process.env.NEXT_PUBLIC_GITALK === "on" && (
-            <DNAComments slug={props.blog.slug} />
+        {process.env.NEXT_PUBLIC_DISQUS &&
+          process.env.NEXT_PUBLIC_DISQUS === "on" && (
+            <DiscussionEmbed
+              shortname="deniapps"
+              config={{
+                url: canonical,
+                identifier: props.blog._id,
+                title: title,
+              }}
+            />
           )}
       </Container>
     </Layout>
