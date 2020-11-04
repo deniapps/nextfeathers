@@ -11,6 +11,8 @@ const tags = require("./tags/tags.service.js");
 
 const swimmingWorldRecords = require('./swimming-world-records/swimming-world-records.service.js');
 
+const zip3 = require('./zip3/zip3.service.js');
+
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -21,4 +23,5 @@ module.exports = function (app) {
   app.configure(posts);
   app.configure(tags);
   app.configure(swimmingWorldRecords);
+  app.configure(zip3);
 };
