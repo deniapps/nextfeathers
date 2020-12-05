@@ -36,7 +36,7 @@ export default class deniApp extends App {
       if (userStatus.loggedIn) {
         const deniUserObj = JSON.parse(deniUser);
         this.setState({
-          user: deniUserObj.firstName,
+          user: deniUserObj.firstName ? deniUserObj.firstName : "Unnamed",
         });
       }
     }

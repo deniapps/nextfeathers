@@ -1,3 +1,4 @@
+import React from "react";
 import Layout from "../../../components/Layout";
 import Codepen from "react-codepen-embed";
 import { Header, Form, Button, Message } from "semantic-ui-react";

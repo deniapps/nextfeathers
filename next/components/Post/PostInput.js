@@ -1,3 +1,4 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
 import _ from "lodash";
@@ -65,7 +66,7 @@ export default class PostInput extends React.Component {
     this._isMounted = false;
   }
 
-  cleaMessage = (ms) => {
+  clearMessage = (ms) => {
     setTimeout(() => {
       this.setState({
         message: "",
@@ -249,7 +250,7 @@ export default class PostInput extends React.Component {
       message: newMessage,
     });
 
-    this.cleaMessage(3000);
+    this.clearMessage(3000);
   };
 
   /**
@@ -363,7 +364,7 @@ export default class PostInput extends React.Component {
       message: newMessage,
     });
 
-    this.cleaMessage(3000);
+    this.clearMessage(3000);
   };
 
   handleChange = () => {
