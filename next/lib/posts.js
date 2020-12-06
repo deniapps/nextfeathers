@@ -70,7 +70,6 @@ const getDraft = (originalId) => {
       },
     })
     .then((res) => {
-      // console.log(res);
       return res;
     });
 };

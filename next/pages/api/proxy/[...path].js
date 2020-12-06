@@ -9,6 +9,7 @@ const proxy = httpProxy.createProxyServer();
 export const config = {
   api: {
     bodyParser: false,
+    externalResolver: true,
   },
 };
 

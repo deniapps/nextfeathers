@@ -34,6 +34,7 @@ export default class PostInput extends React.Component {
     isError: false,
     apiError: null,
     message: "",
+    hasChanges: false,
   };
 
   static get propTypes() {
@@ -122,7 +123,7 @@ export default class PostInput extends React.Component {
       [name]: val,
     };
 
-    this.setState({ data: newInputs });
+    this.setState({ data: newInputs, hasChanges: true });
   };
 
   // custom action - when ckeditor upload a image, auto add feature image
@@ -253,13 +254,16 @@ export default class PostInput extends React.Component {
         error = true;
       }
     }
-    this.setState({
-      isLoading: false,
-      isError: error,
-      message: newMessage,
-    });
+    // only run when error, otherise, the page is redirected, which also prevent auto save from running
+    if (error) {
+      this.setState({
+        isLoading: false,
+        isError: error,
+        message: newMessage,
+      });
 
-    this.clearMessage(3000);
+      this.clearMessage(3000);
+    }
   };
 
   /**
@@ -273,7 +277,7 @@ export default class PostInput extends React.Component {
    */
 
   onSaveDraft = async () => {
-    if (this.state.isLoading) {
+    if (this.state.isLoading || !this.state.hasChanges) {
       return; //stop auto saving when it's loading, i.e. publishing.
     }
 
@@ -371,6 +375,7 @@ export default class PostInput extends React.Component {
     this.setState({
       isLoading: false,
       message: newMessage,
+      hasChanges: false,
     });
 
     this.clearMessage(3000);

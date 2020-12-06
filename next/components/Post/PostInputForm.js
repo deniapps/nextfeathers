@@ -42,12 +42,21 @@ const PostInputForm = (props) => {
           autoGenerateFeatureImage={props.autoGenerateFeatureImage}
         />
       ))}
-      <Button onClick={props.onSaveDraft}>Save Draft</Button>
-      <Button floated="right" primary onClick={props.onPublish}>
+      <Button disabled={props.isLoading} onClick={props.onSaveDraft}>
+        Save Draft
+      </Button>
+      <Button
+        disabled={props.isLoading}
+        floated="right"
+        primary
+        onClick={props.onPublish}
+      >
         Publish
       </Button>
       <Link href="/dashboard/posts">
-        <Button color="red">Cancel</Button>
+        <Button disabled={props.isLoading} color="red">
+          Back
+        </Button>
       </Link>
       {(props.message || props.isLoading) && (
         <DNAMessage message={props.message} type={type} />

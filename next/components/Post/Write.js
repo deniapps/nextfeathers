@@ -51,8 +51,8 @@ export default function Write() {
     return true;
   };
 
-  useEffect(() => {
-    fetchData();
+  useEffect(async () => {
+    await fetchData();
   }, [id]);
 
   return (
