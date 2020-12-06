@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
+import IdleTimer from "react-idle-timer";
 import _ from "lodash";
 import Router from "next/router";
 import shortid from "shortid";
@@ -17,12 +18,14 @@ import {
   checkSlug,
 } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
-import { titleCase, slugify, debounce } from "../../helpers/common";
+import { titleCase, slugify } from "../../helpers/common";
 
 //Headps, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
 
 export default class PostInput extends React.Component {
   _isMounted = false;
+  _idleTimer = null;
+  _msgTimer = null;
   state = {
     fileName: null,
     data: this.props.data ? this.props.data : {},
@@ -42,6 +45,7 @@ export default class PostInput extends React.Component {
   }
 
   async componentDidMount() {
+    console.log("MOUNTING");
     this._isMounted = true;
     const ret = await getTags();
 
@@ -63,11 +67,15 @@ export default class PostInput extends React.Component {
   }
 
   componentWillUnmount() {
+    console.log("UNMOUNTING");
     this._isMounted = false;
+    if (this._msgTimer) {
+      clearTimeout(this._msgTimer);
+    }
   }
 
   clearMessage = (ms) => {
-    setTimeout(() => {
+    this._msgTimer = setTimeout(() => {
       this.setState({
         message: "",
       });
@@ -96,10 +104,11 @@ export default class PostInput extends React.Component {
   };
 
   updateInput = async (key, value) => {
-    if (!this.debouncedFn) {
-      this.debouncedFn = debounce(this.onSaveDraft, 10000);
-    }
-    this.debouncedFn();
+    // autoSave on idel instead
+    // if (!this.debouncedFn) {
+    //   this.debouncedFn = debounce(this.onSaveDraft, 10000);
+    // }
+    // this.debouncedFn();
 
     let name = key;
     let val = value;
@@ -378,6 +387,13 @@ export default class PostInput extends React.Component {
   render() {
     return (
       <Container text style={{ marginBottom: "40px" }}>
+        <IdleTimer
+          ref={(ref) => {
+            this.idleTimer = ref;
+          }}
+          timeout={1000 * 3}
+          onIdle={this.onSaveDraft}
+        />
         {this.state.apiError && <APIError error={this.state.apiError} />}
         <PostInputForm
           handleChange={this.handleChange}

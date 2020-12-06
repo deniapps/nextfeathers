@@ -1,8 +1,8 @@
 import Layout from "../../components/Layout";
+import { useEffect } from "react";
+import Prism from "prismjs";
 
 import { Header } from "semantic-ui-react";
-
-import Highlight from "react-highlight";
 import Codepen from "react-codepen-embed";
 
 const code1 = `document.body.innerHTML += \`<div class="dnx-modal-overlay" id="dnx-modal-overlay"></div>
@@ -42,6 +42,10 @@ const seoData = {
 };
 
 const AppendHTML = () => {
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   return (
     <Layout seoData={seoData}>
       <Header as="h3">
@@ -51,7 +55,9 @@ const AppendHTML = () => {
       <p>
         Sometimes, we want to add a new DOM element to the HTML body
         dynamically, for example, add a popup Modal, like this: <br />
-        <Highlight className="javascript">{code1}</Highlight>
+        <pre>
+          <code className="language-js">{code1}</code>
+        </pre>
       </p>
 
       <p>
@@ -65,7 +71,9 @@ const AppendHTML = () => {
       <p>
         The correct way to do this is using{" "}
         <code>document.body.appendChild(Ele)</code>, like this, <br />
-        <Highlight className="javascript">{code2}</Highlight>
+        <pre>
+          <code className="language-js">{code2}</code>
+        </pre>
       </p>
 
       <Header as="h3">Codepen Demo</Header>

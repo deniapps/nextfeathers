@@ -57,9 +57,12 @@ export default function PostList() {
 
   useEffect(() => {
     fetchList(pageId);
-    setTimeout(() => {
+    let msgTimer = setTimeout(() => {
       setMessage("");
     }, 3000);
+    return () => {
+      clearTimeout(msgTimer);
+    };
   }, [pageId]);
 
   const loadMore = (e) => {

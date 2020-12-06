@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
+import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
 // import ClassicEditor from "lib/CKV5";
 import uploadFile from "lib/upload";
@@ -144,7 +144,7 @@ class CKEditor5 extends Component {
             },
           },
         }}
-        onInit={(editor) => {
+        onReady={(editor) => {
           editor.onUpload = this.props.onUpload; //append event
           // You can store the "editor" and use when it is needed.
           // console.log("Editor is ready to use!", editor);

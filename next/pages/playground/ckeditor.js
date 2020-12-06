@@ -1,8 +1,8 @@
 import Layout from "../../components/Layout";
 import { Header } from "semantic-ui-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import CKDemoCode from "../../components/Demo/CKDemoCode";
-import Highlight from "react-highlight";
+import Prism from "prismjs";
 
 // import CKEditor from "components/Common/CKEditor";
 import dynamic from "next/dynamic";
@@ -33,6 +33,10 @@ const CKEditorDemo = (props) => {
     $perfect = $nextJS + $feathersJS;</code></pre>`
   );
 
+  useEffect(() => {
+    Prism.highlightAll();
+  }, []);
+
   const handeEditorChange = (newData) => {
     setContent(newData);
   };
@@ -42,7 +46,11 @@ const CKEditorDemo = (props) => {
       <Header as="h2">CKEditor Demo</Header>
       <CKEditor value={content} onChange={handeEditorChange} />
       <Header as="h2">Source Code of the Content Above</Header>
-      <Highlight className="html">{content}</Highlight>
+      {/* <Highlight className="html">{content}</Highlight> */}
+      <pre>
+        <code className="language-js">{content}</code>
+      </pre>
+
       <CKDemoCode {...props} />
     </Layout>
   );

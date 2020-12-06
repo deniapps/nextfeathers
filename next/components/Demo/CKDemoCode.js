@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import { List } from "semantic-ui-react";
-import Highlight from "react-highlight";
+
 import PropTypes from "prop-types";
 
 const CKDemoCode = (props) => {
@@ -15,13 +15,18 @@ const CKDemoCode = (props) => {
       {
         <List.Item>
           <List.Header as="h2">CKEditor Component</List.Header>
-          <Highlight className="javascript">{props.source1}</Highlight>
+          <pre>
+            <code className="language-js">{props.source1}</code>
+          </pre>
         </List.Item>
       }
       {
         <List.Item>
           <List.Header as="h2">How to Call in SSR</List.Header>
-          <Highlight className="javascript">{props.source2}</Highlight>
+
+          <pre>
+            <code className="language-js">{props.source1}</code>
+          </pre>
         </List.Item>
       }
     </List>
