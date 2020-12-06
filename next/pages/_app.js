@@ -8,9 +8,7 @@ import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
 // import "./navi.css";
-import "highlight.js/styles/nord.css";
 import "prismjs/themes/prism.css";
-import "gitalk/dist/gitalk.css";
 import "dna-responsive-nav/dist/dna-rn.css";
 // import MobileDetect from "mobile-detect";
 
