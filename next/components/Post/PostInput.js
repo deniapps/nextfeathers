@@ -20,8 +20,9 @@ import {
 import { getTags } from "../../lib/tags";
 import { titleCase, slugify } from "../../helpers/common";
 
-//Headps, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
+const IDLE_TIMEOUT = 60 * 1000; // 60 seconds
 
+//Headups, this is old style component -  if you don't like class, change it to functional (ex: PostList.js) :-)
 export default class PostInput extends React.Component {
   _isMounted = false;
   _idleTimer = null;
@@ -396,7 +397,7 @@ export default class PostInput extends React.Component {
           ref={(ref) => {
             this.idleTimer = ref;
           }}
-          timeout={1000 * 3}
+          timeout={IDLE_TIMEOUT}
           onIdle={this.onSaveDraft}
         />
         {this.state.apiError && <APIError error={this.state.apiError} />}
