@@ -15,6 +15,17 @@ export default function ContactTable() {
     });
   };
 
+  const selContact = (id) => {
+    if (selectedId === id) {
+      id = null;
+    }
+    dispatch({
+      type: "SEL_CONTACT",
+      payload: id,
+    });
+    setSelectedId(id);
+  };
+
   const onRemoveUser = () => {
     delContact(selectedId);
     setSelectedId(null); // Clear selection
@@ -23,7 +34,7 @@ export default function ContactTable() {
   const rows = state.contacts.map((contact) => (
     <Table.Row
       key={contact.id}
-      onClick={() => setSelectedId(contact.id)}
+      onClick={() => selContact(contact.id)}
       active={contact.id === selectedId}
     >
       <Table.Cell>{contact.id}</Table.Cell>

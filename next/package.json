@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^2.1.0",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "ckeditor5-build-classic-dna": "^1.0.11",
     "cookies": "^0.8.0",
@@ -33,8 +33,8 @@
     "http-proxy": "^1.18.1",
     "jwt-decode": "^3.1.2",
     "mobile-detect": "^1.4.4",
-    "next": "^10.0.3",
-    "prismjs": "^1.22.0",
+    "next": "^10.0.4",
+    "prismjs": "^1.23.0",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",
     "react-codepen-embed": "^1.0.2",
@@ -44,13 +44,13 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.1",
     "shortid": "^2.2.16",
-    "sweetalert2": "^10.11.1",
-    "uuid": "^8.3.1"
+    "sweetalert2": "^10.12.7",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.15.0",
-    "eslint-plugin-react": "^7.21.5",
+    "eslint": "^7.17.0",
+    "eslint-plugin-react": "^7.22.0",
     "file-loader": "^6.2.0",
     "url-loader": "^4.1.1"
   },

@@ -21,6 +21,7 @@ const initialState = {
       email: "clark@metropolitan.com",
     },
   ],
+  selectedId: null,
   loading: false,
   error: null,
 };
@@ -32,12 +33,26 @@ const reducer = (state, action) => {
         ...state,
         contacts: [...state.contacts, action.payload],
       };
+    case "UPDATE_CONTACT": {
+      const newContact = state.contacts.map((item) => {
+        if (item.id === action.payload.id) {
+          return action.payload;
+        }
+        return item;
+      });
+      return {
+        ...state,
+        contacts: newContact,
+        selectedId: null,
+      };
+    }
     case "DEL_CONTACT":
       return {
         ...state,
         contacts: state.contacts.filter(
           (contact) => contact.id !== action.payload
         ),
+        selectedId: null,
       };
     case "START":
       return {
@@ -48,6 +63,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         loading: false,
+      };
+    case "SEL_CONTACT":
+      return {
+        ...state,
+        selectedId: action.payload,
       };
     default:
       throw new Error();
