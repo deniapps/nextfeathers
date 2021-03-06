@@ -65,7 +65,7 @@ const Post = (props) => {
         {process.env.NEXT_PUBLIC_DISQUS &&
           process.env.NEXT_PUBLIC_DISQUS === "on" && (
             <DiscussionEmbed
-              shortname="deniapps"
+              shortname={process.env.NEXT_PUBLIC_DISQUS}
               config={{
                 url: canonical,
                 identifier: props.blog._id,
