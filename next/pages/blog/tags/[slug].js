@@ -45,10 +45,10 @@ export async function getServerSideProps(context) {
   const tagResult = await getTagBySlug(slug);
   let errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
   if (errorCode === 0) {
-    if (tagResult.data.total === 0) {
+    if (tagResult.total === 0) {
       errorCode = 404;
     } else {
-      tagData = tagResult.data.data[0];
+      tagData = tagResult.data[0];
       const result = await getPublicPostsByTag(slug);
       errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
       if (!errorCode) {

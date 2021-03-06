@@ -65,7 +65,6 @@ const request = function (options) {
     return Promise.reject(error.response || error.message);
   };
 
-  console.log("OPT", options);
   return client(options).then(onSuccess).catch(onError);
 };
 

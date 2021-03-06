@@ -89,7 +89,7 @@ const Sitemap = () => {};
 Sitemap.getInitialProps = async ({ res }) => {
   const blogPosts = await getAllPublicPosts();
   res.setHeader("Content-Type", "text/xml");
-  res.write(sitemapXml(blogPosts.data.data));
+  res.write(sitemapXml(blogPosts.data));
   res.end();
 };
 

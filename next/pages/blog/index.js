@@ -40,7 +40,7 @@ export default function Posts(props) {
       const result = await getPublicPosts(pageId);
       //TO-DO: check status for error handling, and add pagination if needed.
       const newList = list.concat(result.data);
-      if (result.data.total > newList.length) {
+      if (result.total > newList.length) {
         setShowLoadMore(true);
       } else {
         setShowLoadMore(false);
@@ -90,7 +90,7 @@ export async function getServerSideProps() {
   try {
     const result = await getPublicPosts();
     posts = result.data;
-    showLoadMore = result.data.total > pageSize ? true : false;
+    showLoadMore = result.total > pageSize ? true : false;
   } catch (error) {
     console.log(error);
   }

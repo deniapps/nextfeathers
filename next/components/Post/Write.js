@@ -32,8 +32,8 @@ export default function Write() {
       let data = {};
       //check if draft exists, if so, restore it
       const draftResult = await getDraft(id);
-      if (draftResult && draftResult.data.total > 0) {
-        data = draftResult.data.data[0];
+      if (draftResult && draftResult.total > 0) {
+        data = draftResult.data[0];
       } else {
         const result = await getPost(id);
         // console.log("RESUTL", result);
@@ -74,7 +74,7 @@ export default function Write() {
           >
             <Header.Content>{data.title}</Header.Content>
           </Header>
-          <PostInput data={data.data} signOut={signOut} />
+          <PostInput data={data} signOut={signOut} />
         </>
       )}
     </div>

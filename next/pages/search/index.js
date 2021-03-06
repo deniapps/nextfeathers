@@ -49,7 +49,7 @@ export default function Search(props) {
         newList = result.data;
       }
 
-      if (result.data.total > newList.length) {
+      if (result.total > newList.length) {
         setShowLoadMore(true);
       } else {
         setShowLoadMore(false);
@@ -111,7 +111,7 @@ export async function getServerSideProps(context) {
     const result = await searchPublicPosts(kw);
     console.log(result);
     posts = result.data;
-    showLoadMore = result.data.total > pageSize ? true : false;
+    showLoadMore = result.total > pageSize ? true : false;
   } catch (error) {
     console.log(error);
   }

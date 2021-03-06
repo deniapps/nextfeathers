@@ -353,8 +353,8 @@ export default class PostInput extends React.Component {
         //     this.props.accessToken,
         //     this.state.data._id
         //   );
-        //   if (draft && draft.data.total > 0) {
-        //     draftId = draft.data.data[0]._id;
+        //   if (draft && draft.total > 0) {
+        //     draftId = draft.data[0]._id;
         //     await updatePost(this.props.accessToken, draftId, postDataInput);
         //   }
         // }
