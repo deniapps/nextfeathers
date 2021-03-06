@@ -2,7 +2,7 @@ import axios from "axios";
 
 const createPost = (data) => {
   return axios
-    .post("/api/proxy/posts", data, {
+    .post(process.env.NEXT_PUBLIC_API_HOST + "/posts", data, {
       headers: {
         "content-type": "application/json",
       },
@@ -15,7 +15,7 @@ const createPost = (data) => {
 // use patch to update certain filed, and get updatedBy automatically updated.
 const updatePost = (id, data) => {
   return axios
-    .patch("/api/proxy/posts/" + id, data, {
+    .patch(process.env.NEXT_PUBLIC_API_HOST + "/posts", +id, data, {
       headers: {
         "content-type": "application/json",
       },
@@ -28,7 +28,7 @@ const updatePost = (id, data) => {
 //use put to publish post at the first, so we can control the createdAt.
 const publishPost = (id, data) => {
   return axios
-    .put("/api/proxy/posts/" + id, data, {
+    .put(process.env.NEXT_PUBLIC_API_HOST + "/posts/", +id, data, {
       headers: {
         "content-type": "application/json",
       },
@@ -45,7 +45,8 @@ const getPosts = (pageId) => {
   const skip = pageId * pageSize;
   return axios
     .get(
-      "/api/proxy/posts?$sort[createdAt]=-1" +
+      process.env.NEXT_PUBLIC_API_HOST +
+        "/posts?$sort[createdAt]=-1" +
         "&$limit=" +
         pageSize +
         "&$skip=" +
@@ -64,11 +65,16 @@ const getPosts = (pageId) => {
 
 const getDraft = (originalId) => {
   return axios
-    .get("/api/proxy/posts/?isDeleted=0&originalId=" + originalId, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
+    .get(
+      process.env.NEXT_PUBLIC_API_HOST +
+        "/posts/?isDeleted=0&originalId=" +
+        originalId,
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
     .then((res) => {
       return res;
     });
@@ -76,7 +82,7 @@ const getDraft = (originalId) => {
 
 const getPost = (id) => {
   return axios
-    .get("/api/proxy/posts/" + id, {
+    .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
       headers: {
         "content-type": "application/json",
       },
@@ -91,7 +97,7 @@ const getPost = (id) => {
 const deletePost = (id) => {
   return axios
     .patch(
-      "/api/proxy/posts/" + id,
+      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
       {
         isDeleted: true,
       },
@@ -111,7 +117,7 @@ const deletePost = (id) => {
 const undeletePost = (id) => {
   return axios
     .patch(
-      "/api/proxy/posts/" + id,
+      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
       {
         isDeleted: false,
       },
@@ -130,7 +136,7 @@ const undeletePost = (id) => {
 // permanently delete
 const permanentlyDeletePost = (id) => {
   return axios
-    .delete("/api/proxy/posts/" + id, {
+    .delete(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
       headers: {
         "content-type": "application/json",
       },
@@ -150,11 +156,16 @@ const permanentlyDeletePost = (id) => {
  */
 const checkSlug = (slug) => {
   return axios
-    .get("/api/proxy/posts/?isDeleted=0&isDraft=0&slug=" + slug, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
+    .get(
+      process.env.NEXT_PUBLIC_API_HOST +
+        "/posts/?isDeleted=0&isDraft=0&slug=" +
+        slug,
+      {
+        headers: {
+          "content-type": "application/json",
+        },
+      }
+    )
     .then((res) => {
       if (res.status === 200) return res.data.total !== 0;
       return false;

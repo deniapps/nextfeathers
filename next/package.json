@@ -29,11 +29,10 @@
     "disqus-react": "^1.0.11",
     "dna-responsive-nav": "^1.0.12",
     "dotenv": "^8.2.0",
-    "gitalk": "^1.7.0",
     "http-proxy": "^1.18.1",
     "jwt-decode": "^3.1.2",
     "mobile-detect": "^1.4.4",
-    "next": "^10.0.7",
+    "next": "^10.0.8",
     "prismjs": "^1.23.0",
     "react": "^17.0.1",
     "react-chartjs-2": "^2.11.1",
@@ -49,7 +48,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.20.0",
+    "eslint": "^7.21.0",
     "eslint-plugin-react": "^7.22.0",
     "file-loader": "^6.2.0",
     "url-loader": "^4.1.1"
