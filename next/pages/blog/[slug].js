@@ -21,7 +21,8 @@ const Post = (props) => {
   const desc = props.blog.summary;
 
   const summary = props.blog.summary;
-  const canonical = process.env.NEXT_PUBLIC_BLOG_BASEURL + props.blog.slug;
+  const canonical =
+    process.env.NEXT_PUBLIC_BLOG_BASEURL + "/" + props.blog.slug;
   const image = props.blog.image;
   const content = props.blog.content;
   const author = props.blog.author
