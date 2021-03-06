@@ -1,29 +1,17 @@
-import axios from "axios";
+import agent from "./agent";
 
 const getTags = () => {
-  return axios
-    .get(process.env.NEXT_PUBLIC_API_HOST + "/tags?$sort[name]", {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      return res;
-    });
+  return agent({
+    method: "get",
+    url: "/tags?$sort[name]",
+  });
 };
 
 const getTagBySlug = (tagSlug) => {
-  return axios
-    .get(process.env.NEXT_PUBLIC_API_HOST + "/tags?slug=" + tagSlug, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      return res;
-    });
+  return agent({
+    method: "get",
+    url: "/tags?slug=" + tagSlug,
+  });
 };
 
 export { getTags, getTagBySlug };

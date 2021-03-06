@@ -38,7 +38,7 @@ export default function PostList() {
     try {
       const result = await getPosts(pageId);
       //TO-DO: check status for error handling, and add pagination if needed.
-      const newList = list.concat(result.data.data);
+      const newList = list.concat(result.data);
       if (result.data.total > newList.length) {
         setShowMore(true);
       } else {

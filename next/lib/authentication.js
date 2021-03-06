@@ -1,25 +1,24 @@
-import axios from "axios";
+import agent from "./agent";
 
 export const getToken = async (username, password) => {
-  const res = await axios.post(
-    process.env.NEXT_PUBLIC_API_HOST + "/authentication",
-    {
+  return agent({
+    method: "post",
+    url: "/authentication",
+    data: {
       strategy: "local",
       email: username,
       password: password,
-    }
-  );
-  console.log(res);
-  return res;
+    },
+  });
 };
 
 export const renewJWT = async (accessToken) => {
-  const res = await axios.post(
-    process.env.NEXT_PUBLIC_API_HOST + "/authentication",
-    {
+  return agent({
+    method: "post",
+    url: "/authentication",
+    data: {
       strategy: "jwt",
       accessToken: accessToken,
-    }
-  );
-  return res;
+    },
+  });
 };

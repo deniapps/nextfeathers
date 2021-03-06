@@ -52,7 +52,7 @@ export async function getServerSideProps(context) {
       const result = await getPublicPostsByTag(slug);
       errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
       if (!errorCode) {
-        posts = result.data.data;
+        posts = result.data;
       }
     }
   }

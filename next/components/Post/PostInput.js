@@ -51,7 +51,7 @@ export default class PostInput extends React.Component {
     this._isMounted = true;
     const ret = await getTags();
 
-    const allTags = ret.data.data;
+    const allTags = ret.data;
     const tagsInputOptions = allTags.map((item) => ({
       value: item.slug,
       text: item.name,

@@ -44,9 +44,9 @@ export default function Search(props) {
       let newList = [];
 
       if (pageId > 0) {
-        newList = list.concat(result.data.data);
+        newList = list.concat(result.data);
       } else {
-        newList = result.data.data;
+        newList = result.data;
       }
 
       if (result.data.total > newList.length) {
@@ -110,7 +110,7 @@ export async function getServerSideProps(context) {
   try {
     const result = await searchPublicPosts(kw);
     console.log(result);
-    posts = result.data.data;
+    posts = result.data;
     showLoadMore = result.data.total > pageSize ? true : false;
   } catch (error) {
     console.log(error);

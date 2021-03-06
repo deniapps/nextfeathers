@@ -1,41 +1,29 @@
-import axios from "axios";
+import agent from "./agent";
 
 const createPost = (data) => {
-  return axios
-    .post(process.env.NEXT_PUBLIC_API_HOST + "/posts", data, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      return res;
-    });
+  return agent({
+    method: "post",
+    url: "/posts",
+    data,
+  });
 };
 
 // use patch to update certain filed, and get updatedBy automatically updated.
 const updatePost = (id, data) => {
-  return axios
-    .patch(process.env.NEXT_PUBLIC_API_HOST + "/posts", +id, data, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      return res;
-    });
+  return agent({
+    method: "patch",
+    url: "/posts",
+    data,
+  });
 };
 
 //use put to publish post at the first, so we can control the createdAt.
 const publishPost = (id, data) => {
-  return axios
-    .put(process.env.NEXT_PUBLIC_API_HOST + "/posts/", +id, data, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      return res;
-    });
+  return agent({
+    method: "put",
+    url: "/posts/" + id,
+    data,
+  });
 };
 
 const getPosts = (pageId) => {
@@ -43,108 +31,56 @@ const getPosts = (pageId) => {
     ? process.env.NEXT_PUBLIC_PAGE_SIZE
     : 20;
   const skip = pageId * pageSize;
-  return axios
-    .get(
-      process.env.NEXT_PUBLIC_API_HOST +
-        "/posts?$sort[createdAt]=-1" +
-        "&$limit=" +
-        pageSize +
-        "&$skip=" +
-        skip,
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      // console.log(res);
-      return res;
-    });
+
+  return agent({
+    method: "get",
+    url:
+      "/posts?$sort[createdAt]=-1" + "&$limit=" + pageSize + "&$skip=" + skip,
+  });
 };
 
 const getDraft = (originalId) => {
-  return axios
-    .get(
-      process.env.NEXT_PUBLIC_API_HOST +
-        "/posts/?isDeleted=0&originalId=" +
-        originalId,
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      return res;
-    });
+  return agent({
+    method: "get",
+    url: "/posts/?isDeleted=0&originalId=" + originalId,
+  });
 };
 
 const getPost = (id) => {
-  return axios
-    .get(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      // console.log(res);
-      return res;
-    });
+  return agent({
+    method: "get",
+    url: "/posts/" + id,
+  });
 };
 
 // soft delete
 const deletePost = (id) => {
-  return axios
-    .patch(
-      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
-      {
-        isDeleted: true,
-      },
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      // console.log(res);
-      return res;
-    });
+  return agent({
+    method: "patch",
+    url: "/posts" + id,
+    data: {
+      isDeleted: true,
+    },
+  });
 };
 
 //undelete
 const undeletePost = (id) => {
-  return axios
-    .patch(
-      process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id,
-      {
-        isDeleted: false,
-      },
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      // console.log(res);
-      return res;
-    });
+  return agent({
+    method: "patch",
+    url: "/posts" + id,
+    data: {
+      isDeleted: false,
+    },
+  });
 };
 
 // permanently delete
 const permanentlyDeletePost = (id) => {
-  return axios
-    .delete(process.env.NEXT_PUBLIC_API_HOST + "/posts/" + id, {
-      headers: {
-        "content-type": "application/json",
-      },
-    })
-    .then((res) => {
-      // console.log(res);
-      return res;
-    });
+  return agent({
+    method: "delete",
+    url: "/posts" + id,
+  });
 };
 
 /**
@@ -155,21 +91,10 @@ const permanentlyDeletePost = (id) => {
  * True means exists
  */
 const checkSlug = (slug) => {
-  return axios
-    .get(
-      process.env.NEXT_PUBLIC_API_HOST +
-        "/posts/?isDeleted=0&isDraft=0&slug=" +
-        slug,
-      {
-        headers: {
-          "content-type": "application/json",
-        },
-      }
-    )
-    .then((res) => {
-      if (res.status === 200) return res.data.total !== 0;
-      return false;
-    });
+  return agent({
+    method: "get",
+    url: "/posts/?isDeleted=0&isDraft=0&slug=" + slug,
+  });
 };
 
 export {

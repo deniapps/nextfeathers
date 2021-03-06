@@ -34,7 +34,7 @@ export async function getServerSideProps() {
   let tags = [];
   try {
     const result = await getPublicTags();
-    tags = result.data.data;
+    tags = result.data;
   } catch (error) {
     console.log(error);
   }

@@ -1,20 +1,14 @@
-import axios from "axios";
-// import getConfig from "next/config";
-// const { publicRuntimeConfig } = getConfig();
+import agent from "./agent";
 
-const modeling = inputData => {
+const modeling = (inputData) => {
   const rawData = {
-    input: JSON.stringify(inputData)
+    input: JSON.stringify(inputData),
   };
-  return axios
-    .post(process.env.NEXT_PUBLIC_API_HOST + "/model", rawData, {
-      headers: {
-        "content-type": "application/json"
-      }
-    })
-    .then(res => {
-      return res.data;
-    });
+  return agent({
+    method: "post",
+    url: "/model",
+    data: rawData,
+  });
 };
 
 export default modeling;

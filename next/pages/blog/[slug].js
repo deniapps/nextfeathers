@@ -16,7 +16,7 @@ import UserContext from "components/Context/UserContext";
 const Post = (props) => {
   const { user } = useContext(UserContext);
   const id = props.blog._id;
-  console.log(id);
+
   const title = props.blog.title;
   const desc = props.blog.summary;
 
@@ -65,7 +65,7 @@ const Post = (props) => {
         {process.env.NEXT_PUBLIC_DISQUS &&
           process.env.NEXT_PUBLIC_DISQUS === "on" && (
             <DiscussionEmbed
-              shortname={process.env.NEXT_PUBLIC_DISQUS}
+              shortname={process.env.NEXT_PUBLIC_DISQUS_SHORTNAME}
               config={{
                 url: canonical,
                 identifier: props.blog._id,
@@ -88,7 +88,7 @@ export async function getServerSideProps(context) {
   const result = await getPublicPost(slug);
 
   return {
-    props: { blog: result.data.data[0] }, // will be passed to the page component as props
+    props: { blog: result.data[0] }, // will be passed to the page component as props
   };
 }
 

@@ -82,7 +82,7 @@ const Login = () => {
     if (username != "" && password != "") {
       try {
         const ret = await getToken(username, password);
-        signIn(ret.data.user);
+        signIn(ret.user, ret.accessToken); //save token
       } catch (error) {
         console.log(error);
         setMessage("Invalid Login");
