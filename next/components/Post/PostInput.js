@@ -407,6 +407,7 @@ export default class PostInput extends React.Component {
           }}
           timeout={IDLE_TIMEOUT}
           onIdle={this.onSaveDraft}
+          onActive={this.checkLogin}
         />
         {this.state.fatalError && <FatalError error={this.state.fatalError} />}
         <PostInputForm
