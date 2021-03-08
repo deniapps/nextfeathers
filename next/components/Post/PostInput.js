@@ -8,7 +8,7 @@ import shortid from "shortid";
 // import Swal from "sweetalert2";
 
 import PostInputForm from "./PostInputForm";
-import APIError from "components/Common/HandleError";
+import FatalError from "components/Common/HandleError";
 
 import {
   createPost,
@@ -18,7 +18,7 @@ import {
   checkSlug,
 } from "../../lib/posts";
 import { getTags } from "../../lib/tags";
-import { titleCase, slugify } from "../../helpers/common";
+import { titleCase, slugify, getCurrentUser } from "../../helpers/common";
 
 const IDLE_TIMEOUT = 60 * 1000; // 60 seconds
 
@@ -33,7 +33,7 @@ export default class PostInput extends React.Component {
     allOptions: { tags: [] },
     isLoading: false,
     isError: false,
-    apiError: null,
+    fatalError: null,
     message: "",
     hasChanges: false,
   };
@@ -106,7 +106,7 @@ export default class PostInput extends React.Component {
   };
 
   updateInput = async (key, value) => {
-    // autoSave on idel instead
+    // autoSave on idle function instead
     // if (!this.debouncedFn) {
     //   this.debouncedFn = debounce(this.onSaveDraft, 10000);
     // }
@@ -231,7 +231,7 @@ export default class PostInput extends React.Component {
         try {
           await permanentlyDeletePost(this.state.data.originalId);
         } catch (err) {
-          this.setState({ apiError: err });
+          this.setState({ fatalError: err });
           newMessage = "Something went wrong!";
           error = true;
         }
@@ -250,7 +250,7 @@ export default class PostInput extends React.Component {
           "/dashboard/posts"
         );
       } catch (err) {
-        this.setState({ apiError: err });
+        this.setState({ fatalError: err });
         newMessage = "Something went wrong!";
         error = true;
       }
@@ -267,6 +267,14 @@ export default class PostInput extends React.Component {
     }
   };
 
+  checkLogin = () => {
+    const deniUser = getCurrentUser();
+    if (!deniUser) {
+      const err = "401";
+      this.setState({ fatalError: err });
+    }
+  };
+
   /**
    * case1: new draft, i.e. not from editting a existing post - do create without original ID
    *  case1a: save draft after case1 - edit existing draft, but not pubish the post yet - so follow case3
@@ -279,7 +287,7 @@ export default class PostInput extends React.Component {
 
   onSaveDraft = async () => {
     if (this.state.isLoading || !this.state.hasChanges) {
-      return; //stop auto saving when it's loading, i.e. publishing.
+      return; //stop auto saving when it's loading, i.e. publishing. or nothing changed
     }
 
     // if (isExpired(this.props.accessToken)) {
@@ -371,7 +379,7 @@ export default class PostInput extends React.Component {
       } else await updatePost(this.state.data._id, postDataInput);
     } catch (err) {
       newMessage = "Something wrong!";
-      this.setState({ isError: true, apiError: err });
+      this.setState({ isError: true, fatalError: err });
     }
     this.setState({
       isLoading: false,
@@ -400,7 +408,7 @@ export default class PostInput extends React.Component {
           timeout={IDLE_TIMEOUT}
           onIdle={this.onSaveDraft}
         />
-        {this.state.apiError && <APIError error={this.state.apiError} />}
+        {this.state.fatalError && <FatalError error={this.state.fatalError} />}
         <PostInputForm
           handleChange={this.handleChange}
           onPublish={this.onPublish}

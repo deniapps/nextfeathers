@@ -17,6 +17,28 @@ const isExpired = (accessToken, offset = 0) => {
   return true;
 };
 
+const getCurrentUser = () => {
+  const deniUser = localStorage.getItem(process.env.NEXT_PUBLIC_USER_LC_KEY);
+  console.log("deniUser", deniUser);
+
+  let currentUser = null;
+
+  if (deniUser && deniUser !== "undefined") {
+    const deniUserObj = JSON.parse(deniUser);
+    // if not accessToken or the token is expired, then remove localStorage
+    if (!deniUserObj.accessToken || isExpired(deniUserObj.accessToken)) {
+      localStorage.removeItem(process.env.NEXT_PUBLIC_USER_LC_KEY);
+    } else {
+      currentUser = {
+        user: deniUserObj.firstName ? deniUserObj.firstName : "Unnamed",
+        accessToken: deniUserObj.accessToken,
+      };
+    }
+  }
+
+  return currentUser;
+};
+
 const titleCase = (str) => {
   return str
     .toLowerCase()
@@ -69,4 +91,4 @@ const dnaParser = (htmlCode) => {
   );
 };
 
-export { isExpired, titleCase, slugify, debounce, dnaParser };
+export { isExpired, titleCase, slugify, debounce, dnaParser, getCurrentUser };

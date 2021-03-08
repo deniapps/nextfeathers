@@ -44,6 +44,7 @@
     "semantic-ui-react": "^2.0.3",
     "shortid": "^2.2.16",
     "sweetalert2": "^10.15.5",
+    "sweetalert2-react-content": "^3.3.1",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

@@ -4,7 +4,7 @@ import UserContext from "components/Context/UserContext";
 import { Header, Loader, Segment } from "semantic-ui-react";
 import PostInput from "components/Post/PostInput";
 import { getPost, getDraft } from "lib/posts";
-import APIError from "components/Common/HandleError";
+import FatalError from "components/Common/HandleError";
 // import { renewJWT } from "lib/authentication";
 
 export default function Write() {
@@ -12,8 +12,8 @@ export default function Write() {
   const { id } = router.query;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [apiError, setApiError] = useState(null);
-  const [data, setData] = useState([]);
+  const [fatalError, setFatalError] = useState(null);
+  const [data, setData] = useState({});
 
   const { signOut } = useContext(UserContext);
 
@@ -26,7 +26,7 @@ export default function Write() {
       });
       return true;
     }
-    setApiError(null);
+    setFatalError(null);
     setIsLoading(true);
     try {
       let data = {};
@@ -45,7 +45,7 @@ export default function Write() {
         data,
       });
     } catch (err) {
-      setApiError(err);
+      setFatalError(err);
     }
     setIsLoading(false);
     return true;
@@ -57,7 +57,7 @@ export default function Write() {
 
   return (
     <div>
-      {apiError && <APIError error={apiError} />}
+      {fatalError && <FatalError error={fatalError} />}
       {isLoading ? (
         <Segment textAlign="center">
           <Loader inline active>

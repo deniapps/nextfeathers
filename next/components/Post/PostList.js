@@ -18,13 +18,13 @@ import {
 } from "lib/posts";
 import PostPanel from "./PostPanel";
 import DNAMessage from "components/Common/Message";
-import APIError from "components/Common/HandleError";
+import FatalError from "components/Common/HandleError";
 
 //List => Panel => ItemView
 
 export default function PostList() {
   const [isLoading, setIsLoading] = useState(false);
-  const [apiError, setApiError] = useState(false);
+  const [fatalError, setFatalError] = useState(false);
   const [list, setList] = useState([]);
   const [pageId, setPageId] = useState(0);
   const [showMore, setShowMore] = useState(false);
@@ -33,7 +33,7 @@ export default function PostList() {
   const [message, setMessage] = useState(router.query.message);
 
   const fetchList = async (pageId) => {
-    setApiError(null);
+    setFatalError(null);
     setIsLoading(true);
     try {
       const result = await getPosts(pageId);
@@ -49,7 +49,7 @@ export default function PostList() {
       // console.log(err.response.status);
       // if (err.response && err.response.status === 401) {
       // }
-      setApiError(err);
+      setFatalError(err);
     }
     setIsLoading(false);
     return true;
@@ -104,8 +104,8 @@ export default function PostList() {
 
   return (
     <div>
-      {apiError && <APIError error={apiError} />}
-      {!apiError && (
+      {fatalError && <FatalError error={fatalError} />}
+      {!fatalError && (
         <>
           <Header
             as="h2"

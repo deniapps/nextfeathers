@@ -9,6 +9,7 @@ import "./app.css";
 // import "./navi.css";
 import "prismjs/themes/prism.css";
 import "dna-responsive-nav/dist/dna-rn.css";
+import { getCurrentUser } from "helpers/common";
 // import MobileDetect from "mobile-detect";
 
 const NEXT_PUBLIC_USER_LC_KEY = process.env.NEXT_PUBLIC_USER_LC_KEY;
@@ -25,30 +26,42 @@ export default class deniApp extends App {
   };
 
   componentDidMount = async () => {
-    const deniUser = localStorage.getItem(NEXT_PUBLIC_USER_LC_KEY);
+    const deniUser = getCurrentUser();
 
-    console.log("deniUser", deniUser);
+    // const deniUser = localStorage.getItem(NEXT_PUBLIC_USER_LC_KEY);
 
-    if (deniUser && deniUser !== "undefined") {
-      //TO-DO: allow to use proxy
-      // const userStatus = await axios
-      //   .get("/api/check-login")
-      //   .then((response) => response.data);
-      // if (userStatus.loggedIn) {
-      //   const deniUserObj = JSON.parse(deniUser);
-      //   this.setState({
-      //     user: deniUserObj.firstName ? deniUserObj.firstName : "Unnamed",
-      //   });
-      // }
+    // console.log("deniUser", deniUser);
 
-      const deniUserObj = JSON.parse(deniUser);
-      this.setState({
-        user: deniUserObj.firstName ? deniUserObj.firstName : "Unnamed",
-        accessToken: deniUserObj.accessToken,
-      });
-    }
+    // if (deniUser && deniUser !== "undefined") {
+    //   //TO-DO: allow to use proxy
+    //   // const userStatus = await axios
+    //   //   .get("/api/check-login")
+    //   //   .then((response) => response.data);
+    //   // if (userStatus.loggedIn) {
+    //   //   const deniUserObj = JSON.parse(deniUser);
+    //   //   this.setState({
+    //   //     user: deniUserObj.firstName ? deniUserObj.firstName : "Unnamed",
+    //   //   });
+    //   // }
+
+    //   const deniUserObj = JSON.parse(deniUser);
+    //   // if not accessToken or the token is expired, then remove localStorage
+    //   if (!deniUserObj.accessToken || isExpired(deniUserObj.accessToken)) {
+    //     localStorage.removeItem(NEXT_PUBLIC_USER_LC_KEY);
+    //   } else {
+    //     this.setState({
+    //       user: deniUserObj.firstName ? deniUserObj.firstName : "Unnamed",
+    //       accessToken: deniUserObj.accessToken,
+    //     });
+    //   }
+    // }
+    let user = deniUser ? deniUser.user : null;
+    let accessToken = deniUser ? deniUser.accessToken : null;
+
     this.setState({
       isReady: true,
+      user,
+      accessToken,
     });
 
     Router.events.on("routeChangeComplete", this.handleRouteChange);
