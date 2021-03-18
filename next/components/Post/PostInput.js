@@ -86,8 +86,8 @@ export default class PostInput extends React.Component {
 
   autoFixSlug = async (slug) => {
     let newSlug = slugify(slug);
-    const isExist = await checkSlug(newSlug);
-    if (isExist) {
+    const ret = await checkSlug(newSlug);
+    if (ret && ret.length > 0) {
       newSlug += "-" + shortid.generate().toLowerCase();
     }
     return newSlug;
