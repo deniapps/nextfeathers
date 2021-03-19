@@ -399,6 +399,7 @@ export default class PostInput extends React.Component {
   };
 
   render() {
+    console.log("CONTENT", this.state.data);
     return (
       <Container text style={{ marginBottom: "40px" }}>
         <IdleTimer

@@ -36,8 +36,8 @@ export default function Write() {
         data = draftResult.data[0];
       } else {
         const result = await getPost(id);
-        // console.log("RESUTL", result);
-        data = result.data;
+        console.log("RESUTL", result);
+        data = result;
       }
 
       setData({
@@ -74,7 +74,7 @@ export default function Write() {
           >
             <Header.Content>{data.title}</Header.Content>
           </Header>
-          <PostInput data={data} signOut={signOut} />
+          <PostInput data={data.data} signOut={signOut} />
         </>
       )}
     </div>

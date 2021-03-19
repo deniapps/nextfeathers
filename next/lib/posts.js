@@ -12,7 +12,7 @@ const createPost = (data) => {
 const updatePost = (id, data) => {
   return agent({
     method: "patch",
-    url: "/posts",
+    url: "/posts/" + id,
     data,
   });
 };
