@@ -24,7 +24,7 @@
     "@ckeditor/ckeditor5-react": "^2.1.0",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
-    "ckeditor5-build-classic-dna": "^1.0.15",
+    "ckeditor5-build-classic-dna": "^1.0.16",
     "cookies": "^0.8.0",
     "disqus-react": "^1.0.11",
     "dna-responsive-nav": "^1.0.12",
