@@ -166,7 +166,6 @@ const UnsplashPhotos = () => {
           ref={queryInputRef}
           placeholder="Search Photos on Unsplash"
           type="search"
-          className="input"
         />
       </Form>
 

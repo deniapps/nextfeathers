@@ -6,6 +6,10 @@
   display: block;
 }
 
+#dnx-unsplash-search-input {
+  font-size: 16px;
+}
+
 /* .dnx-modal input {
   background-color: #fff;
   border-color: #dbdbdb;
