@@ -1,0 +1,161 @@
+.dnx-box {
+  background-color: #fff;
+  /* border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1); */
+  color: #4a4a4a;
+  display: block;
+  padding: 3.25rem;
+}
+
+/* .dnx-modal input {
+  background-color: #fff;
+  border-color: #dbdbdb;
+  color: #363636;
+  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);
+  max-width: 100%;
+  width: 100%;
+} */
+
+.dnx-modal lable {
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.dnx-modal input {
+  margin: 0;
+  width: 100%;
+  flex: 1 0 auto;
+  outline: 0;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  text-align: left;
+  line-height: 1.21428571em;
+  padding: 0.67857143em 1em;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, 0.15);
+  color: rgba(0, 0, 0, 0.87);
+  border-radius: 0.28571429rem;
+  transition: box-shadow 0.1s ease, border-color 0.1s ease;
+  box-shadow: none;
+}
+
+.dnx-modal input:focus {
+  border-color: #85b7d9;
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.dnx-modal {
+  /* This way it could be display flex or grid or whatever also. */
+  display: block;
+
+  /* Use percentage for a large view */
+  width: 70%;
+  height: 80%;
+  position: fixed;
+  z-index: 501;
+  left: 50%;
+  top: 50%;
+
+  /* Use this for centering if unknown width/height */
+  transform: translate(-50%, -50%);
+
+  /* If known, negative margins are probably better (less chance of blurry text). */
+  /* margin: -200px 0 0 -200px; */
+
+  background: white;
+  box-shadow: 0 0 30px 5px rgba(0, 0, 0, 0.5);
+}
+.dnx-modal.closed,
+.dnx-modal-overlay.closed {
+  display: none;
+}
+
+.dnx-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 500;
+  background: rgba(0, 0, 0, 0.2);
+}
+.dnx-modal .modal-guts {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.dnx-close-button {
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  width: 28px;
+  height: 28px;
+  opacity: 0.3;
+  z-index: 600;
+}
+.dnx-close-button:hover {
+  opacity: 1;
+}
+.dnx-close-button:before,
+.dnx-close-button:after {
+  position: absolute;
+  left: 15px;
+  content: " ";
+  height: 20px;
+  width: 2px;
+  background-color: #333;
+}
+.dnx-close-button:before {
+  transform: rotate(45deg);
+}
+.dnx-close-button:after {
+  transform: rotate(-45deg);
+}
+
+.dnx-unsplash-box {
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  color: #4a4a4a;
+  display: block;
+  padding: 1.5rem;
+}
+
+.dnx-photo-grid {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  overflow: auto;
+  margin-right: -8px;
+}
+
+.dnx-modal .dnx-photo-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.dnx-photo-grid li {
+  height: 20vh;
+  -webkit-box-flex: 1;
+  flex-grow: 1;
+  margin: 0 8px 8px 0;
+}
+.dnx-photo-grid li:last-child {
+  -webkit-box-flex: 10;
+  flex-grow: 10;
+}
+.dnx-photo-grid img {
+  max-height: 100%;
+  min-width: 100%;
+  -o-object-fit: cover;
+  object-fit: cover;
+  vertical-align: bottom;
+  border-radius: 4px;
+  cursor: pointer;
+}

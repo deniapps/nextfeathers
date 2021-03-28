@@ -26,9 +26,17 @@
   {
     "_id": "playgound-01",
     "title": "ckeditor5-build-classic-dna Demo",
-    "summary": "My First NPM package :-), actually I did not do much. But I think it's helpful if you want to have inserting image url and adding code block features which do not come with default classic build. Also I will show you how to load CKEditor in NEXTJS with SSR.",
+    "summary": "My First NPM package :-) It's created on the top of official CKEditor 5 classic editor build v27.0.0. It's a CKEditor 5 Custom Build for Developer's Blog, including many features like: Insert photos Unsplash, insert Based64 image, upload image from local, add code block, etc.",
     "url": "/playground/ckeditor",
-    "updatedDate": "2020-07-13",
+    "updatedDate": "2021-03-28",
     "tags": ["next-js", "ckeditor", "ssr"]
+  },
+  {
+    "_id": "playgound-032821",
+    "title": "Photo Masonry Collage & Photo Gallery",
+    "summary": "Search photos from Unsplash, see photos in Masonry Grid, and view in Photo Gallery with a slide show",
+    "url": "/playground/photo-collage-gallery",
+    "updatedDate": "2021-03-28",
+    "tags": ["next-js", "unsplash", "photo-gallery"]
   }
 ]

@@ -9,6 +9,8 @@ import "./app.css";
 // import "./navi.css";
 import "prismjs/themes/prism.css";
 import "dna-responsive-nav/dist/dna-rn.css";
+import "./photo.css";
+
 import { getCurrentUser } from "helpers/common";
 // import MobileDetect from "mobile-detect";
 
