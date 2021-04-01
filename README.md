@@ -86,7 +86,7 @@ module.exports = {
 //Body:
 {
 	"strategy": "local",
-	"email": "admin@deniapps.com",
+  "email": "admin@deniapps.com",
   "password": "admin123$"
 }
 ```
