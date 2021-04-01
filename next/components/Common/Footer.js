@@ -1,3 +1,6 @@
+// This file is not in-use.
+// We use MiniFooter.js, but you are free to change it via Layout.js
+
 import { Grid, Header, Container, List, Segment } from "semantic-ui-react";
 
 const Footer = () => (

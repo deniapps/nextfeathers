@@ -1,4 +1,4 @@
-import { Grid, Container, Segment } from "semantic-ui-react";
+import { Grid, Container, Segment, Icon } from "semantic-ui-react";
 
 const Footer = () => (
   <Segment
@@ -13,7 +13,16 @@ const Footer = () => (
     <Container>
       <Grid inverted>
         <Grid.Row>
-          <Grid.Column id="copyRight">Deni Apps LLC - 2021</Grid.Column>
+          <Grid.Column id="copyRight">
+            Deni Apps LLC - 2021 |{" "}
+            <a
+              href="https://github.com/deniapps/nextfeathers"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icon name="github" key="userMenu-4" /> Source Code
+            </a>
+          </Grid.Column>
         </Grid.Row>
       </Grid>
     </Container>

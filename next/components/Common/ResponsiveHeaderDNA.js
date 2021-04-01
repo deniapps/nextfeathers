@@ -71,12 +71,23 @@ const Header = () => {
           </li>,
         ]}
       {isReady && !user && (
-        <li className="right">
-          <Icon disabled name="user" key="userMenu-3" />
-          <Link href="/signin">
-            <a>Login</a>
-          </Link>
-        </li>
+        <>
+          <li className="right">
+            <Icon disabled name="user" key="userMenu-3" />
+            <Link href="/signin">
+              <a>Login</a>
+            </Link>
+          </li>
+          <li>
+            <a
+              href="https://github.com/deniapps"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icon name="github" key="userMenu-4" />
+            </a>
+          </li>
+        </>
       )}
     </ul>
   );

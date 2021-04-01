@@ -74,6 +74,14 @@ select {
   border-top: 2px solid #cccccc;
 }
 
+#deniFooter a {
+  color: #000000;
+}
+
+#deniFooter a:hover {
+  color: #62dafb;
+}
+
 #copyRight {
   text-align: center;
   color: #000000;

@@ -1,3 +1,6 @@
+// This file is not in-use.
+// We use RepsonsiveHeaderDNS.js, but you are free to change it via Layout.js
+
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
