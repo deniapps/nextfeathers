@@ -85,7 +85,7 @@ module.exports = {
 //Methond: POST
 //Body:
 {
-	"strategy": "local",
+  "strategy": "local",
   "email": "admin@deniapps.com",
   "password": "admin123$"
 }
