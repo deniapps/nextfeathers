@@ -112,7 +112,12 @@ class Gallery extends PureComponent {
                   <Icon name="arrow left" />
                 </Button>
               </div>
-              <div className={style.activeImage}>
+              <div
+                className={style.activeImage}
+                onTouchStart={this.handleTouchStart}
+                onTouchMove={this.handleTouchMove}
+                onTouchEnd={this.handleTouchStart}
+              >
                 <Image src={images[activeImage].urls.regular} />
               </div>
               <div className={`${style.gutter} ${style.rightGutter}`}>
