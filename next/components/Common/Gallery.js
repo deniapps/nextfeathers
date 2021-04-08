@@ -34,11 +34,16 @@ class Gallery extends PureComponent {
   };
 
   handleTouchStart = (e) => {
-    this.setState({ touchStart: e.targetTouches[0].clientX });
+    if (e.targetTouches) {
+      console.log(e);
+      this.setState({ touchStart: e.targetTouches[0].clientX });
+    }
   };
 
   handleTouchMove = (e) => {
-    this.setState({ touchEnd: e.targetTouches[0].clientX });
+    if (e.targetTouches) {
+      this.setState({ touchEnd: e.targetTouches[0].clientX });
+    }
   };
 
   handleTouchEnd = () => {
