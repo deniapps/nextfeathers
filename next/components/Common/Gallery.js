@@ -41,19 +41,20 @@ class Gallery extends PureComponent {
   };
 
   handleTouchMove = (e) => {
+    console.log(e);
     if (e.changedTouches && e.changedTouches[0]) {
       this.setState({ touchEnd: e.changedTouches[0].clientX });
     }
   };
 
   handleTouchEnd = () => {
-    if (this.state.touchStart - this.state.touchEnd > 150) {
+    if (this.state.touchStart - this.state.touchEnd > 100) {
       // do your stuff here for left swipe
 
       this.handleNavigateLeft();
     }
 
-    if (this.state.touchStart - this.state.touchEnd < -150) {
+    if (this.state.touchStart - this.state.touchEnd < -100) {
       // do your stuff here for right swipe
       this.handleNavigateRight();
     }
@@ -121,7 +122,7 @@ class Gallery extends PureComponent {
                 className={style.activeImage}
                 onTouchStart={this.handleTouchStart}
                 onTouchMove={this.handleTouchMove}
-                onTouchEnd={this.handleTouchStart}
+                onTouchEnd={this.handleTouchEnd}
               >
                 <Image src={images[activeImage].urls.regular} />
               </div>
