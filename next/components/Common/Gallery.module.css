@@ -11,6 +11,7 @@
   position: absolute;
   top: 1em;
   right: 1em;
+  z-index: 999999;
 }
 .gutter {
   width: 80px;

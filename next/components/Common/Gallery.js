@@ -51,12 +51,12 @@ class Gallery extends PureComponent {
     if (this.state.touchStart - this.state.touchEnd > 100) {
       // do your stuff here for left swipe
 
-      this.handleNavigateLeft();
+      this.handleNavigateRight();
     }
 
     if (this.state.touchStart - this.state.touchEnd < -100) {
       // do your stuff here for right swipe
-      this.handleNavigateRight();
+      this.handleNavigateLeft();
     }
   };
 
