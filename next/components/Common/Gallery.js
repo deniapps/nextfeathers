@@ -7,6 +7,8 @@ import { Dimmer, Icon, Image, Button } from "semantic-ui-react";
 class Gallery extends PureComponent {
   state = {
     activeImage: this.props.currentIndex,
+    touchStart: 0,
+    touchEnd: 0,
   };
 
   handleThumbnailClick = (index) => this.setState({ activeImage: index });
@@ -28,6 +30,27 @@ class Gallery extends PureComponent {
     if (this.props.keyboardNavigation !== false) {
       if (keyCode === 37 || keyCode === 38) this.handleNavigateLeft();
       if (keyCode === 39 || keyCode === 40) this.handleNavigateRight();
+    }
+  };
+
+  handleTouchStart = (e) => {
+    this.setState({ touchStart: e.targetTouches[0].clientX });
+  };
+
+  handleTouchMove = (e) => {
+    this.setState({ touchEnd: e.targetTouches[0].clientX });
+  };
+
+  handleTouchEnd = () => {
+    if (this.state.touchStart - this.state.touchEnd > 150) {
+      // do your stuff here for left swipe
+
+      this.handleNavigateLeft();
+    }
+
+    if (this.state.touchStart - this.state.touchEnd < -150) {
+      // do your stuff here for right swipe
+      this.handleNavigateRight();
     }
   };
 
