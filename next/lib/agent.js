@@ -43,12 +43,12 @@ const request = function (options) {
     };
   }
   const onSuccess = function (response) {
-    console.debug("Request Successful!", response);
+    // console.debug("Request Successful!", response);
     return response.data;
   };
 
   const onError = function (error) {
-    console.error("Request Failed:", error.config);
+    // console.error("Request Failed:", error.config);
 
     if (error.response) {
       // Request was made but server responded with something

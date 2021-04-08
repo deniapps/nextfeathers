@@ -42,22 +42,38 @@ export async function getServerSideProps(context) {
   let posts = [];
   let tagData = {};
 
-  const tagResult = await getTagBySlug(slug);
-  let errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
-  if (errorCode === 0) {
-    if (tagResult.total === 0) {
-      errorCode = 404;
-    } else {
+  let errorCode = 0;
+
+  try {
+    const tagResult = await getTagBySlug(slug);
+    if (tagResult.total) {
       tagData = tagResult.data[0];
-      const result = await getPublicPostsByTag(slug);
-      errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
-      if (!errorCode) {
-        posts = result.data;
+      const postsResult = await getPublicPostsByTag(slug);
+      if (postsResult) {
+        posts = postsResult.data;
       }
     }
+  } catch (error) {
+    errorCode = 404;
   }
 
-  console.log(errorCode);
+  // console.log(tagResult);
+
+  // let errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
+  // if (errorCode === 0) {
+  //   if (tagResult.total === 0) {
+  //     errorCode = 404;
+  //   } else {
+  //     tagData = tagResult.data[0];
+  //     const result = await getPublicPostsByTag(slug);
+  //     errorCode = tagResult.statusText === "OK" ? 0 : tagResult.status;
+  //     if (!errorCode) {
+  //       posts = result.data;
+  //     }
+  //   }
+  // }
+
+  // console.log(errorCode);
 
   return {
     props: { errorCode, tagData, posts }, // will be passed to the page component as props

@@ -368,11 +368,10 @@ export default class PostInput extends React.Component {
         // }
         if (!draftId) {
           const result = await createPost(postDataInput);
-
-          if (result && result.data) {
+          if (result) {
             //case2a
             this.setState({
-              data: result.data,
+              data: result,
             });
           }
         }
