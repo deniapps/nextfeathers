@@ -32,7 +32,6 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  padding-top: 0.5em;
 }
 .activeImage img {
   max-height: 100%;
