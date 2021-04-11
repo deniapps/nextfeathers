@@ -1,7 +1,7 @@
 import { Header } from "semantic-ui-react";
 import Layout from "components/Layout";
 import ItemView from "components/Common/ItemView";
-import demos from "data/mistakes.json";
+import demos from "data/miniPosts.json";
 
 const title = "Mistakes in Development - Deni Apps";
 const desc = `We all make mistakes in the web development, some are common, some are uncommon, some are even stupid, but we should not be shame to share them. Write them down, and hopefully we don't make the same mistakes again.`;
