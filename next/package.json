@@ -33,7 +33,7 @@
     "jwt-decode": "^3.1.2",
     "mobile-detect": "^1.4.5",
     "next": "^10.1.2",
-    "prismjs": "^1.23.0",
+    "prismjs": "^1.24.0",
     "react": "^17.0.2",
     "react-chartjs-2": "^2.11.1",
     "react-codepen-embed": "^1.0.2",
