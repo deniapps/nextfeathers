@@ -32,7 +32,7 @@ export default function Index() {
           again.`}
         </Header.Subheader>
       </Header>
-      <ItemView items={demos} />
+      <ItemView items={demos} miniPost={true} />
     </Layout>
   );
 }

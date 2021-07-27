@@ -1,11 +1,20 @@
-import agent from "./agent";
+const jsonfile = require("jsonfile");
+import miniPosts from "data/miniPosts";
 
-const createPost = (data) => {
-  return agent({
-    method: "post",
-    url: "/posts",
-    data,
-  });
+const getPostById = (id) => {
+  const match = miniPosts.filter((item) => item.id === id);
+  return match;
+};
+
+const getPostBySlug = (slug) => {
+  const match = miniPosts.filter((item) => item.slug === slug);
+  return match;
+};
+
+const createPost = async (data) => {
+  miniPosts.push(data);
+  // const { title, summary, url, tags } = req.body;
+  await jsonfile.writeFile("data/miniPosts.json", miniPosts);
 };
 
 // use patch to update certain filed, and get updatedBy automatically updated.
@@ -108,4 +117,6 @@ export {
   undeletePost,
   permanentlyDeletePost,
   publishPost,
+  getPostById,
+  getPostBySlug,
 };
