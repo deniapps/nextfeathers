@@ -121,6 +121,7 @@ const FormField = (props) => {
 
 FormField.propTypes = {
   name: PropTypes.string,
+  postKey: PropTypes.string,
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

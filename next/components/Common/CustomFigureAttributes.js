@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * Plugin that converts custom attributes for elements that are wrapped in <figure> in the view.
  */
