@@ -38,14 +38,6 @@ const Header = () => {
         </Link>
       </li>
 
-      <li key="mistakes-menu">
-        <Link href="/mistakes">
-          <a className={router.pathname === "/mistakes" ? "is-active" : ""}>
-            Mistakes
-          </a>
-        </Link>
-      </li>
-
       {isReady &&
         user && [
           <li key="userMenu-1">
