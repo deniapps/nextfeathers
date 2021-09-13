@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import CKEditor from "@ckeditor/ckeditor5-react";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "ckeditor5-build-classic-dna";
 // import ClassicEditor from "lib/CKV5";
 import uploadFile from "lib/upload";
@@ -56,7 +56,7 @@ const DNXCustomUploadAdapterPlugin = (editor) => {
   // const s3Config = editor.s3Config;
   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
     // Configure the URL to the upload script in your back-end here!
-    loader.onUpload = editor.onUpload;
+    loader.onUpload = editor && editor.onUpload;
     return new MyUploadAdapter(loader);
   };
 };
@@ -145,7 +145,7 @@ class CKEditor5 extends Component {
           },
         }}
         onReady={(editor) => {
-          editor.onUpload = this.props.onUpload; //append event
+          if (editor) editor.onUpload = this.props.onUpload; //append event
           // You can store the "editor" and use when it is needed.
           // console.log("Editor is ready to use!", editor);
         }}

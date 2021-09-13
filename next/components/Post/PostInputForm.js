@@ -17,6 +17,7 @@ const PostInputForm = (props) => {
     <Form>
       {_.map(postInputs, (item, key) => (
         <FormField
+          postKey={props.inputData._id}
           key={key}
           label={item.label}
           type={item.type}

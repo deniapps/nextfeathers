@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const RichTextEditor = dynamic(() => import("./CKEditor"), { ssr: false });
 
 const FormField = (props) => {
-  // console.log("PROPS", props);
+  console.log("PROPS", props);
 
   const handleChange = (event, { name, value }) => {
     if (props.updateInput) {
@@ -109,6 +109,7 @@ const FormField = (props) => {
       )}
       {props.type === "editor" && (
         <RichTextEditor
+          key={props.postKey}
           value={props.value}
           onChange={handleEditorChange}
           onUpload={handleUpload}

@@ -29,12 +29,6 @@ const Header = () => {
           </Link>
         </Menu.Item>
 
-        <Menu.Item key="menu-1c">
-          <Link href="/mistakes">
-            <a>Mistakes</a>
-          </Link>
-        </Menu.Item>
-
         <Menu.Item key="menu-1d">
           <Link href="/about">
             <a>About Us</a>

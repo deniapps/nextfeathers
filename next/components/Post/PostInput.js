@@ -36,6 +36,7 @@ export default class PostInput extends React.Component {
     fatalError: null,
     message: "",
     hasChanges: false,
+    pageReady: false,
   };
 
   static get propTypes() {
@@ -64,7 +65,7 @@ export default class PostInput extends React.Component {
     };
 
     if (this._isMounted) {
-      this.setState({ allOptions: newAllOptions });
+      this.setState({ allOptions: newAllOptions, pageReady: true });
     }
   }
 
@@ -398,6 +399,10 @@ export default class PostInput extends React.Component {
   };
 
   render() {
+    if (!this.state.pageReady) {
+      return <p>Loading</p>;
+    }
+
     console.log("CONTENT", this.state.data);
     return (
       <Container text style={{ marginBottom: "40px" }}>
