@@ -27,7 +27,7 @@
     "ckeditor5-build-classic-dna": "^1.2.1",
     "cookies": "^0.8.0",
     "disqus-react": "^1.1.2",
-    "dna-responsive-nav": "^1.0.12",
+    "dna-responsive-nav": "^1.1.0",
     "dotenv": "^10.0.0",
     "http-proxy": "^1.18.1",
     "jwt-decode": "^3.1.2",
