@@ -22,9 +22,9 @@
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^3.0.2",
-    "axios": "^0.21.4",
+    "axios": "^0.22.0",
     "chart.js": "^3.5.1",
-    "ckeditor5-build-classic-dna": "^1.1.1",
+    "ckeditor5-build-classic-dna": "^1.2.1",
     "cookies": "^0.8.0",
     "disqus-react": "^1.1.2",
     "dna-responsive-nav": "^1.0.12",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.26.0",
+    "eslint-plugin-react": "^7.26.1",
     "file-loader": "^6.2.0",
     "url-loader": "^4.1.1"
   },
