@@ -1,20 +1,4 @@
 {
-  "parser": "babel-eslint",
-  "env": {
-    "es6": true,
-    "node": true,
-    "mocha": true,
-    "browser": true
-  },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
-  "rules": {
-    "react/react-in-jsx-scope": "off",
-    // "indent": ["error", 2, { "SwitchCase": 1 }],
-    "indent": "off",
-    "linebreak-style": ["error", "unix"],
-    "semi": ["error", "always"]
-  },
-  "globals": {
-    "React": "writable"
-  }
+  "extends": "next",
+  "root": true
 }
