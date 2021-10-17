@@ -2,7 +2,7 @@ import Link from "next/link";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { Form, Button } from "semantic-ui-react";
-import { inputs as postInputs } from "../../data/postInputs";
+import postData from "../../data/postInputs";
 import FormField from "../Common/FormField";
 import DNAMessage from "../Common/Message";
 
@@ -15,7 +15,7 @@ const PostInputForm = (props) => {
   }
   return (
     <Form>
-      {_.map(postInputs, (item, key) => (
+      {_.map(postData.inputs, (item, key) => (
         <FormField
           postKey={props.inputData._id}
           key={key}
@@ -41,6 +41,7 @@ const PostInputForm = (props) => {
               : null
           }
           autoGenerateFeatureImage={props.autoGenerateFeatureImage}
+          handleSearchChange={props.handleSearchChange}
         />
       ))}
       <Button disabled={props.isLoading} onClick={props.onSaveDraft}>
@@ -80,6 +81,7 @@ PostInputForm.propTypes = {
   isError: PropTypes.bool,
   handleAllFocus: PropTypes.object,
   handleAllBlur: PropTypes.object,
+  handleSearchChange: PropTypes.func,
 };
 
 export default PostInputForm;

@@ -11,8 +11,8 @@
   "imageMaxWidth": 1500,
   "imageMinWidth": 500,
   "mongodb": "mongodb://localhost:27017/deniapps",
-  "mongoUser": "admin",
-  "mongoPass": "admin123$",
+  "mongoUser": "",
+  "mongoPass": "",
   "authentication": {
     "entity": "user",
     "service": "users",

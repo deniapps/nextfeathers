@@ -7,6 +7,13 @@ const getTags = () => {
   });
 };
 
+const searchTags = (kw) => {
+  return agent({
+    method: "get",
+    url: "/tags/?$search=" + encodeURIComponent(kw),
+  });
+};
+
 const getTagBySlug = (tagSlug) => {
   return agent({
     method: "get",
@@ -14,4 +21,4 @@ const getTagBySlug = (tagSlug) => {
   });
 };
 
-export { getTags, getTagBySlug };
+export { getTags, getTagBySlug, searchTags };

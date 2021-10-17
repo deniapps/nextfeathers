@@ -17,7 +17,7 @@ import {
   permanentlyDeletePost,
   checkSlug,
 } from "../../lib/posts";
-import { getTags } from "../../lib/tags";
+import { getTags, searchTags } from "../../lib/tags";
 import { titleCase, slugify, getCurrentUser } from "../../helpers/common";
 
 const IDLE_TIMEOUT = 60 * 1000; // 60 seconds
@@ -76,6 +76,29 @@ export default class PostInput extends React.Component {
       clearTimeout(this._msgTimer);
     }
   }
+
+  debounceFun = _.debounce(async (kw) => {
+    console.log(kw);
+    const ret = await searchTags(kw);
+
+    const matchedTags = ret.data;
+    const tagsInputOptions = matchedTags.map((item) => ({
+      value: item.slug,
+      text: item.name,
+      key: item._id,
+    }));
+    const newAllOptions = {
+      ...this.state.allOptions,
+      tags: tagsInputOptions,
+    };
+
+    this.setState({ allOptions: newAllOptions });
+  }, 500);
+
+  handleSearchChange = (kw) => {
+    console.log("SEARECH", kw);
+    this.debounceFun(kw);
+  };
 
   clearMessage = (ms) => {
     this._msgTimer = setTimeout(() => {
@@ -432,6 +455,7 @@ export default class PostInput extends React.Component {
             title: this.autoGenerateSlug,
           }}
           autoGenerateFeatureImage={this.autoGenerateFeatureImage}
+          handleSearchChange={this.handleSearchChange}
         />
       </Container>
     );

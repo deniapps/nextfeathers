@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 const RichTextEditor = dynamic(() => import("./CKEditor"), { ssr: false });
 
 const FormField = (props) => {
-  console.log("PROPS", props);
+  // console.log("PROPS", props);
 
   const handleChange = (event, { name, value }) => {
     if (props.updateInput) {
@@ -22,6 +22,14 @@ const FormField = (props) => {
   const handleAddition = (event, { value, name }) => {
     if (props.handleAddition) {
       props.handleAddition(value, name);
+    }
+  };
+
+  const handleSearchChange = (event, search) => {
+    console.log("DOSEARCH", search);
+
+    if (props.handleSearchChange) {
+      props.handleSearchChange(search.searchQuery);
     }
   };
 
@@ -104,6 +112,7 @@ const FormField = (props) => {
           value={props.value ? props.value : []}
           allowAdditions
           onChange={handleDropdownChange}
+          onSearchChange={handleSearchChange}
           onAddItem={handleAddition}
         />
       )}
