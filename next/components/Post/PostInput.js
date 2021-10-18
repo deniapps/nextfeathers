@@ -37,6 +37,7 @@ export default class PostInput extends React.Component {
     message: "",
     hasChanges: false,
     pageReady: false,
+    selectedTags: [],
   };
 
   static get propTypes() {
@@ -87,9 +88,22 @@ export default class PostInput extends React.Component {
       text: item.name,
       key: item._id,
     }));
+
+    const currentTagsOptions = this.state.selectedTags;
+
+    console.log("currentTags", currentTagsOptions);
+
+    const currentTagIds = new Set(currentTagsOptions.map((d) => d.key));
+
+    // merge current with new Found
+    const newTagsOptions = [
+      ...currentTagsOptions,
+      ...tagsInputOptions.filter((d) => !currentTagIds.has(d.key)),
+    ];
+
     const newAllOptions = {
       ...this.state.allOptions,
-      tags: tagsInputOptions,
+      tags: newTagsOptions,
     };
 
     this.setState({ allOptions: newAllOptions });
@@ -130,17 +144,25 @@ export default class PostInput extends React.Component {
   };
 
   updateInput = async (key, value) => {
+    console.log("options", this.state.allOptions.tags);
+
     // autoSave on idle function instead
     // if (!this.debouncedFn) {
     //   this.debouncedFn = debounce(this.onSaveDraft, 10000);
     // }
     // this.debouncedFn();
 
+    // console.log("value", value);
+
     let name = key;
     let val = value;
 
     if (name === "tags") {
       val = val.map((value) => slugify(value));
+      const selectedTags = this.state.allOptions.tags.filter((tag) =>
+        val.includes(tag.value)
+      );
+      this.setState({ selectedTags: selectedTags });
     }
 
     const newInputs = {

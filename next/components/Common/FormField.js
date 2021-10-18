@@ -26,7 +26,7 @@ const FormField = (props) => {
   };
 
   const handleSearchChange = (event, search) => {
-    console.log("DOSEARCH", search);
+    // console.log("DOSEARCH", search);
 
     if (props.handleSearchChange) {
       props.handleSearchChange(search.searchQuery);
