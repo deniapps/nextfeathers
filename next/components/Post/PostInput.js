@@ -477,7 +477,7 @@ export default class PostInput extends React.Component {
             title: this.autoGenerateSlug,
           }}
           autoGenerateFeatureImage={this.autoGenerateFeatureImage}
-          handleSearchChange={this.handleSearchChange}
+          // handleSearchChange={this.handleSearchChange}
         />
       </Container>
     );

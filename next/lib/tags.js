@@ -3,7 +3,7 @@ import agent from "./agent";
 const getTags = () => {
   return agent({
     method: "get",
-    url: "/tags?$sort[name]",
+    url: "/tags?$sort[name]&$limit=500",
   });
 };
 
