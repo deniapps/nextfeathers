@@ -1,0 +1,284 @@
+[
+  {
+    "name": "America/Adak",
+    "offset": "\u221210:00",
+    "offsetDTS": "\u221209:00",
+    "group": "US/Hawaii"
+  },
+  {
+    "name": "America/Anchorage",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "America/Atka",
+    "offset": "\u221210:00",
+    "offsetDTS": "\u221209:00",
+    "group": "US/Hawaii"
+  },
+  {
+    "name": "America/Boise",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221206:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "America/Chicago",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/Denver",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221206:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "America/Detroit",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Fort_Wayne",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indiana/Indianapolis",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indiana/Knox",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/Indiana/Marengo",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indiana/Petersburg",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indiana/Tell_City",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/Indiana/Vevay",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indiana/Vincennes",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indiana/Winamac",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Indianapolis",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Juneau",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "America/Kentucky/Louisville",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Kentucky/Monticello",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Knox_IN",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/Los_Angeles",
+    "offset": "\u221208:00",
+    "offsetDTS": "\u221207:00",
+    "group": "US/Pacific"
+  },
+  {
+    "name": "America/Louisville",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Menominee",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/Metlakatla",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "America/New_York",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "America/Nome",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "America/North_Dakota/Beulah",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/North_Dakota/Center",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/North_Dakota/New_Salem",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "America/Phoenix",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221207:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "America/Shiprock",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221206:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "America/Sitka",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "America/Yakutat",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "Navajo",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221206:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "Pacific/Honolulu",
+    "offset": "\u221210:00",
+    "offsetDTS": "\u221210:00",
+    "group": "US/Hawaii"
+  },
+  {
+    "name": "US/Alaska",
+    "offset": "\u221209:00",
+    "offsetDTS": "\u221208:00",
+    "group": "US/Alaska"
+  },
+  {
+    "name": "US/Aleutian",
+    "offset": "\u221210:00",
+    "offsetDTS": "\u221209:00",
+    "group": "US/Hawaii"
+  },
+  {
+    "name": "US/Arizona",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221207:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "US/Central",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "US/East-Indiana",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "US/Eastern",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "US/Hawaii",
+    "offset": "\u221210:00",
+    "offsetDTS": "\u221210:00",
+    "group": "US/Hawaii"
+  },
+  {
+    "name": "US/Indiana-Starke",
+    "offset": "\u221206:00",
+    "offsetDTS": "\u221205:00",
+    "group": "US/Central"
+  },
+  {
+    "name": "US/Michigan",
+    "offset": "\u221205:00",
+    "offsetDTS": "\u221204:00",
+    "group": "US/Eastern"
+  },
+  {
+    "name": "US/Mountain",
+    "offset": "\u221207:00",
+    "offsetDTS": "\u221206:00",
+    "group": "US/Mountain"
+  },
+  {
+    "name": "US/Pacific",
+    "offset": "\u221208:00",
+    "offsetDTS": "\u221207:00",
+    "group": "US/Pacific"
+  }
+]

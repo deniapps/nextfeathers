@@ -38,5 +38,13 @@
     "url": "/playground/photo-collage-gallery",
     "updatedDate": "2021-03-28",
     "tags": ["next-js", "unsplash", "photo-gallery"]
+  },
+  {
+    "_id": "playgound-102121",
+    "title": "US Timezones",
+    "summary": "US Timezones Demo - show current local datetime in different US Timezones include grouped timezones (like Eastern, Center, Pacific, etc.) and all IANA US timezones.",
+    "url": "/playground/us-timezone",
+    "updatedDate": "2021-03-28",
+    "tags": ["timezone", "IANA", "locale"]
   }
 ]
