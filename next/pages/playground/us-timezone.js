@@ -12,6 +12,21 @@ import {
 
 import { Header, Segment, Dropdown, Loader } from "semantic-ui-react";
 
+const title = "US Timezone Demo - Deni Apps";
+const desc = `Javascript shows local date time, and show date time in different timezone using IANA timezone date. Custom function to get the current top-level US timezone`;
+
+const summary = desc;
+const canonical = "https://deniapps.com/playground/us-timezone";
+const image = "https://deniapps.com/images/dna.png";
+
+const seoData = {
+  title,
+  desc,
+  summary,
+  canonical,
+  image,
+};
+
 const USTimezone = () => {
   const [yourDT, setYourDT] = useState("");
 
@@ -65,7 +80,7 @@ const USTimezone = () => {
   const allUSTZOpts = useMemo(() => allUSTZ(), []);
 
   return (
-    <Layout>
+    <Layout seoData={seoData}>
       <h1>United States Timezones</h1>
       <Header as="h3" icon="time" content="Your Local Date Time" />
       <Segment inverted secondary>

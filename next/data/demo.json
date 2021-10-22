@@ -44,7 +44,7 @@
     "title": "US Timezones",
     "summary": "US Timezones Demo - show current local datetime in different US Timezones include grouped timezones (like Eastern, Center, Pacific, etc.) and all IANA US timezones.",
     "url": "/playground/us-timezone",
-    "updatedDate": "2021-03-28",
+    "updatedDate": "2021-10-21",
     "tags": ["timezone", "IANA", "locale"]
   }
 ]
