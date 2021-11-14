@@ -25,7 +25,6 @@ export default class deniApp extends App {
 
   handleRouteChange = (url) => {
     gtag.pageview(url);
-    console.log("back to top");
     window.scroll({
       top: 0,
       left: 0,

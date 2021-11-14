@@ -32,24 +32,16 @@ export default function PostList(props) {
             return (
               <Item key={item._id}>
                 <div className="image">
-                  <Link
-                    href={`/blog/[slug]`}
-                    as={`/blog/${item.slug}`}
-                    passHref
-                  >
+                  <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
                     <a>
-                      <Image src={item.image} />
+                      <Image alt={item.title} src={item.image} />
                     </a>
                   </Link>
                 </div>
 
                 <Item.Content>
                   <Item.Header>
-                    <Link
-                      href={`/blog/[slug]`}
-                      as={`/blog/${item.slug}`}
-                      passHref
-                    >
+                    <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
                       <a>{item.title}</a>
                     </Link>
                   </Item.Header>
@@ -62,6 +54,7 @@ export default function PostList(props) {
                   <Item.Extra>
                     {item.tags.map((tag) => (
                       <Link
+                        passHref
                         key={tag}
                         href={`/blog/tags/[slug]`}
                         as={`/blog/tags/${tag}`}
