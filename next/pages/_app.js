@@ -25,6 +25,7 @@ export default class deniApp extends App {
 
   handleRouteChange = (url) => {
     gtag.pageview(url);
+    window.scrollTo(0, 0);
   };
 
   componentDidMount = async () => {
