@@ -88,8 +88,8 @@ const Index = (props) => (
   <Layout seoData={seoData}>
     <h1>React ChartJS 2 (V4)</h1>
     <p>
-      This demo comes with Error Boundary - for whatever reason Chart could not
-      loaded, we capture it.
+      This demo comes with Error Boundary - when for whatever reason Chart could
+      not be loaded, we capture it.
     </p>
     <ErrorBoundary
       FallbackComponent={ErrorFallback}
