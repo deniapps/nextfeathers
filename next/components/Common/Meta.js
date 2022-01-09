@@ -25,7 +25,7 @@ const Meta = (props) => {
       <meta property="og:site_name" content={siteName} />
       <meta property="og:url" content={props.canonical || siteUrl} />
       <meta property="og:image" content={props.image || defaultImg} />
-      <meta name="twitter:card" content={props.summary || defaultDesc} />
+      <meta name="twitter:card" content={props.card || "summary_large_image"} />
       <meta name="twitter:title" content={props.title || defaultTitle} />
       <meta name="twitter:description" content={props.desc || defaultDesc} />
       <meta name="twitter:site" content="@denixuan" />
@@ -62,6 +62,7 @@ Meta.propTypes = {
   title: PropTypes.string,
   desc: PropTypes.string,
   summary: PropTypes.string,
+  card: PropTypes.string,
   canonical: PropTypes.string,
   image: PropTypes.string,
   css: PropTypes.string,
