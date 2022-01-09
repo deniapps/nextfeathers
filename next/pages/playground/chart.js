@@ -1,28 +1,30 @@
 import PropTypes from "prop-types";
 import Layout from "components/Layout";
 
-// import {
-//   Chart as ChartJS,
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend,
-// } from "chart.js";
+import { ErrorBoundary } from "react-error-boundary";
+
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 import { Line } from "react-chartjs-2";
 // import faker from "faker";
 
-// ChartJS.register(
-//   CategoryScale,
-//   LinearScale,
-//   PointElement,
-//   LineElement,
-//   Title,
-//   Tooltip,
-//   Legend
-// );
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 const title = "React ChartJS 4 Example - Deni Apps";
 const desc = `A simple example to demostrate how to use react-chartjs-2 V4 `;
@@ -38,6 +40,16 @@ const seoData = {
   canonical,
   image,
 };
+
+function ErrorFallback({ error, resetErrorBoundary }) {
+  return (
+    <div role="alert">
+      <p>Something went wrong:</p>
+      <pre>{error.message}</pre>
+      <button onClick={resetErrorBoundary}>Try again</button>
+    </div>
+  );
+}
 
 const options = {
   responsive: true,
@@ -75,8 +87,18 @@ const data = {
 const Index = (props) => (
   <Layout seoData={seoData}>
     <h1>React ChartJS 2 (V4)</h1>
-    <p>Hello World!</p>
-    <Line options={options} data={data} />;
+    <p>
+      This demo comes with Error Boundary - for whatever reason Chart could not
+      loaded, we capture it.
+    </p>
+    <ErrorBoundary
+      FallbackComponent={ErrorFallback}
+      onReset={() => {
+        // reset the state of your app so the error doesn't happen again
+      }}
+    >
+      <Line options={options} data={data} />
+    </ErrorBoundary>
   </Layout>
 );
 
