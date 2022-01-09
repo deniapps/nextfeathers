@@ -75,7 +75,8 @@ const data = {
 const Index = (props) => (
   <Layout seoData={seoData}>
     <h1>React ChartJS 2 (V4)</h1>
-    <Line options={options} data={data} />;
+    <p>Hello World!</p>
+    {/* <Line options={options} data={data} />; */}
   </Layout>
 );
 
