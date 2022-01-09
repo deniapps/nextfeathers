@@ -1,28 +1,28 @@
 import PropTypes from "prop-types";
 import Layout from "components/Layout";
 
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+// import {
+//   Chart as ChartJS,
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend,
+// } from "chart.js";
 import { Line } from "react-chartjs-2";
 // import faker from "faker";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
+// ChartJS.register(
+//   CategoryScale,
+//   LinearScale,
+//   PointElement,
+//   LineElement,
+//   Title,
+//   Tooltip,
+//   Legend
+// );
 
 const title = "React ChartJS 4 Example - Deni Apps";
 const desc = `A simple example to demostrate how to use react-chartjs-2 V4 `;
@@ -76,7 +76,7 @@ const Index = (props) => (
   <Layout seoData={seoData}>
     <h1>React ChartJS 2 (V4)</h1>
     <p>Hello World!</p>
-    {/* <Line options={options} data={data} />; */}
+    <Line options={options} data={data} />;
   </Layout>
 );
 
