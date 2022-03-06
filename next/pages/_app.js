@@ -25,6 +25,13 @@ export default class deniApp extends App {
 
   handleRouteChange = (url) => {
     gtag.pageview(url);
+    if (url.substring(1, 5) === "blog") {
+      // console.log("URL", url);
+      this.timerHandle = setTimeout(() => {
+        window.scrollTo(0, 0);
+        this.timerHandle = 0;
+      }, 100);
+    }
     // window.scroll({
     //   top: 0,
     //   left: 0,
@@ -76,6 +83,11 @@ export default class deniApp extends App {
 
   componentWillUnmount = () => {
     Router.events.off("routeChangeComplete", this.handleRouteChange);
+    if (this.timerHandle) {
+      // Yes, clear it
+      clearTimeout(this.timerHandle);
+      this.timerHandle = 0;
+    }
   };
 
   // if autoRevew = true, which means login with JWT token, then only need to refresh accessToken
