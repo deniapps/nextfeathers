@@ -6,6 +6,7 @@ const Meta = (props) => {
   const defaultImg = "https://deniapps.com/images/dnx.png";
   const siteUrl = "https://deniapps.com";
   const siteName = "Deni Apps";
+  const defaultCard = "summary";
 
   return (
     <Head>
@@ -25,7 +26,7 @@ const Meta = (props) => {
       <meta property="og:site_name" content={siteName} />
       <meta property="og:url" content={props.canonical || siteUrl} />
       <meta property="og:image" content={props.image || defaultImg} />
-      <meta name="twitter:card" content={props.card || "summary_large_image"} />
+      <meta name="twitter:card" content={defaultCard} />
       <meta name="twitter:title" content={props.title || defaultTitle} />
       <meta name="twitter:description" content={props.desc || defaultDesc} />
       <meta name="twitter:site" content="@denixuan" />
