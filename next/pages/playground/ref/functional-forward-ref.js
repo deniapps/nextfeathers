@@ -1,7 +1,6 @@
 import { useRef } from "react";
 import PropTypes from "prop-types";
 import Layout from "../../../components/Layout";
-import Codepen from "react-codepen-embed";
 
 import { Header, Form, Button, Message } from "semantic-ui-react";
 
@@ -52,7 +51,9 @@ const FunctionalForwardRef = () => {
       <Button onClick={incremenetChildInput}>Increment Child Input</Button>
 
       <Header as="h3">Codepen Demo</Header>
-      <Codepen hash="QWNbbBy" user="deniapps" defaultTab="js,result" />
+      <a href="" target="_blank">
+        https://codepen.io/deniapps/pen/QWNbbBy
+      </a>
     </Layout>
   );
 };

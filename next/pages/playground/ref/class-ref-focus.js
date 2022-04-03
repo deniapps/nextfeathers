@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../../../components/Layout";
-import Codepen from "react-codepen-embed";
 
 import { Header, Form, Button, Checkbox, Message } from "semantic-ui-react";
 
@@ -59,7 +58,9 @@ class Ref extends React.Component {
         </Form>
 
         <Header as="h3">Codepen Demo</Header>
-        <Codepen hash="xxVGxNv" user="deniapps" defaultTab="js,result" />
+        <a href="" target="_blank">
+          https://codepen.io/deniapps/pen/xxVGxNv
+        </a>
       </Layout>
     );
   }

@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "../../../components/Layout";
-import Codepen from "react-codepen-embed";
 import { Header, Form, Button, Message } from "semantic-ui-react";
 
 // eslint-disable-next-line react/display-name
@@ -53,7 +52,10 @@ class ForwardRef extends React.Component {
         </Button>
 
         <Header as="h3">Codepen Demo</Header>
-        <Codepen hash="ZEWGGRe" user="deniapps" defaultTab="js,result" />
+
+        <a href="" target="_blank">
+          https://codepen.io/deniapps/pen/ZEWGGRe
+        </a>
       </Layout>
     );
   }

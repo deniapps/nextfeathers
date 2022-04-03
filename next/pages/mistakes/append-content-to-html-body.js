@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import Prism from "prismjs";
 
 import { Header } from "semantic-ui-react";
-import Codepen from "react-codepen-embed";
 
 const code1 = `document.body.innerHTML += \`<div class="dnx-modal-overlay" id="dnx-modal-overlay"></div>
           <div class="dnx-modal" id="dnx-modal">
@@ -77,7 +76,9 @@ const AppendHTML = () => {
       </p>
 
       <Header as="h3">Codepen Demo</Header>
-      <Codepen hash="eYZzqbV" user="deniapps" defaultTab="js,result" />
+      <a href="" target="_blank">
+        https://codepen.io/deniapps/pen/eYZzqbV
+      </a>
     </Layout>
   );
 };
