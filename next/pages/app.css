@@ -65,6 +65,72 @@ select {
     margin: 0 0 4em;
     padding-top: 4em;
   }
+
+  table.dnxTable {
+    border: none !important;
+  }
+
+  table.dnxTable th,
+  table.dnxTable td {
+    padding: 1em 0.5em;
+    position: relative;
+  }
+
+  /*** TABLE ***/
+  table.dnxTable tr,
+  table.dnxTable td,
+  table.dnxTable tfoot {
+    display: block !important;
+    width: 100%;
+  }
+
+  table.denxTable tbody tr {
+    border-top: 1px solid rgba(34, 36, 38, 0.1);
+  }
+
+  table.denxTable tfoot tr {
+    border: none !important;
+  }
+
+  table.dnxTable td {
+    border-top: none !important;
+    border-left: none !important;
+  }
+  table.dnxTable tbody tr {
+    padding: 0.25em 0;
+    border: 1px solid rgba(34, 36, 38, 0.2);
+    /* padding: 0.25em; */
+  }
+
+  table.dnxTable tbody tr:not(:last-child) {
+    margin-bottom: 0.25em;
+  }
+
+  /* Header */
+  table.dnxTable thead {
+    display: none !important;
+  }
+
+  /* Body */
+  table.dnxTable tbody td {
+    padding: 0.3em 0.5em 0.3em 7.5em !important;
+  }
+
+  .dnxTable td:not(:last-child) {
+    border-bottom: 1px solid rgba(34, 36, 38, 0.1);
+  }
+
+  table.dnxTable tbody td:before {
+    content: attr(data-label);
+    left: 0.5em;
+    position: absolute;
+    top: 0.15em;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 6em;
+    overflow: hidden;
+  }
 }
 
 .ui.items > .item > .image:not(.ui) {
