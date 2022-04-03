@@ -30,7 +30,6 @@
     "disqus-react": "^1.1.2",
     "dna-responsive-nav": "^1.1.0",
     "dotenv": "^16.0.0",
-    "faker": "^6.6.6",
     "http-proxy": "^1.18.1",
     "jwt-decode": "^3.1.2",
     "mobile-detect": "^1.4.5",
