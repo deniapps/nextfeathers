@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import Meta from "components/Common/Meta";
 import { Container, Loader } from "semantic-ui-react";
-import Header from "./Common/ResponsiveHeaderDNA";
+import Header from "./Common/ResponsiveHeader";
 import Footer from "./Common/MiniFooter";
 import { useContext } from "react";
 import UserContext from "./Context/UserContext";

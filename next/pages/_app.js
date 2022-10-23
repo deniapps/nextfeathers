@@ -6,9 +6,8 @@ import * as gtag from "../lib/gtag";
 import UserContext from "../components/Context/UserContext";
 import "semantic-ui-css/semantic.min.css";
 import "./app.css";
-// import "./navi.css";
+import "./navi.css";
 import "prismjs/themes/prism.css";
-import "dna-responsive-nav/dist/dna-rn.css";
 import "./photo.css";
 
 import { getCurrentUser } from "helpers/common";
