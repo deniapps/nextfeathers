@@ -50,7 +50,7 @@
     "feathers-mongoose": "^8.5.1",
     "fs-blob-store": "^6.0.0",
     "helmet": "^6.0.0",
-    "json-server": "^0.17.0",
+    "json-server": "^0.17.1",
     "mongodb": "^4.11.0",
     "mongodb-core": "^3.2.7",
     "mongoose": "^6.6.7",
