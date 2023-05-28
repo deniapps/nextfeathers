@@ -10,9 +10,7 @@ const ItemView = (props) => {
         <Item key={item._id}>
           <Item.Content>
             <Item.Header>
-              <Link href={item.url} passHref>
-                {item.title}
-              </Link>
+              <Link href={item.url}>{item.title}</Link>
             </Item.Header>
 
             <Item.Description>{dnaParser(item.summary)}</Item.Description>

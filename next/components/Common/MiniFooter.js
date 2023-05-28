@@ -14,7 +14,7 @@ const Footer = () => (
       <Grid inverted>
         <Grid.Row>
           <Grid.Column id="copyRight">
-            Deni Apps LLC - 2022 |{" "}
+            Deni Apps LLC 2015-2023 |{" "}
             <a
               href="https://github.com/deniapps/nextfeathers"
               target="_blank"

@@ -2,6 +2,9 @@
 
 nextJS + feathersJS = Perfect Javascript Full-Stack!
 
+## IMPORTANT!
+NextFeathers currenly only works with "nextjs" v12 and "@ckeditor/ckeditor5-react" v5.
+
 [**DEMO**](https://deniapps.com)
 
 ## What's Next?

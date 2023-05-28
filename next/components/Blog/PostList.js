@@ -35,9 +35,11 @@ export default function PostList(props) {
                   <Link
                     href={`/blog/[slug]`}
                     as={`/blog/${item.slug}`}
-                    passHref
+                    legacyBehavior
                   >
-                    <Image alt={item.title} src={item.image} />
+                    <a>
+                      <Image alt={item.title} src={item.image} />
+                    </a>
                   </Link>
                 </div>
 

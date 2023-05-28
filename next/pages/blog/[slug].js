@@ -1,5 +1,4 @@
 import PropTypes from "prop-types";
-import Meta from "components/Common/Meta";
 import { useEffect, useContext } from "react";
 import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
@@ -9,6 +8,10 @@ import Prism from "prismjs";
 import TimeAgo from "react-timeago";
 // import dynamic from "next/dynamic";
 import UserContext from "components/Context/UserContext";
+
+// Override Prism.highlightAll() to disable auto-highlighting
+const originalHighlightAll = Prism.highlightAll;
+Prism.highlightAll = function () {};
 
 // const DNAComments = dynamic(() => import("components/Common/Comments"), {
 //   ssr: false,
@@ -33,51 +36,52 @@ const Post = (props) => {
   const publishedOn = props.blog.createdAt;
   // const lastUpdated = props.blog.updatedAt;
 
+  const seoData = {
+    title,
+    desc,
+    summary,
+    canonical,
+    image,
+  };
+
   useEffect(() => {
-    Prism.highlightAll();
+    // if (content) Prism.highlightAll();
+    // Manually call Prism.highlightAll() when you want to apply syntax highlighting
+    originalHighlightAll.call(Prism);
   }, [content]);
 
   return (
-    <>
-      <Meta
-        title={title}
-        desc={desc}
-        summary={summary}
-        canonical={canonical}
-        image={image}
-      />
-      <Layout>
-        <Container text>
-          <Header as="h1">
-            {title}
-            <Header.Subheader>
-              {author} | <TimeAgo date={publishedOn} />
-              {user && (
-                <Button floated="right" style={{ marginTop: "-15px" }}>
-                  <a href={"/dashboard/post/" + id}>Edit</a>
-                </Button>
-              )}
-            </Header.Subheader>
-          </Header>
-
-          <div dangerouslySetInnerHTML={{ __html: content }} />
-
-          <Divider />
-
-          {process.env.NEXT_PUBLIC_DISQUS &&
-            process.env.NEXT_PUBLIC_DISQUS === "on" && (
-              <DiscussionEmbed
-                shortname={process.env.NEXT_PUBLIC_DISQUS_SHORTNAME}
-                config={{
-                  url: canonical,
-                  identifier: props.blog._id,
-                  title: title,
-                }}
-              />
+    <Layout seoData={seoData}>
+      <Container text>
+        <Header as="h1">
+          {title}
+          <Header.Subheader>
+            {author} | <TimeAgo date={publishedOn} />
+            {user && (
+              <Button floated="right" style={{ marginTop: "-15px" }}>
+                <a href={"/dashboard/post/" + id}>Edit</a>
+              </Button>
             )}
-        </Container>
-      </Layout>
-    </>
+          </Header.Subheader>
+        </Header>
+
+        <div dangerouslySetInnerHTML={{ __html: content }} />
+
+        <Divider />
+
+        {process.env.NEXT_PUBLIC_DISQUS &&
+          process.env.NEXT_PUBLIC_DISQUS === "on" && (
+            <DiscussionEmbed
+              shortname={process.env.NEXT_PUBLIC_DISQUS_SHORTNAME}
+              config={{
+                url: canonical,
+                identifier: props.blog._id,
+                title: title,
+              }}
+            />
+          )}
+      </Container>
+    </Layout>
   );
 };
 

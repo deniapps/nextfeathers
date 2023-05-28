@@ -58,7 +58,7 @@ const Header = () => {
       </div>
       <div className="logo">
         <Link href="/" passHref>
-          <img src="/images/dna-computer.png" alt="DENIAPPS" />
+          {/* <img src="/images/dna-computer.png" alt="DENIAPPS" /> */}
           <span>{process.env.NEXT_PUBLIC_SITE_NAME}</span>
         </Link>
       </div>

@@ -1,8 +1,12 @@
 import PropTypes from "prop-types";
 import { Form, Radio, Input, Dropdown, TextArea } from "semantic-ui-react";
-import dynamic from "next/dynamic";
+import RichTextEditor from "./CKEditorWithNext";
+// import dynamic from "next/dynamic";
 
-const RichTextEditor = dynamic(() => import("./CKEditor"), { ssr: false });
+// for some reason, this does not work sicne nextjs13
+// const RichTextEditor = dynamic(() => import("./CKEditor"), {
+//   ssr: false,
+// });
 
 const FormField = (props) => {
   // console.log("PROPS", props);
