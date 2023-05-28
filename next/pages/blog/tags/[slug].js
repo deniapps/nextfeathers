@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Meta from "components/Common/Meta";
 import Error from "next/error";
 import Layout from "components/Layout";
 import PostList from "components/Blog/PostList";
@@ -13,21 +14,23 @@ const Tag = (props) => {
   const canonical = "https://deniapps.com/blog/tag/" + props.tagData.name;
   const image = "https://deniapps.com/images/dna.png";
 
-  const seoData = {
-    title,
-    desc,
-    summary,
-    canonical,
-    image,
-  };
   if (props.errorCode !== 0) {
     return <Error statusCode={props.errorCode} />;
   }
 
   return (
-    <Layout seoData={seoData}>
-      <PostList posts={props.posts} tagData={props.tagData} />
-    </Layout>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <PostList posts={props.posts} tagData={props.tagData} />
+      </Layout>
+    </>
   );
 };
 

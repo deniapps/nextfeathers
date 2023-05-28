@@ -1,4 +1,5 @@
 import React from "react";
+import Meta from "components/Common/Meta";
 import Layout from "../../components/Layout";
 import { Table } from "semantic-ui-react";
 
@@ -8,14 +9,6 @@ const desc = `Turn Semantic UI React Table into a responsive table`;
 const summary = desc;
 const canonical = "https://deniapps.com/playground/home";
 const image = "https://deniapps.com/images/dna.png";
-
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
 
 const TableExample = () => (
   <Table celled unstackable striped className="dnxTable">
@@ -79,12 +72,21 @@ const Stackable = () => (
 
 const myTable = () => {
   return (
-    <Layout seoData={seoData}>
-      <h1>Responsive Table</h1>
-      <TableExample />
-      <h2>Stackable Table</h2>
-      <Stackable />
-    </Layout>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <h1>Responsive Table</h1>
+        <TableExample />
+        <h2>Stackable Table</h2>
+        <Stackable />
+      </Layout>
+    </>
   );
 };
 export default myTable;

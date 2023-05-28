@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Meta from "components/Common/Meta";
 import Layout from "components/Layout";
 import Link from "next/link";
 import { List } from "semantic-ui-react";
@@ -10,31 +11,32 @@ const summary = desc;
 const canonical = "https://deniapps.com/playground/movies";
 const image = "https://deniapps.com/images/dna.png";
 
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
-
 const Index = (props) => (
-  <Layout seoData={seoData}>
-    <h1>NBA TV Shows</h1>
-    <div>
-      <pre>HELLO NEXT</pre>
-    </div>
-    <List>
-      {props.shows &&
-        props.shows.map((show) => (
-          <List.Item key={show.id}>
-            <Link href="/playground/p/[id]" as={`/playground/p/${show.id}`}>
-              <a>{show.name}</a>
-            </Link>
-          </List.Item>
-        ))}
-    </List>
-  </Layout>
+  <>
+    <Meta
+      title={title}
+      desc={desc}
+      summary={summary}
+      canonical={canonical}
+      image={image}
+    />
+    <Layout>
+      <h1>NBA TV Shows</h1>
+      <div>
+        <pre>HELLO NEXT</pre>
+      </div>
+      <List>
+        {props.shows &&
+          props.shows.map((show) => (
+            <List.Item key={show.id}>
+              <Link href="/playground/p/[id]" as={`/playground/p/${show.id}`}>
+                <a>{show.name}</a>
+              </Link>
+            </List.Item>
+          ))}
+      </List>
+    </Layout>
+  </>
 );
 
 Index.propTypes = {

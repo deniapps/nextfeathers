@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import Meta from "components/Common/Meta";
 import Layout from "../../components/Layout";
 
 import {
@@ -18,14 +19,6 @@ const desc = `Javascript shows local date time, and show date time in different 
 const summary = desc;
 const canonical = "https://deniapps.com/playground/us-timezone";
 const image = "https://deniapps.com/images/dna.png";
-
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
 
 const USTimezone = () => {
   const [yourDT, setYourDT] = useState("");
@@ -80,33 +73,42 @@ const USTimezone = () => {
   const allUSTZOpts = useMemo(() => allUSTZ(), []);
 
   return (
-    <Layout seoData={seoData}>
-      <h1>United States Timezones</h1>
-      <Header as="h3" icon="time" content="Your Local Date Time" />
-      <Segment inverted secondary>
-        {yourDT || <Loader active inline />} {!!yourDT && ` - ${yourTZ}`}
-      </Segment>
-      <Header as="h3" icon="plane" content="Current Date Time in:" />
-      <Dropdown
-        search
-        selection
-        wrapSelection={false}
-        options={mainUSTZOpts}
-        value={groupTZValue}
-        onChange={handleTZChange}
-      />{" "}
-      <Dropdown
-        search
-        selection
-        wrapSelection={false}
-        options={allUSTZOpts}
-        value={currentTZ}
-        onChange={handleTZChange}
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
       />
-      <Segment raised>
-        {currentDT || <Loader active inline size="small" />}
-      </Segment>
-    </Layout>
+      <Layout>
+        <h1>United States Timezones</h1>
+        <Header as="h3" icon="time" content="Your Local Date Time" />
+        <Segment inverted secondary>
+          {yourDT || <Loader active inline />} {!!yourDT && ` - ${yourTZ}`}
+        </Segment>
+        <Header as="h3" icon="plane" content="Current Date Time in:" />
+        <Dropdown
+          search
+          selection
+          wrapSelection={false}
+          options={mainUSTZOpts}
+          value={groupTZValue}
+          onChange={handleTZChange}
+        />{" "}
+        <Dropdown
+          search
+          selection
+          wrapSelection={false}
+          options={allUSTZOpts}
+          value={currentTZ}
+          onChange={handleTZChange}
+        />
+        <Segment raised>
+          {currentDT || <Loader active inline size="small" />}
+        </Segment>
+      </Layout>
+    </>
   );
 };
 

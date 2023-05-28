@@ -1,4 +1,5 @@
 import React from "react";
+import Meta from "components/Common/Meta";
 import Layout from "../../components/Layout";
 import { Icon, Label, Menu, Table } from "semantic-ui-react";
 
@@ -8,14 +9,6 @@ const desc = `Simple Semantic UI React Table integration with NextJs`;
 const summary = desc;
 const canonical = "https://deniapps.com/playground/home";
 const image = "https://deniapps.com/images/dna.png";
-
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
 
 const TableExamplePagination = () => (
   <Table celled>
@@ -70,10 +63,19 @@ const TableExamplePagination = () => (
 
 const myTable = () => {
   return (
-    <Layout seoData={seoData}>
-      <h1>Table</h1>
-      <TableExamplePagination />
-    </Layout>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <h1>Table</h1>
+        <TableExamplePagination />
+      </Layout>
+    </>
   );
 };
 export default myTable;

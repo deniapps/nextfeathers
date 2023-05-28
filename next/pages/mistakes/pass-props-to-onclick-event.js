@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout";
+import Meta from "components/Common/Meta";
 import { Header } from "semantic-ui-react";
 import { useEffect } from "react";
 import Prism from "prismjs";
@@ -30,44 +31,45 @@ const summary = desc;
 const canonical = "https://deniapps.com/mistakes/pass-props-to-onclick-event";
 const image = "https://deniapps.com/images/dna.png";
 
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
-
 const AppendHTML = () => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
-    <Layout seoData={seoData}>
-      <Header as="h3">How to Pass Props to onClick Event</Header>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <Header as="h3">How to Pass Props to onClick Event</Header>
 
-      <p>
-        <code>onClick</code> is very common Javascript Event, you may not
-        believe you could make a mistake like this. <br />
-        <pre>
-          <code className="language-js">{code1}</code>
-        </pre>
-      </p>
-      <p>
-        After passing <code>photo</code> as a parameter in{" "}
-        <code>{`onClick={(photo) => handleSelect(photo)}`}</code>
-        {`, the debugger
+        <p>
+          <code>onClick</code> is very common Javascript Event, you may not
+          believe you could make a mistake like this. <br />
+          <pre>
+            <code className="language-js">{code1}</code>
+          </pre>
+        </p>
+        <p>
+          After passing <code>photo</code> as a parameter in{" "}
+          <code>{`onClick={(photo) => handleSelect(photo)}`}</code>
+          {`, the debugger
         shows the error says "photo.urls is undefined". That's becasue, you
         assign 'photo' as the first parameter in onClick, and it's actually
         passing in 'event' object. The right way to do it is simply don't
         passing in "photo", like below:`}{" "}
-        <br />
-        <pre>
-          <code className="language-js">{code2}</code>
-        </pre>
-      </p>
-    </Layout>
+          <br />
+          <pre>
+            <code className="language-js">{code2}</code>
+          </pre>
+        </p>
+      </Layout>
+    </>
   );
 };
 

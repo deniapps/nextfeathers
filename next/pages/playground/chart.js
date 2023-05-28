@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import Layout from "components/Layout";
+import Meta from "components/Common/Meta";
 
 import { ErrorBoundary } from "react-error-boundary";
 
@@ -32,14 +33,6 @@ const desc = `A simple example to demostrate how to use react-chartjs-2 V4 `;
 const summary = desc;
 const canonical = "https://deniapps.com/playground/chart";
 const image = "https://deniapps.com/images/dna.png";
-
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
 
 function ErrorFallback({ error, resetErrorBoundary }) {
   return (
@@ -85,21 +78,30 @@ const data = {
 };
 
 const Index = (props) => (
-  <Layout seoData={seoData}>
-    <h1>React ChartJS 2 (V4)</h1>
-    <p>
-      This demo comes with Error Boundary - when for whatever reason Chart could
-      not be loaded, we capture it.
-    </p>
-    <ErrorBoundary
-      FallbackComponent={ErrorFallback}
-      onReset={() => {
-        // reset the state of your app so the error doesn't happen again
-      }}
-    >
-      <Line options={options} data={data} />
-    </ErrorBoundary>
-  </Layout>
+  <>
+    <Meta
+      title={title}
+      desc={desc}
+      summary={summary}
+      canonical={canonical}
+      image={image}
+    />
+    <Layout>
+      <h1>React ChartJS 2 (V4)</h1>
+      <p>
+        This demo comes with Error Boundary - when for whatever reason Chart
+        could not be loaded, we capture it.
+      </p>
+      <ErrorBoundary
+        FallbackComponent={ErrorFallback}
+        onReset={() => {
+          // reset the state of your app so the error doesn't happen again
+        }}
+      >
+        <Line options={options} data={data} />
+      </ErrorBoundary>
+    </Layout>
+  </>
 );
 
 Index.propTypes = {

@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import Meta from "components/Common/Meta";
 import { useEffect, useContext } from "react";
 import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
@@ -32,50 +33,51 @@ const Post = (props) => {
   const publishedOn = props.blog.createdAt;
   // const lastUpdated = props.blog.updatedAt;
 
-  const seoData = {
-    title,
-    desc,
-    summary,
-    canonical,
-    image,
-  };
-
   useEffect(() => {
     Prism.highlightAll();
   }, [content]);
 
   return (
-    <Layout seoData={seoData}>
-      <Container text>
-        <Header as="h1">
-          {title}
-          <Header.Subheader>
-            {author} | <TimeAgo date={publishedOn} />
-            {user && (
-              <Button floated="right" style={{ marginTop: "-15px" }}>
-                <a href={"/dashboard/post/" + id}>Edit</a>
-              </Button>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <Container text>
+          <Header as="h1">
+            {title}
+            <Header.Subheader>
+              {author} | <TimeAgo date={publishedOn} />
+              {user && (
+                <Button floated="right" style={{ marginTop: "-15px" }}>
+                  <a href={"/dashboard/post/" + id}>Edit</a>
+                </Button>
+              )}
+            </Header.Subheader>
+          </Header>
+
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+
+          <Divider />
+
+          {process.env.NEXT_PUBLIC_DISQUS &&
+            process.env.NEXT_PUBLIC_DISQUS === "on" && (
+              <DiscussionEmbed
+                shortname={process.env.NEXT_PUBLIC_DISQUS_SHORTNAME}
+                config={{
+                  url: canonical,
+                  identifier: props.blog._id,
+                  title: title,
+                }}
+              />
             )}
-          </Header.Subheader>
-        </Header>
-
-        <div dangerouslySetInnerHTML={{ __html: content }} />
-
-        <Divider />
-
-        {process.env.NEXT_PUBLIC_DISQUS &&
-          process.env.NEXT_PUBLIC_DISQUS === "on" && (
-            <DiscussionEmbed
-              shortname={process.env.NEXT_PUBLIC_DISQUS_SHORTNAME}
-              config={{
-                url: canonical,
-                identifier: props.blog._id,
-                title: title,
-              }}
-            />
-          )}
-      </Container>
-    </Layout>
+        </Container>
+      </Layout>
+    </>
   );
 };
 

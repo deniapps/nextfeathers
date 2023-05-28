@@ -1,5 +1,6 @@
 import { Grid } from "semantic-ui-react";
 import Layout from "components/Layout";
+import Meta from "components/Common/Meta";
 
 export default function Index() {
   const title = "Deni Apps";
@@ -11,22 +12,23 @@ export default function Index() {
   const canonical = "https://deniapps.com";
   const image = "https://deniapps.com/images/dna.png";
 
-  const seoData = {
-    title,
-    desc,
-    summary,
-    canonical,
-    image,
-  };
-
   return (
-    <Layout pageType="home" seoData={seoData}>
-      <Grid>
-        <Grid.Column>
-          <h1 className="hp-header">Deni Apps</h1>
-          <p className="hp-slogan">We Build Websites & Apps</p>
-        </Grid.Column>
-      </Grid>
-    </Layout>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout pageType="home">
+        <Grid>
+          <Grid.Column>
+            <h1 className="hp-header">Deni Apps</h1>
+            <p className="hp-slogan">We Build Websites & Apps</p>
+          </Grid.Column>
+        </Grid>
+      </Layout>
+    </>
   );
 }

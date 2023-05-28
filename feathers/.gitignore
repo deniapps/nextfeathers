@@ -108,3 +108,6 @@ $RECYCLE.BIN/
 *.lnk
 
 *backup*
+
+# feathers
+dev.json

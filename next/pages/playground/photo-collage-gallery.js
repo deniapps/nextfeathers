@@ -1,4 +1,5 @@
 import React from "react";
+import Meta from "components/Common/Meta";
 const { useState, useEffect, useRef } = React;
 import Layout from "../../components/Layout";
 import { Form, Loader, Message } from "semantic-ui-react";
@@ -21,14 +22,6 @@ Simple masonry/tiles Photos Collage, and Slide show Gallery integrated with Next
 const summary = desc;
 const canonical = "https://deniapps.com/playground/photo-collage-gallery";
 const image = "https://deniapps.com/images/dna.png";
-
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
 
 const Warnings = () => (
   <Message warning>
@@ -208,10 +201,19 @@ const UnsplashPhotos = () => {
 
 const unsplashSearch = () => {
   return (
-    <Layout seoData={seoData}>
-      <h1>Unsplash Photo Search, Masonry Grid, Collage, and Gallery</h1>
-      <UnsplashPhotos />
-    </Layout>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <h1>Unsplash Photo Search, Masonry Grid, Collage, and Gallery</h1>
+        <UnsplashPhotos />
+      </Layout>
+    </>
   );
 };
 export default unsplashSearch;

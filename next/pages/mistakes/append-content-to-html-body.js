@@ -1,4 +1,5 @@
 import Layout from "../../components/Layout";
+import Meta from "components/Common/Meta";
 import { useEffect } from "react";
 import Prism from "prismjs";
 
@@ -32,54 +33,55 @@ const summary = desc;
 const canonical = "https://deniapps.com/mistakes/append-content-to-html-body";
 const image = "https://deniapps.com/images/dna.png";
 
-const seoData = {
-  title,
-  desc,
-  summary,
-  canonical,
-  image,
-};
-
 const AppendHTML = () => {
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
-    <Layout seoData={seoData}>
-      <Header as="h3">
-        Don&apos;t Use <code>x.innerHTML += y</code>
-      </Header>
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
+      />
+      <Layout>
+        <Header as="h3">
+          Don&apos;t Use <code>x.innerHTML += y</code>
+        </Header>
 
-      <p>
-        Sometimes, we want to add a new DOM element to the HTML body
-        dynamically, for example, add a popup Modal, like this: <br />
-        <pre>
-          <code className="language-js">{code1}</code>
-        </pre>
-      </p>
+        <p>
+          Sometimes, we want to add a new DOM element to the HTML body
+          dynamically, for example, add a popup Modal, like this: <br />
+          <pre>
+            <code className="language-js">{code1}</code>
+          </pre>
+        </p>
 
-      <p>
-        It seems to be working as the modal is open, but after that, we see all
-        Javascript events on the page are broken. This is because{" "}
-        <code>x.innerHTML += y</code> completely overwrites the old HTML
-        document, although it looks the same, under the hood all Javascript
-        events are wiped off.
-      </p>
+        <p>
+          It seems to be working as the modal is open, but after that, we see
+          all Javascript events on the page are broken. This is because{" "}
+          <code>x.innerHTML += y</code> completely overwrites the old HTML
+          document, although it looks the same, under the hood all Javascript
+          events are wiped off.
+        </p>
 
-      <p>
-        The correct way to do this is using{" "}
-        <code>document.body.appendChild(Ele)</code>, like this, <br />
-        <pre>
-          <code className="language-js">{code2}</code>
-        </pre>
-      </p>
+        <p>
+          The correct way to do this is using{" "}
+          <code>document.body.appendChild(Ele)</code>, like this, <br />
+          <pre>
+            <code className="language-js">{code2}</code>
+          </pre>
+        </p>
 
-      <Header as="h3">Codepen Demo</Header>
-      <a href="" target="_blank">
-        https://codepen.io/deniapps/pen/eYZzqbV
-      </a>
-    </Layout>
+        <Header as="h3">Codepen Demo</Header>
+        <a href="" target="_blank">
+          https://codepen.io/deniapps/pen/eYZzqbV
+        </a>
+      </Layout>
+    </>
   );
 };
 

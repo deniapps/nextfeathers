@@ -1,4 +1,5 @@
 import Layout from "components/Layout";
+import Meta from "components/Common/Meta";
 import PostList from "components/Blog/PostList";
 import { searchPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
@@ -17,14 +18,6 @@ export default function Search(props) {
   const summary = "Search - DiNiApps";
   const canonical = "https://deniapps.com/search/" + props.kw;
   const image = "https://deniapps.com/images/dna.png";
-
-  const seoData = {
-    title,
-    desc,
-    summary,
-    canonical,
-    image,
-  };
 
   const isMount = useIsMount();
 
@@ -77,22 +70,31 @@ export default function Search(props) {
   };
 
   return (
-    <Layout seoData={seoData}>
-      <PostList
-        posts={list}
-        showLoadMore={showLoadMore}
-        loadMore={loadMore}
-        headline={desc}
+    <>
+      <Meta
+        title={title}
+        desc={desc}
+        summary={summary}
+        canonical={canonical}
+        image={image}
       />
-      {isError && <div>Something went wrong ...</div>}
-      {isLoading && (
-        <Segment textAlign="center">
-          <Loader inline active>
-            Loading...
-          </Loader>
-        </Segment>
-      )}
-    </Layout>
+      <Layout>
+        <PostList
+          posts={list}
+          showLoadMore={showLoadMore}
+          loadMore={loadMore}
+          headline={desc}
+        />
+        {isError && <div>Something went wrong ...</div>}
+        {isLoading && (
+          <Segment textAlign="center">
+            <Loader inline active>
+              Loading...
+            </Loader>
+          </Segment>
+        )}
+      </Layout>
+    </>
   );
 }
 
