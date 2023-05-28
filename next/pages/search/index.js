@@ -106,12 +106,12 @@ Search.propTypes = {
 
 export async function getServerSideProps(context) {
   const { kw } = context.query;
-  console.log(kw);
+  // sconsole.log(kw);
   let posts = [];
   let showLoadMore = false;
   try {
     const result = await searchPublicPosts(kw);
-    console.log(result);
+    // console.log(result);
     posts = result.data;
     showLoadMore = result.total > pageSize ? true : false;
   } catch (error) {

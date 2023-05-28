@@ -1,7 +1,7 @@
 {
   "host": "localhost",
   "port": 3030,
-  "public": "../public/",
+  "public": "/Users/N109337/Projects/nextfeathers/feathers/public/",
   "paginate": {
     "default": 10,
     "max": 50

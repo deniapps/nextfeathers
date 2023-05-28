@@ -57,9 +57,11 @@ const Header = () => {
         <Icon name="sidebar" />
       </div>
       <div className="logo">
-        <Link href="/" passHref>
-          {/* <img src="/images/dna-computer.png" alt="DENIAPPS" /> */}
-          <span>{process.env.NEXT_PUBLIC_SITE_NAME}</span>
+        <Link href="/">
+          <a>
+            <img src="/images/dna-computer.png" alt="DENIAPPS" />
+            <span>{process.env.NEXT_PUBLIC_SITE_NAME}</span>
+          </a>
         </Link>
       </div>
       <div className="nav-items scroll">
