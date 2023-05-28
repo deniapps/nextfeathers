@@ -55,7 +55,7 @@ const PostInputForm = (props) => {
       >
         Publish
       </Button>
-      <Link href="/dashboard/posts">
+      <Link href="/dashboard/posts" passHref>
         <Button disabled={props.isLoading} color="red">
           Back
         </Button>

@@ -11,7 +11,7 @@ const ItemView = (props) => {
           <Item.Content>
             <Item.Header>
               <Link href={item.url} passHref>
-                <a>{item.title}</a>
+                {item.title}
               </Link>
             </Item.Header>
 

@@ -14,9 +14,11 @@ export default function PostList(props) {
         {props.tags &&
           props.tags.map((item) => (
             <Link
+              passHref
               key={item._id}
               href={`/blog/tags/[slug]`}
               as={`/blog/tags/${item.slug}`}
+              legacyBehavior
             >
               <Label as="a">
                 <Icon name="tag" /> {item.name}

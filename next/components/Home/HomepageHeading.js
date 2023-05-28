@@ -12,7 +12,7 @@ const HomepageHeading = () => (
       <h1 className="hp-header">Deni Apps</h1>
 
       <p className="hp-slogan">We Build Websites & Apps</p>
-      <Link href="/">
+      <Link href="/" passHref>
         <Button primary size="huge">
           Get Started
           <Icon name="right arrow" />

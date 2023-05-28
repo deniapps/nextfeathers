@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 // This file is not in-use.
 // We use RepsonsiveHeaderDNS.js, but you are free to change it via Layout.js
 
@@ -56,34 +57,27 @@ const Header = () => {
         <Icon name="sidebar" />
       </div>
       <div className="logo">
-        <Link href="/">
-          <a>{process.env.NEXT_PUBLIC_SITE_NAME}</a>
+        <Link href="/" passHref>
+          <img src="/images/dna-computer.png" alt="DENIAPPS" />
+          <span>{process.env.NEXT_PUBLIC_SITE_NAME}</span>
         </Link>
       </div>
       <div className="nav-items scroll">
         <li key="blog-menu">
           {" "}
-          <Link href="/blog">
-            <a>Blog</a>
-          </Link>
+          <Link href="/blog">Blog</Link>
         </li>
         <li key="about-menu">
-          <Link href="/about">
-            <a>About Us</a>
-          </Link>
+          <Link href="/about">About Us</Link>
         </li>
         <li key="playground-menu">
-          <Link href="/playground">
-            <a>Playground</a>
-          </Link>
+          <Link href="/playground">Playground</Link>
         </li>
 
         {isReady &&
           user && [
             <li key="userMenu-1">
-              <Link href="/dashboard">
-                <a>Dashboard</a>
-              </Link>
+              <Link href="/dashboard">Dashboard</Link>
             </li>,
             <li key="userMenu-2">
               <Icon disabled name="user" />
@@ -101,9 +95,7 @@ const Header = () => {
         {isReady && !user && (
           <li>
             <Icon disabled name="user" key="userMenu-3" />
-            <Link href="/signin">
-              <a>Login</a>
-            </Link>
+            <Link href="/signin">Login</Link>
           </li>
         )}
       </div>

@@ -117,7 +117,7 @@ export default function PostList() {
           </Header>
           {message && <DNAMessage message={message} type="success" />}
           <Container textAlign="right">
-            <Link href="/dashboard/post/new">
+            <Link href="/dashboard/post/new" passHref>
               <Button primary>
                 New Post
                 <Icon name="right chevron" />

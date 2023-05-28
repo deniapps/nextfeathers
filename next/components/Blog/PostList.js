@@ -32,17 +32,19 @@ export default function PostList(props) {
             return (
               <Item key={item._id}>
                 <div className="image">
-                  <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
-                    <a>
-                      <Image alt={item.title} src={item.image} />
-                    </a>
+                  <Link
+                    href={`/blog/[slug]`}
+                    as={`/blog/${item.slug}`}
+                    passHref
+                  >
+                    <Image alt={item.title} src={item.image} />
                   </Link>
                 </div>
 
                 <Item.Content>
                   <Item.Header>
                     <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
-                      <a>{item.title}</a>
+                      {item.title}
                     </Link>
                   </Item.Header>
                   <Item.Meta>
@@ -58,6 +60,7 @@ export default function PostList(props) {
                         key={tag}
                         href={`/blog/tags/[slug]`}
                         as={`/blog/tags/${tag}`}
+                        legacyBehavior
                       >
                         <Label as="a">{tag}</Label>
                       </Link>

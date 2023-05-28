@@ -11,9 +11,7 @@ const PostItemView = (props) => {
           <Item key={item._id}>
             <Item.Content>
               <Item.Header>
-                <Link href={"/dashboard/post/" + item._id}>
-                  <a>{item.title}</a>
-                </Link>
+                <Link href={"/dashboard/post/" + item._id}>{item.title}</Link>
               </Item.Header>
 
               <Item.Description>{item.summary}</Item.Description>
@@ -33,7 +31,7 @@ const PostItemView = (props) => {
                       />
                     )}
                     {!props.onRecover && (
-                      <Link href={"/dashboard/post/" + item._id}>
+                      <Link href={"/dashboard/post/" + item._id} passHref>
                         <Dropdown.Item>Edit</Dropdown.Item>
                       </Link>
                     )}

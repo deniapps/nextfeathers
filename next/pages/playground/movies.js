@@ -30,7 +30,7 @@ const Index = (props) => (
           props.shows.map((show) => (
             <List.Item key={show.id}>
               <Link href="/playground/p/[id]" as={`/playground/p/${show.id}`}>
-                <a>{show.name}</a>
+                {show.name}
               </Link>
             </List.Item>
           ))}

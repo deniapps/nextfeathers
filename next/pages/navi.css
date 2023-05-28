@@ -19,6 +19,22 @@ nav .logo {
 nav .logo > a {
   color: #fff !important;
 }
+
+nav .logo img {
+  display: inline-block;
+  vertical-align: top;
+  padding-right: 5px;
+  height: 40px;
+}
+
+nav .logo span {
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  color: #62dafb !important;
+  line-height: 40px;
+}
+
 nav .nav-items {
   display: flex;
   flex: 1;
@@ -42,7 +58,7 @@ nav .nav-items li a {
   text-decoration: none;
 }
 nav .nav-items li a:hover {
-  color: #4183c4;
+  color: #62dafb;
 }
 nav form {
   display: flex;
@@ -103,6 +119,7 @@ nav .search-icon {
     flex: 2;
     text-align: center;
   }
+
   nav .nav-items {
     position: fixed;
     z-index: 99;

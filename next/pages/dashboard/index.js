@@ -13,13 +13,13 @@ const Index = () => {
         <List>
           <List.Item>
             <Link href="/dashboard/posts">
-              <a>DNX Blog</a>
+              DNX Blog
             </Link>
           </List.Item>
           <List.Item>
             {" "}
             <Link href="/dashboard/demo">
-              <a>Form Demo</a>
+              Form Demo
             </Link>
           </List.Item>
         </List>
