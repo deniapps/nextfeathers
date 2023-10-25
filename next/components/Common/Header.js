@@ -10,8 +10,10 @@ const Header = () => {
     <Menu fixed="top" inverted borderless size="huge" className="scroll">
       <Container>
         <Menu.Item header key="menu-0">
-          <Link href="/" passHref>
-            <Icon name="world" /> {process.env.NEXT_PUBLIC_SITE_NAME}
+          <Link href="/">
+            <>
+              <Icon name="world" /> {process.env.NEXT_PUBLIC_SITE_NAME}
+            </>
           </Link>
         </Menu.Item>
 

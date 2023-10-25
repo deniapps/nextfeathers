@@ -58,15 +58,14 @@ const Header = () => {
       </div>
       <div className="logo">
         <Link href="/">
-          <a>
+          <>
             <img src="/images/dna-computer.png" alt="DENIAPPS" />
             <span>{process.env.NEXT_PUBLIC_SITE_NAME}</span>
-          </a>
+          </>
         </Link>
       </div>
       <div className="nav-items scroll">
         <li key="blog-menu">
-          {" "}
           <Link href="/blog">Blog</Link>
         </li>
         <li key="about-menu">

@@ -12,7 +12,9 @@ const Layout = (props) => {
   const pageWrapperClass = pageType ? pageType + "Wrapper" : "dnaWrapper";
 
   const pageClass =
-    pageType === "home" || pageType === "login" ? "coverPage" : "deniPage";
+    pageType && (pageType === "home" || pageType === "login")
+      ? "coverPage"
+      : "deniPage";
 
   return (
     <div id="deniApps" className={pageWrapperClass}>

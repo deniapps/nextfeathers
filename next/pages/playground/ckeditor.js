@@ -4,8 +4,11 @@ import { Header } from "semantic-ui-react";
 import { useState, useEffect } from "react";
 import CKDemoCode from "../../components/Demo/CKDemoCode";
 import Prism from "prismjs";
+// Override Prism.highlightAll() to disable auto-highlighting
+const originalHighlightAll = Prism.highlightAll;
+Prism.highlightAll = function () {};
 
-// import CKEditor from "components/Common/CKEditor";
+// import CKEditor from "components/Common/CKEditorDemo";
 import dynamic from "next/dynamic";
 const CKEditor = dynamic(() => import("components/Common/CKEditorDemo"), {
   ssr: false,
@@ -24,7 +27,8 @@ const CKEditorDemo = (props) => {
   );
 
   useEffect(() => {
-    Prism.highlightAll();
+    // Prism.highlightAll();
+    originalHighlightAll.call(Prism);
   }, []);
 
   const handeEditorChange = (newData) => {
@@ -40,13 +44,14 @@ const CKEditorDemo = (props) => {
         canonical={canonical}
         image={image}
       />
-      <Layout>
+      <Layout pageType="demo">
         <Header as="h2">CKEditor Demo</Header>
         <CKEditor value={content} onChange={handeEditorChange} />
-        <Header as="h2">Source Code of the Content Above</Header>
+        <Header as="h3">Source Code of the Content Above</Header>
         {/* <Highlight className="html">{content}</Highlight> */}
+
         <pre>
-          <code className="language-js">{content}</code>
+          <code>{content}</code>
         </pre>
 
         <CKDemoCode {...props} />

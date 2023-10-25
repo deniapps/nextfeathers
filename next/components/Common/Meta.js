@@ -36,7 +36,9 @@ const Meta = (props) => {
       {props.css && <link rel="stylesheet" href={props.css} />}
       {props.image && <meta name="twitter:image" content={props.image} />}
       {props.canonical && <link rel="canonical" href={props.canonical} />}
-      {props.js && <script type="text/javascript" src={props.js}></script>}
+      {props.js && (
+        <script async type="text/javascript" src={props.js}></script>
+      )}
 
       {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
         <script

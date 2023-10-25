@@ -32,14 +32,8 @@ export default function PostList(props) {
             return (
               <Item key={item._id}>
                 <div className="image">
-                  <Link
-                    href={`/blog/[slug]`}
-                    as={`/blog/${item.slug}`}
-                    legacyBehavior
-                  >
-                    <a>
-                      <Image alt={item.title} src={item.image} />
-                    </a>
+                  <Link href={`/blog/[slug]`} as={`/blog/${item.slug}`}>
+                    <Image alt={item.title} src={item.image} />
                   </Link>
                 </div>
 
@@ -58,11 +52,9 @@ export default function PostList(props) {
                   <Item.Extra>
                     {item.tags.map((tag) => (
                       <Link
-                        passHref
                         key={tag}
                         href={`/blog/tags/[slug]`}
                         as={`/blog/tags/${tag}`}
-                        legacyBehavior
                       >
                         <Label as="a">{tag}</Label>
                       </Link>

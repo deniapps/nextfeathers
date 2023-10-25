@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
+// import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import ClassicEditor from "ckeditor5-build-classic-dna";
 // import ClassicEditor from "lib/CKV12";
 import uploadFile from "lib/upload";
@@ -51,7 +52,7 @@ class MyUploadAdapter {
 }
 
 // ...
-const DNXCustomUploadAdapterPlugin = (editor) => {
+function DNXCustomUploadAdapterPlugin(editor) {
   // console.log(editor);
   // const s3Config = editor.s3Config;
   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
@@ -59,7 +60,7 @@ const DNXCustomUploadAdapterPlugin = (editor) => {
     loader.onUpload = editor.onUpload;
     return new MyUploadAdapter(loader);
   };
-};
+}
 
 // This plugin brings customization to the downcast pipeline of the editor.
 // function AddClassToAllTables(editor) {
