@@ -17,42 +17,41 @@ export default function Write() {
 
   const { signOut } = useContext(UserContext);
 
-  const fetchData = async () => {
-    if (!id) return false;
-    if (id === "new") {
-      setData({
-        title: "Add New Post",
-        data: {},
-      });
-      return true;
-    }
-    setFatalError(null);
-    setIsLoading(true);
-    try {
-      let data = {};
-      //check if draft exists, if so, restore it
-      const draftResult = await getDraft(id);
-      if (draftResult && draftResult.total > 0) {
-        data = draftResult.data[0];
-      } else {
-        const result = await getPost(id);
-        console.log("RESUTL", result);
-        data = result;
-      }
-
-      setData({
-        title: "Edit Post",
-        data,
-      });
-    } catch (err) {
-      setFatalError(err);
-    }
-    setIsLoading(false);
-    return true;
-  };
-
   useEffect(() => {
-    fetchData();
+    const fetchData = async (id) => {
+      if (!id) return false;
+      if (id === "new") {
+        setData({
+          title: "Add New Post",
+          data: {},
+        });
+        return true;
+      }
+      setFatalError(null);
+      setIsLoading(true);
+      try {
+        let data = {};
+        //check if draft exists, if so, restore it
+        const draftResult = await getDraft(id);
+        if (draftResult && draftResult.total > 0) {
+          data = draftResult.data[0];
+        } else {
+          const result = await getPost(id);
+          console.log("RESUTL", result);
+          data = result;
+        }
+
+        setData({
+          title: "Edit Post",
+          data,
+        });
+      } catch (err) {
+        setFatalError(err);
+      }
+      setIsLoading(false);
+      return true;
+    };
+    fetchData(id);
   }, [id]);
 
   return (

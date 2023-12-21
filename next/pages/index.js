@@ -1,7 +1,7 @@
-import { Grid, Button, Icon } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 import Layout from "components/Layout";
 import Meta from "components/Common/Meta";
-import Link from "next/link";
+// import Link from "next/link";
 
 export default function Index() {
   const title = "Deni Apps";
@@ -27,12 +27,6 @@ export default function Index() {
           <Grid.Column>
             <h1 className="hp-header">Deni Apps</h1>
             <p className="hp-slogan">We Build Websites & Apps</p>
-            <Link href="/">
-              <Button primary size="huge">
-                Get Started
-                <Icon name="right arrow" />
-              </Button>
-            </Link>
           </Grid.Column>
         </Grid>
       </Layout>

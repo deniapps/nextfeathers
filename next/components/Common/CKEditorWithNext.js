@@ -55,7 +55,7 @@ class MyUploadAdapter {
 }
 
 // ...
-const DNXCustomUploadAdapterPlugin = (editor) => {
+function DNXCustomUploadAdapterPlugin(editor) {
   // console.log(editor);
   // const s3Config = editor.s3Config;
   editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
@@ -63,7 +63,7 @@ const DNXCustomUploadAdapterPlugin = (editor) => {
     loader.onUpload = editor && editor.onUpload;
     return new MyUploadAdapter(loader);
   };
-};
+}
 
 // This plugin brings customization to the downcast pipeline of the editor.
 // function AddClassToAllTables(editor) {
