@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
-import { IdleTimer } from "components/common/IdleTimer";
+import { IdleTimer } from "components/Common/IdleTimer";
 import _ from "lodash";
 import Router from "next/router";
 import shortid from "shortid";
