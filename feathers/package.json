@@ -18,8 +18,8 @@
     "test": "test/"
   },
   "engines": {
-    "node": "^16.0.0",
-    "npm": ">= 3.0.0"
+    "node": "^18.0.0",
+    "npm": ">= 9.0.0"
   },
   "scripts": {
     "test": "npm run eslint && npm run mocha",
