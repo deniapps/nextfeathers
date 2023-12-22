@@ -1,7 +1,7 @@
 {
   "host": "api.deniapps.com",
   "port": "PORT",
-  "public": "../public/",
+  "public": "public/",
   "paginate": {
     "default": 10,
     "max": 50
