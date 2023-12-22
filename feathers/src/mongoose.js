@@ -5,10 +5,8 @@ module.exports = function (app) {
     mongoose.connect(app.get("mongodb"), {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      auth: {
-        user: app.get("mongoUser"),
-        password: app.get("mongoPass"),
-      },
+      user: app.get("mongoUser"),
+      password: app.get("mongoPass"),
     });
   } else {
     mongoose.connect(app.get("mongodb"), {
