@@ -15,7 +15,7 @@ export default function Posts(props) {
   const desc =
     "Software Engineer for React.js, Node.js, GraphQL and JavaScript. Based in USA, Chinese/English speaking. Consulting/Freelancing for Web Development project: Code Audits/Reviews, Workshops, Training, Implementation ...";
 
-  const summary = "DNA - DiNiApps";
+  const summary = "DNA - DeNiApps";
   const canonical = "https://deniapps.com/blog";
   const image = "https://deniapps.com/images/dna.png";
 
