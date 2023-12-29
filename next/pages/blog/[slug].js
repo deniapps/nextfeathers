@@ -93,6 +93,11 @@ export async function getServerSideProps(context) {
   const { slug } = context.query;
 
   const result = await getPublicPost(slug);
+  if (result.total === 0 || result.records?.total === 0) {
+    return {
+      notFound: true,
+    };
+  }
 
   return {
     props: { blog: result.data[0] }, // will be passed to the page component as props

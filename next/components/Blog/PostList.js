@@ -56,7 +56,7 @@ export default function PostList(props) {
                         href={`/blog/tags/[slug]`}
                         as={`/blog/tags/${tag}`}
                       >
-                        <Label as="a">{tag}</Label>
+                        <Label>{tag}</Label>
                       </Link>
                     ))}
                   </Item.Extra>
