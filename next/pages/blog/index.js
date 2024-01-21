@@ -63,7 +63,7 @@ export default function Posts(props) {
   };
 
   const loadMore = async () => {
-    const newPageId = parseIn(pageId, 10) + 1;
+    const newPageId = parseInt(pageId, 10) + 1;
     setPageId(newPageId);
     await fetchList(newPageId);
   };
