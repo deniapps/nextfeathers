@@ -24,8 +24,8 @@ export default class deniApp extends App {
 
   handleRouteChange = (url) => {
     gtag.pageview(url);
-    if (url.substring(1, 5) === "blog") {
-      console.log("URL", url);
+    if (url.substring(1, 6) === "blog/") {
+      // console.log("URL", url);
       this.timerHandle = setTimeout(() => {
         window.scrollTo(0, 0);
         this.timerHandle = 0;

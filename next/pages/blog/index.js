@@ -4,7 +4,7 @@ import PostList from "components/Blog/PostList";
 import { getPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
 import { Loader, Segment } from "semantic-ui-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
   ? process.env.NEXT_PUBLIC_PAGE_SIZE
@@ -26,6 +26,18 @@ export default function Posts(props) {
   const [pageId, setPageId] = useState(0);
   const [showLoadMore, setShowLoadMore] = useState(props.showLoadMore);
 
+  useEffect(() => {
+    // Check if there's data in sessionStorage
+    const storedList = JSON.parse(sessionStorage.getItem("postList"));
+    const storedShowLoadMore = sessionStorage.getItem("showLoadMore");
+    const storedPageId = sessionStorage.getItem("pageId");
+
+    // Set the state based on sessionStorage or props
+    setList(storedList || props.posts);
+    setShowLoadMore(storedShowLoadMore === "true" || props.showLoadMore);
+    if (storedPageId) setPageId(storedPageId);
+  }, [props.posts, props.showLoadMore]);
+
   const fetchList = async (pageId) => {
     setIsError(false);
     setIsLoading(true);
@@ -39,6 +51,10 @@ export default function Posts(props) {
         setShowLoadMore(false);
       }
       setList(newList);
+      // Save data to sessionStorage
+      sessionStorage.setItem("postList", JSON.stringify(newList));
+      sessionStorage.setItem("showLoadMore", showLoadMore);
+      sessionStorage.setItem("pageId", pageId);
     } catch (err) {
       setIsError(true);
     }
