@@ -30,7 +30,7 @@ export default function Posts(props) {
     // Check if there's data in sessionStorage
     const storedList = JSON.parse(sessionStorage.getItem("postList"));
     const storedShowLoadMore = sessionStorage.getItem("showLoadMore");
-    const storedPageId = sessionStorage.getItem("pageId");
+    const storedPageId = parseInt(sessionStorage.getItem("pageId"), 10);
 
     // Set the state based on sessionStorage or props
     setList(storedList || props.posts);
@@ -63,7 +63,7 @@ export default function Posts(props) {
   };
 
   const loadMore = async () => {
-    const newPageId = pageId + 1;
+    const newPageId = parseIn(pageId, 10) + 1;
     setPageId(newPageId);
     await fetchList(newPageId);
   };
