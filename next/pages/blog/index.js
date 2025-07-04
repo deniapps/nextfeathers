@@ -1,88 +1,81 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Layout from "components/Layout";
 import Meta from "components/Common/Meta";
 import PostList from "components/Blog/PostList";
 import { getPublicPosts } from "lib/blog";
 import PropTypes from "prop-types";
 import { Loader, Segment } from "semantic-ui-react";
-import { useState, useEffect } from "react";
 
-const pageSize = process.env.NEXT_PUBLIC_PAGE_SIZE
-  ? process.env.NEXT_PUBLIC_PAGE_SIZE
-  : 20;
+const pageSize = parseInt(process.env.NEXT_PUBLIC_PAGE_SIZE || "20");
 
-export default function Posts(props) {
-  const title = "Blog - Deni Apps";
-  const desc =
-    "Software Engineer for React.js, Node.js, GraphQL and JavaScript. Based in USA, Chinese/English speaking. Consulting/Freelancing for Web Development project: Code Audits/Reviews, Workshops, Training, Implementation ...";
+export default function Blog({
+  posts: initialPosts,
+  showLoadMore: initialShowMore,
+  pageId: initialPage,
+}) {
+  const router = useRouter();
 
-  const summary = "DNA - DeNiApps";
-  const canonical = "https://deniapps.com/blog";
-  const image = "https://deniapps.com/images/dna.png";
-
+  const [posts, setPosts] = useState(initialPosts);
+  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [showMore, setShowMore] = useState(initialShowMore);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
-  const [list, setList] = useState(props.posts);
 
-  const [pageId, setPageId] = useState(0);
-  const [showLoadMore, setShowLoadMore] = useState(props.showLoadMore);
-
+  // Reset posts on hard refresh or page change
   useEffect(() => {
-    // Check if there's data in sessionStorage
-    const storedList = JSON.parse(sessionStorage.getItem("postList"));
-    const storedShowLoadMore = sessionStorage.getItem("showLoadMore");
-    const storedPageId = parseInt(sessionStorage.getItem("pageId"), 10);
+    const queryPage = parseInt(router.query.page || "1", 10);
+    if (queryPage !== currentPage) {
+      setPosts(initialPosts);
+      setCurrentPage(initialPage);
+      setShowMore(initialShowMore);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router.query.page]);
 
-    // Set the state based on sessionStorage or props
-    setList(storedList || props.posts);
-    setShowLoadMore(storedShowLoadMore === "true" || props.showLoadMore);
-    if (storedPageId) setPageId(storedPageId);
-  }, [props.posts, props.showLoadMore]);
-
-  const fetchList = async (pageId) => {
-    setIsError(false);
+  const fetchMore = async (pageId) => {
     setIsLoading(true);
+    setIsError(false);
     try {
       const result = await getPublicPosts(pageId);
-      //TO-DO: check status for error handling, and add pagination if needed.
-      const newList = list.concat(result.data);
-      if (result.total > newList.length) {
-        setShowLoadMore(true);
-      } else {
-        setShowLoadMore(false);
-      }
-      setList(newList);
-      // Save data to sessionStorage
-      sessionStorage.setItem("postList", JSON.stringify(newList));
-      sessionStorage.setItem("showLoadMore", showLoadMore);
-      sessionStorage.setItem("pageId", pageId);
+      const combined = posts.concat(result.data);
+      setPosts(combined);
+      setShowMore(result.total > combined.length);
+      setCurrentPage(pageId);
+
+      // Update URL without reload
+      router.replace(`/blog?page=${pageId}`, undefined, { shallow: true });
     } catch (err) {
+      console.error(err);
       setIsError(true);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
-    return true;
   };
 
-  const loadMore = async () => {
-    const newPageId = parseInt(pageId, 10) + 1;
-    setPageId(newPageId);
-    await fetchList(newPageId);
-  };
+  const loadMore = () => fetchMore(currentPage + 1);
+
+  const canonical =
+    currentPage === 1
+      ? "https://deniapps.com/blog"
+      : `https://deniapps.com/blog?page=${currentPage}`;
 
   return (
     <>
       <Meta
-        title={title}
-        desc={desc}
-        summary={summary}
+        title="Blog - Deni Apps"
+        desc="Software Engineer for React.js, Node.js, GraphQL and JavaScript..."
+        summary="DNA - DeNiApps"
         canonical={canonical}
-        image={image}
+        image="https://deniapps.com/images/dna.png"
       />
       <Layout>
         <PostList
-          posts={list}
-          showLoadMore={showLoadMore}
+          posts={posts}
+          showLoadMore={showMore}
           isLoading={isLoading}
           loadMore={loadMore}
+          currentPage={currentPage}
         />
         {isError && <div>Something went wrong ...</div>}
         {isLoading && (
@@ -97,23 +90,33 @@ export default function Posts(props) {
   );
 }
 
-Posts.propTypes = {
-  posts: PropTypes.array,
-  showLoadMore: PropTypes.bool,
-};
+export async function getServerSideProps(context) {
+  const rawPageId = parseInt(context.query.page || "1", 10);
+  const pageId = Math.max(rawPageId, 1); // Ensure 1-based page index
 
-export async function getServerSideProps() {
   let posts = [];
   let showLoadMore = false;
+
   try {
-    const result = await getPublicPosts();
+    const result = await getPublicPosts(pageId); // pageId starts from 1
     posts = result.data;
-    showLoadMore = result.total > pageSize ? true : false;
+    const skip = (pageId - 1) * pageSize;
+    showLoadMore = result.total > skip + posts.length;
   } catch (error) {
     console.log(error);
   }
 
   return {
-    props: { posts: posts, showLoadMore: showLoadMore }, // will be passed to the page component as props
+    props: {
+      posts,
+      showLoadMore,
+      pageId,
+    },
   };
 }
+
+Blog.propTypes = {
+  posts: PropTypes.array.isRequired,
+  showLoadMore: PropTypes.bool.isRequired,
+  pageId: PropTypes.number.isRequired,
+};

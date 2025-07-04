@@ -76,9 +76,17 @@ export default function PostList(props) {
       </Item.Group>
       {props.showLoadMore && !props.isLoading && (
         <Segment textAlign="center">
-          <Button color="blue" onClick={props.loadMore}>
+          <Link
+            href={`?page=${props.currentPage + 1}`}
+            scroll={false}
+            className="ui blue button"
+            onClick={(e) => {
+              e.preventDefault();
+              props.loadMore();
+            }}
+          >
             Load More
-          </Button>
+          </Link>
         </Segment>
       )}
     </div>
@@ -92,4 +100,5 @@ PostList.propTypes = {
   loadMore: PropTypes.func,
   headline: PropTypes.string,
   isLoading: PropTypes.bool,
+  currentPage: PropTypes.number,
 };

@@ -57,7 +57,7 @@ const getPost = (id) => {
 const deletePost = (id) => {
   return agent({
     method: "patch",
-    url: "/posts" + id,
+    url: "/posts/" + id,
     data: {
       isDeleted: true,
     },

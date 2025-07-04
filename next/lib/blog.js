@@ -26,8 +26,8 @@ export const getAllPublicPosts = (pageId = 0) => {
   // });
 };
 
-export const getPublicPosts = (pageId = 0) => {
-  const skip = pageId * pageSize;
+export const getPublicPosts = (pageId = 1) => {
+  const skip = (pageId - 1) * pageSize;
   return agent({
     method: "get",
     url:
