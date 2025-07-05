@@ -91,4 +91,20 @@ const dnaParser = (htmlCode) => {
   );
 };
 
-export { isExpired, titleCase, slugify, debounce, dnaParser, getCurrentUser };
+// A simple utility function for truncation
+const truncateString = (str, num) => {
+  if (str.length <= num) {
+    return str;
+  }
+  return str.slice(0, num) + "...";
+};
+
+export {
+  isExpired,
+  titleCase,
+  slugify,
+  debounce,
+  dnaParser,
+  getCurrentUser,
+  truncateString,
+};

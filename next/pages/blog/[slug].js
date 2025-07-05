@@ -4,6 +4,8 @@ import Layout from "components/Layout";
 import { getPublicPost } from "lib/blog";
 import { DiscussionEmbed } from "disqus-react";
 import { Container, Header, Button, Divider } from "semantic-ui-react";
+import DNXBreadcrumb from "../../components/Common/Breadcrumb";
+import { truncateString } from "../../helpers/common";
 import Prism from "prismjs";
 import TimeAgo from "react-timeago";
 // import dynamic from "next/dynamic";
@@ -44,6 +46,18 @@ const Post = (props) => {
     image,
   };
 
+  const breadcrumbLinks = [
+    { url: "/", name: "Home" },
+    { url: "/blog", name: "Blog" },
+  ];
+
+  const MAX_TITLE_LENGTH_FOR_BREADCRUMB = 40; // You can adjust this number
+
+  const breadcrumbActivePage = truncateString(
+    seoData.title,
+    MAX_TITLE_LENGTH_FOR_BREADCRUMB
+  );
+
   useEffect(() => {
     // if (content) Prism.highlightAll();
     // Manually call Prism.highlightAll() when you want to apply syntax highlighting
@@ -52,6 +66,10 @@ const Post = (props) => {
 
   return (
     <Layout seoData={seoData}>
+      <DNXBreadcrumb
+        links={breadcrumbLinks}
+        activePage={breadcrumbActivePage}
+      />
       <Container text>
         <Header as="h1">
           {title}
