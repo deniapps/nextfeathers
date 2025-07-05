@@ -134,6 +134,7 @@ export default function Blog({
     initialPage,
     initialShowMore,
     initialTotalPosts,
+    router.asPath,
   ]);
 
   // --- Effect for Saving State on Unmount/Before Navigation ---
