@@ -245,8 +245,8 @@ h1.huge {
 }
 
 .link-button {
-  background-color: transparent;
-  border: none;
+  background-color: transparent !important;
+  border: none !important;
   cursor: pointer;
   display: inline;
   margin: 0;
@@ -255,7 +255,7 @@ h1.huge {
 
 .link-button:hover,
 .link-button:focus {
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .scroll {

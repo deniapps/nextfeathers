@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import Layout from "components/Layout";
 import Meta from "components/Common/Meta";
 import PostList from "components/Blog/PostList"; // This component needs to be updated
@@ -312,31 +313,60 @@ export default function Blog({
           </Segment>
         )}
 
-        {/* Conditional rendering for Load More vs. Prev/Next Buttons */}
         {!isPresentingPaginatedView && showMore && !isLoading && (
           <Segment textAlign="center">
-            <Button onClick={loadMore} primary>
-              Load More
-            </Button>
+            <Link
+              href={`/blog?page=${currentPage + 1}`}
+              className="link-button"
+            >
+              <Button
+                primary
+                onClick={(e) => {
+                  e.preventDefault(); // prevent page reload
+                  loadMore(); // load next batch of posts in memory
+                }}
+              >
+                Load More
+              </Button>
+            </Link>
           </Segment>
         )}
 
+        {/* Conditional rendering for Load More vs. Prev/Next Buttons */}
         {isPresentingPaginatedView && !isLoading && (
           <Segment textAlign="center">
-            <Button
-              onClick={() => handlePageChange(prevPage)}
-              disabled={!showPrevButton}
-              secondary
-            >
-              Previous Page
-            </Button>
-            <Button
-              onClick={() => handlePageChange(nextPage)}
-              disabled={!showNextButton}
-              secondary
-            >
-              Next Page
-            </Button>
+            {showPrevButton && (
+              <Link
+                href={`/blog?page=${currentPage - 1}`}
+                className="link-button"
+              >
+                <Button
+                  secondary
+                  onClick={(e) => {
+                    e.preventDefault(); // prevent default navigation
+                    handlePageChange(currentPage - 1); // load via JS
+                  }}
+                >
+                  Previous Page
+                </Button>
+              </Link>
+            )}
+            {showNextButton && (
+              <Link
+                href={`/blog?page=${currentPage + 1}`}
+                className="link-button"
+              >
+                <Button
+                  secondary
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageChange(currentPage + 1);
+                  }}
+                >
+                  Next Page
+                </Button>
+              </Link>
+            )}
           </Segment>
         )}
       </Layout>
