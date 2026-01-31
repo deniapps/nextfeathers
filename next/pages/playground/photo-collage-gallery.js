@@ -82,51 +82,59 @@ const UnsplashPhotos = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(async () => {
-    queryInputRef.current.focus();
-    // use random for initial page load
-    const randomUrl =
-      "https://api.unsplash.com/photos/random/?count=" +
-      numberOfPhotos +
-      "&client_id=" +
-      clientID;
+  useEffect(() => {
+    let isMounted = true;
 
-    const url =
-      "https://api.unsplash.com/search/photos/?per_page=" +
-      numberOfPhotos +
-      "&page=" +
-      page +
-      "&client_id=" +
-      clientID;
+    const run = async () => {
+      queryInputRef.current?.focus();
+      // use random for initial page load
+      const randomUrl =
+        "https://api.unsplash.com/photos/random/?count=" +
+        numberOfPhotos +
+        "&client_id=" +
+        clientID;
 
-    const photosUrl = query ? `${url}&query=${query}` : randomUrl;
+      const url =
+        "https://api.unsplash.com/search/photos/?per_page=" +
+        numberOfPhotos +
+        "&page=" +
+        page +
+        "&client_id=" +
+        clientID;
 
-    // only fetch one for ramdomulr
-    // when there is query, it's using search API
-    if (page === 1 || (query && isBottom && page <= maxPages)) {
-      try {
-        const data = await getPhotos(photosUrl);
-        console.log(data);
-        // random photo api returns array, but search api returns object
-        const photoFetched = Array.isArray(data) ? data : data.results;
-        if (photos === null) {
-          photos = photoFetched;
-        } else {
-          photos = photos.concat(photoFetched);
+      const photosUrl = query ? `${url}&query=${query}` : randomUrl;
+
+      // only fetch one for ramdomulr
+      // when there is query, it's using search API
+      if (page === 1 || (query && isBottom && page <= maxPages)) {
+        try {
+          const data = await getPhotos(photosUrl);
+          if (!isMounted) return;
+          // random photo api returns array, but search api returns object
+          const photoFetched = Array.isArray(data) ? data : data.results;
+
+          setPhotos((prev) =>
+            prev === null ? photoFetched : prev.concat(photoFetched)
+          );
+          // if photo found, increase page
+          if (photoFetched.length > 0) {
+            setPage((prev) => prev + 1);
+            setIsBottom(false);
+          }
+        } catch (error) {
+          if (!isMounted) return;
+          setPhotos([]);
+          console.log(error);
         }
-
-        setPhotos(photos);
-        // if photo found, increase page
-        if (photoFetched.length > 0) {
-          setPage(page + 1);
-          setIsBottom(false);
-        }
-      } catch (error) {
-        setPhotos([]);
-        console.log(error);
       }
-    }
-  }, [query, isBottom]);
+    };
+
+    run();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [query, isBottom, page]);
 
   const searchPhotos = (e) => {
     // console.log(queryInputRef.current.value);

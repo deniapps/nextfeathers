@@ -13,16 +13,7 @@ const Footer = () => (
     <Container>
       <Grid inverted>
         <Grid.Row>
-          <Grid.Column id="copyRight">
-            Deni Apps LLC 2015-2026 |{" "}
-            <a
-              href="https://github.com/deniapps/nextfeathers"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Icon name="github" key="userMenu-4" /> Source Code
-            </a>
-          </Grid.Column>
+          <Grid.Column id="copyRight">Deni Apps LLC 2015-2026</Grid.Column>
         </Grid.Row>
       </Grid>
     </Container>
