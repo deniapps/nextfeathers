@@ -116,7 +116,9 @@ nav .search-icon {
     margin: 10px;
   }
   nav .logo {
-    flex: 2;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     text-align: center;
   }
 
