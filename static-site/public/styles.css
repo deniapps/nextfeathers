@@ -20,7 +20,16 @@ main {
   padding: clamp(48px, 8vh, 96px) 28px 64px;
   text-align: center;
 }
-.logo { display: block; margin: 0 auto 24px; width: 120px; height: 120px; }
+.logo {
+  display: block;
+  margin: 0 auto 24px;
+  width: 120px;
+  height: 120px;
+  padding: 16px;
+  border-radius: 50%;
+  background: #1f2428;
+  object-fit: contain;
+}
 .eyebrow { margin: 0 0 22px; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #b4beca; }
 h1 { margin: 0; font-size: clamp(44px, 7.5vw, 88px); font-weight: 650; line-height: 1.08; letter-spacing: -.055em; }
 h1 span { color: #62dafb; }
