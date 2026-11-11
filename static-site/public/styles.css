@@ -28,6 +28,11 @@ main {
   padding: 16px;
   border-radius: 50%;
   background: #1f2428;
+}
+.logo img {
+  display: block;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
 }
 .eyebrow { margin: 0 0 22px; font-size: 13px; letter-spacing: .24em; text-transform: uppercase; color: #b4beca; }
