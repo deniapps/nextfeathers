@@ -1,0 +1,10 @@
+{
+  "name": "deniapps-static",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Standalone static Deni Apps homepage for Cloudflare Pages",
+  "scripts": {
+    "dev": "npx wrangler@4 pages dev public",
+    "deploy": "npx wrangler@4 pages deploy public --project-name deniapps-static --branch main"
+  }
+}
